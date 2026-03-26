@@ -16,7 +16,7 @@ The full pipeline is:
 2. separate vocals with Demucs (UVR-style source separation)
 3. transcribe the vocals with `whisper-timestamped`
 4. align the recognized text back to the official lyrics
-5. render karaoke ASS subtitles with progressive highlight
+5. render karaoke ASS subtitles with furigana and progressive highlight
 6. burn the subtitles into the original video with `ffmpeg`
 
 ## Main entrypoint
@@ -90,6 +90,7 @@ uv tool install --force --torch-backend cpu --with torchcodec demucs
 - If a lyric line already contains spaces, those spaces are treated as strong karaoke boundaries.
 - If a lyric line has no spaces, the project now uses `pykakasi` conversion chunks to infer smaller highlight units automatically.
 - This means Japanese lyrics without manual spacing no longer collapse into one giant highlighted block.
+- If a word contains kanji, the ASS output now also renders a furigana line above the main karaoke line.
 
 ## Utility scripts
 

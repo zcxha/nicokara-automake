@@ -100,6 +100,7 @@ class LyricWord:
     word_id: int
     text: str
     normalized: str
+    ruby_text: str
 
 
 @dataclass(frozen=True)
@@ -149,6 +150,22 @@ def split_display_words(text: str, to_hiragana, kakasi) -> list[str]:
     if auto_parts:
         return auto_parts
     return explicit_parts
+
+
+def has_kanji(text: str) -> bool:
+    return any("\u4e00" <= char <= "\u9fff" for char in text)
+
+
+def build_ruby_text(text: str, kakasi) -> str:
+    if not has_kanji(text):
+        return ""
+
+    ruby_parts = []
+    for item in kakasi.convert(text):
+        hira = str(item.get("hira", "")).replace("\u3000", " ").strip()
+        if hira:
+            ruby_parts.append(hira)
+    return "".join(ruby_parts)
 
 
 def canonical_kana(char: str) -> str:
@@ -204,6 +221,7 @@ def load_lyrics_lines(path: Path) -> tuple[list[LyricLine], list[LyricChar]]:
                     word_id=word_id,
                     text=word_text,
                     normalized=normalized_word,
+                    ruby_text=build_ruby_text(word_text, kakasi),
                 )
             )
             for word_char_index, char in enumerate(normalized_word):
@@ -405,6 +423,7 @@ def build_word_level_payload(json_path: str | Path, lyrics_path: str | Path) -> 
                 "word_id": word.word_id,
                 "text": word.text,
                 "normalized_text": word.normalized,
+                "ruby_text": word.ruby_text,
                 "start": word_stats["start"],
                 "end": word_stats["end"],
                 "matched_chars": word_stats["matched_chars"],
