@@ -1,8 +1,8 @@
 .venv/
 *.wav
-*.txt
 *.srt
 *.tsv
+jsyd.txt
 *.vtt
 *.csv
 *.json
