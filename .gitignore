@@ -1,0 +1,12 @@
+.venv/
+*.wav
+*.txt
+*.srt
+*.tsv
+*.vtt
+*.csv
+*.json
+*.ass
+*.mp4
+*test*
+__pycache__
