@@ -97,7 +97,6 @@ uv tool install --force --torch-backend cpu --with torchcodec demucs
 - `kks_convert.py`: convert JSON or TXT into hiragana
 - `lyrics_line_timestamp.py`: generate line-level lyric timing JSON
 - `json_convert_srt.py`: convert `segments`, `lyrics`, or `lines` JSON into SRT
-- `ai_generated_json_to_srt.py`: thin wrapper for the SRT converter
 
 ## Output Format
 
