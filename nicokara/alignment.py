@@ -1,13 +1,12 @@
 from __future__ import annotations
 
 import json
-import re
 import unicodedata
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
 
-from .convert import build_hiragana_converter, build_kakasi_converter
+from .convert import JapaneseTextProcessor, build_text_processor
 
 SPECIAL_REPLACEMENTS = {
     "goodbye": "ぐっばい",
@@ -101,6 +100,8 @@ class LyricWord:
     text: str
     normalized: str
     ruby_text: str
+    ruby_parts: list[dict[str, Any]]
+    ruby_source: str
 
 
 @dataclass(frozen=True)
@@ -120,7 +121,7 @@ class LyricChar:
     word_char_index: int
 
 
-def normalize_for_alignment(text: str, to_hiragana) -> str:
+def normalize_text_for_alignment(text: str, to_hiragana) -> str:
     normalized = to_hiragana(text).lower().replace("\u3000", " ")
     for source, target in SPECIAL_REPLACEMENTS.items():
         normalized = normalized.replace(source, target)
@@ -134,38 +135,6 @@ def normalize_for_alignment(text: str, to_hiragana) -> str:
             continue
         chars.append(char)
     return "".join(chars)
-
-
-def split_display_words(text: str, to_hiragana, kakasi) -> list[str]:
-    explicit_parts = [part for part in re.split(r"[ \u3000]+", text.strip()) if part]
-    if len(explicit_parts) > 1:
-        return explicit_parts
-
-    auto_parts = []
-    for item in kakasi.convert(text.strip()):
-        raw_part = str(item.get("orig", ""))
-        if normalize_for_alignment(raw_part, to_hiragana):
-            auto_parts.append(raw_part)
-
-    if auto_parts:
-        return auto_parts
-    return explicit_parts
-
-
-def has_kanji(text: str) -> bool:
-    return any("\u4e00" <= char <= "\u9fff" for char in text)
-
-
-def build_ruby_text(text: str, kakasi) -> str:
-    if not has_kanji(text):
-        return ""
-
-    ruby_parts = []
-    for item in kakasi.convert(text):
-        hira = str(item.get("hira", "")).replace("\u3000", " ").strip()
-        if hira:
-            ruby_parts.append(hira)
-    return "".join(ruby_parts)
 
 
 def canonical_kana(char: str) -> str:
@@ -199,9 +168,13 @@ def insertion_cost(_: LyricChar) -> float:
     return 0.9
 
 
-def load_lyrics_lines(path: Path) -> tuple[list[LyricLine], list[LyricChar]]:
-    to_hiragana = build_hiragana_converter()
-    kakasi = build_kakasi_converter()
+def load_lyrics_lines(
+    path: Path,
+    *,
+    text_processor: JapaneseTextProcessor | None = None,
+) -> tuple[list[LyricLine], list[LyricChar]]:
+    processor = text_processor or build_text_processor()
+    to_hiragana = processor.to_alignment_hiragana
     lines: list[LyricLine] = []
     lyric_chars: list[LyricChar] = []
 
@@ -213,15 +186,21 @@ def load_lyrics_lines(path: Path) -> tuple[list[LyricLine], list[LyricChar]]:
         words: list[LyricWord] = []
         line_char_index = 0
 
-        for word_id, word_text in enumerate(split_display_words(raw_line, to_hiragana, kakasi)):
-            normalized_word = normalize_for_alignment(word_text, to_hiragana)
+        for word_id, word_text in enumerate(processor.split_words(raw_line)):
+            normalized_word = normalize_text_for_alignment(word_text, to_hiragana)
+            word_reading = processor.resolve_word_reading(word_text)
             words.append(
                 LyricWord(
                     line_id=line_id,
                     word_id=word_id,
                     text=word_text,
                     normalized=normalized_word,
-                    ruby_text=build_ruby_text(word_text, kakasi),
+                    ruby_text=word_reading.ruby_text,
+                    ruby_parts=[
+                        {"ruby": part.ruby, "rt": part.rt}
+                        for part in word_reading.ruby_parts
+                    ],
+                    ruby_source=word_reading.source,
                 )
             )
             for word_char_index, char in enumerate(normalized_word):
@@ -249,13 +228,18 @@ def load_lyrics_lines(path: Path) -> tuple[list[LyricLine], list[LyricChar]]:
     return lines, lyric_chars
 
 
-def load_asr_chars(path: Path) -> list[AsrChar]:
+def load_asr_chars(
+    path: Path,
+    *,
+    text_processor: JapaneseTextProcessor | None = None,
+) -> list[AsrChar]:
     payload = json.loads(path.read_text(encoding="utf-8"))
     segments = payload.get("segments")
     if not isinstance(segments, list):
         raise ValueError("Input JSON must contain a 'segments' list.")
 
-    to_hiragana = build_hiragana_converter()
+    processor = text_processor or build_text_processor()
+    to_hiragana = processor.to_alignment_hiragana
     asr_chars: list[AsrChar] = []
     word_index = 0
 
@@ -266,7 +250,7 @@ def load_asr_chars(path: Path) -> list[AsrChar]:
 
         for word in words:
             raw_text = str(word.get("text", ""))
-            normalized = normalize_for_alignment(raw_text, to_hiragana)
+            normalized = normalize_text_for_alignment(raw_text, to_hiragana)
             if not normalized:
                 word_index += 1
                 continue
@@ -396,12 +380,28 @@ def _collect_matches(
     return line_matches, word_matches
 
 
-def build_word_level_payload(json_path: str | Path, lyrics_path: str | Path) -> dict[str, Any]:
+def build_word_level_payload(
+    json_path: str | Path,
+    lyrics_path: str | Path,
+    *,
+    text_processor: JapaneseTextProcessor | None = None,
+    reading_backend: str = "auto",
+    reading_split_mode: str = "C",
+    furigana_resource_path: str | Path | None = None,
+    reading_overrides_path: str | Path | None = None,
+) -> dict[str, Any]:
     json_source = Path(json_path)
     lyrics_source = Path(lyrics_path)
 
-    lines, lyric_chars = load_lyrics_lines(lyrics_source)
-    asr_chars = load_asr_chars(json_source)
+    processor = text_processor or build_text_processor(
+        backend=reading_backend,
+        split_mode=reading_split_mode,
+        furigana_resource_path=furigana_resource_path,
+        reading_overrides_path=reading_overrides_path,
+    )
+
+    lines, lyric_chars = load_lyrics_lines(lyrics_source, text_processor=processor)
+    asr_chars = load_asr_chars(json_source, text_processor=processor)
     lyric_to_asr = align_characters(asr_chars, lyric_chars)
     line_matches, word_matches = _collect_matches(lines, lyric_chars, lyric_to_asr)
 
@@ -424,6 +424,8 @@ def build_word_level_payload(json_path: str | Path, lyrics_path: str | Path) -> 
                 "text": word.text,
                 "normalized_text": word.normalized,
                 "ruby_text": word.ruby_text,
+                "ruby_parts": word.ruby_parts,
+                "ruby_source": word.ruby_source,
                 "start": word_stats["start"],
                 "end": word_stats["end"],
                 "matched_chars": word_stats["matched_chars"],
@@ -464,14 +466,32 @@ def build_word_level_payload(json_path: str | Path, lyrics_path: str | Path) -> 
             "coverage": matched_char_count / len(lyric_chars) if lyric_chars else 0.0,
             "line_count": len(output_lines),
             "word_count": len(flat_words),
+            "reading_backend": processor.backend_label,
         },
         "lines": output_lines,
         "words": flat_words,
     }
 
 
-def build_line_level_payload(json_path: str | Path, lyrics_path: str | Path) -> dict[str, Any]:
-    word_payload = build_word_level_payload(json_path, lyrics_path)
+def build_line_level_payload(
+    json_path: str | Path,
+    lyrics_path: str | Path,
+    *,
+    text_processor: JapaneseTextProcessor | None = None,
+    reading_backend: str = "auto",
+    reading_split_mode: str = "C",
+    furigana_resource_path: str | Path | None = None,
+    reading_overrides_path: str | Path | None = None,
+) -> dict[str, Any]:
+    word_payload = build_word_level_payload(
+        json_path,
+        lyrics_path,
+        text_processor=text_processor,
+        reading_backend=reading_backend,
+        reading_split_mode=reading_split_mode,
+        furigana_resource_path=furigana_resource_path,
+        reading_overrides_path=reading_overrides_path,
+    )
     line_entries = []
     for line in word_payload["lines"]:
         line_entries.append(
@@ -499,5 +519,22 @@ def build_line_level_payload(json_path: str | Path, lyrics_path: str | Path) -> 
     }
 
 
-def align_lyrics_to_asr(json_path: str | Path, lyrics_path: str | Path) -> dict[str, Any]:
-    return build_word_level_payload(json_path, lyrics_path)
+def align_lyrics_to_asr(
+    json_path: str | Path,
+    lyrics_path: str | Path,
+    *,
+    text_processor: JapaneseTextProcessor | None = None,
+    reading_backend: str = "auto",
+    reading_split_mode: str = "C",
+    furigana_resource_path: str | Path | None = None,
+    reading_overrides_path: str | Path | None = None,
+) -> dict[str, Any]:
+    return build_word_level_payload(
+        json_path,
+        lyrics_path,
+        text_processor=text_processor,
+        reading_backend=reading_backend,
+        reading_split_mode=reading_split_mode,
+        furigana_resource_path=furigana_resource_path,
+        reading_overrides_path=reading_overrides_path,
+    )

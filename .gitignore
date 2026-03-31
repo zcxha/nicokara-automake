@@ -8,5 +8,5 @@ jsyd.txt
 *.json
 *.ass
 *.mp4
-*test*
+*test
 __pycache__

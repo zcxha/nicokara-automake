@@ -10,6 +10,7 @@ from pathlib import Path
 
 from .alignment import build_word_level_payload
 from .ass import payload_to_ass_text
+from .convert import build_text_processor
 from .media import (
     ExternalToolError,
     burn_ass_subtitles,
@@ -296,6 +297,10 @@ def build_nicokara_video(
     force: bool = False,
     skip_burn: bool = False,
     whisper_vad: bool = False,
+    reading_backend: str = "auto",
+    reading_split_mode: str = "C",
+    furigana_resource_path: str | Path | None = None,
+    reading_overrides_path: str | Path | None = None,
 ) -> PipelineArtifacts:
     video_source = Path(video_path)
     lyrics_source = Path(lyrics_path)
@@ -336,7 +341,22 @@ def build_nicokara_video(
             vad=whisper_vad,
         )
 
-    payload = build_word_level_payload(stable_asr_json_path, lyrics_source)
+    text_processor = build_text_processor(
+        backend=reading_backend,
+        split_mode=reading_split_mode,
+        furigana_resource_path=furigana_resource_path,
+        reading_overrides_path=reading_overrides_path,
+    )
+
+    payload = build_word_level_payload(
+        stable_asr_json_path,
+        lyrics_source,
+        text_processor=text_processor,
+        reading_backend=reading_backend,
+        reading_split_mode=reading_split_mode,
+        furigana_resource_path=furigana_resource_path,
+        reading_overrides_path=reading_overrides_path,
+    )
     aligned_json_path.write_text(
         json.dumps(payload, ensure_ascii=False, indent=2) + "\n",
         encoding="utf-8",
@@ -357,7 +377,17 @@ def build_nicokara_video(
 
     width, height = probe_video_resolution(video_source)
     karaoke_ass_path.write_text(
-        payload_to_ass_text(payload, play_res_x=width, play_res_y=height, title=video_source.stem),
+        payload_to_ass_text(
+            payload,
+            play_res_x=width,
+            play_res_y=height,
+            title=video_source.stem,
+            text_processor=text_processor,
+            reading_backend=reading_backend,
+            reading_split_mode=reading_split_mode,
+            furigana_resource_path=furigana_resource_path,
+            reading_overrides_path=reading_overrides_path,
+        ),
         encoding="utf-8",
     )
 
