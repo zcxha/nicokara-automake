@@ -10,6 +10,7 @@ import unicodedata
 import urllib.request
 from copy import deepcopy
 from dataclasses import dataclass
+from functools import lru_cache
 from pathlib import Path
 from typing import Any, Protocol
 
@@ -21,6 +22,9 @@ JMDICT_ASSETS = {
 }
 CACHE_DIR = Path.home() / ".cache" / "nicokara"
 DEFAULT_FURIGANA_DB_PATH = CACHE_DIR / "jmdict_furigana.sqlite3"
+KANJI_LIKE_MARKS = {"々", "〆", "ヶ", "ヵ"}
+SMALL_KANA = frozenset("ぁぃぅぇぉゃゅょゎゕゖゔっ")
+LEADING_DISCOURAGED_KANA = SMALL_KANA | {"ー"}
 
 
 def build_kakasi_converter():
@@ -40,7 +44,7 @@ def strip_punctuation(text: str) -> str:
 
 
 def has_kanji(text: str) -> bool:
-    return any("\u4e00" <= char <= "\u9fff" for char in text)
+    return any(_is_kanji_like(char) for char in text)
 
 
 def katakana_to_hiragana(text: str) -> str:
@@ -52,6 +56,10 @@ def katakana_to_hiragana(text: str) -> str:
         else:
             chars.append(char)
     return "".join(chars)
+
+
+def _is_kanji_like(char: str) -> bool:
+    return "\u4e00" <= char <= "\u9fff" or char in KANJI_LIKE_MARKS
 
 
 @dataclass(frozen=True)
@@ -142,19 +150,19 @@ class FugashiBackend:
 
             feature = token.feature
             ruby_kana = (
-                getattr(feature, "kanaBase", None)
-                or getattr(feature, "kana", None)
-                or getattr(feature, "pronBase", None)
+                getattr(feature, "kana", None)
                 or getattr(feature, "pron", None)
+                or getattr(feature, "kanaBase", None)
+                or getattr(feature, "pronBase", None)
                 or surface
             )
-            pronunciation_kana = ruby_kana
-            if getattr(feature, "pos1", None) == "助詞":
-                pronunciation_kana = (
-                    getattr(feature, "pronBase", None)
-                    or getattr(feature, "pron", None)
-                    or ruby_kana
-                )
+            pronunciation_kana = (
+                getattr(feature, "pron", None)
+                or getattr(feature, "kana", None)
+                or getattr(feature, "pronBase", None)
+                or getattr(feature, "kanaBase", None)
+                or ruby_kana
+            )
 
             ruby = katakana_to_hiragana(str(ruby_kana))
             pronunciation = katakana_to_hiragana(str(pronunciation_kana))
@@ -364,7 +372,9 @@ class JapaneseTextProcessor:
             token = self._refine_token_reading(token)
             entry, source = self._lookup_entry(token.surface, token.ruby)
             ruby = entry.reading if entry is not None else token.ruby
-            pronunciation = ruby if source in {"override", "resource", "builtin"} else token.pronunciation
+            pronunciation = (
+                ruby if source in {"override", "resource", "builtin"} else token.pronunciation
+            )
             tokens.append(
                 ReadingToken(
                     surface=token.surface,
@@ -428,7 +438,7 @@ class JapaneseTextProcessor:
                     ruby_text=direct_entry.reading,
                     pronunciation_text=pronunciation_text or direct_entry.reading,
                     source=direct_source,
-                    ruby_parts=direct_entry.parts or _build_approximate_parts(
+                    ruby_parts=direct_entry.parts or _build_aligned_parts(
                         text,
                         direct_entry.reading,
                         self,
@@ -444,7 +454,7 @@ class JapaneseTextProcessor:
                 ruby_parts.extend(entry.parts)
             else:
                 ruby_parts.extend(
-                    _build_approximate_parts(
+                    _build_aligned_parts(
                         token.surface,
                         token.ruby,
                         self,
@@ -487,18 +497,30 @@ class JapaneseTextProcessor:
         if self._fallback_reader is None or not has_kanji(token.surface):
             return token
 
+        normalized_ruby = _normalize_reading_key(token.ruby)
+        normalized_pronunciation = _normalize_reading_key(token.pronunciation)
+        if _reading_looks_resolved(token.surface, normalized_ruby):
+            return ReadingToken(
+                surface=token.surface,
+                ruby=normalized_ruby,
+                pronunciation=normalized_pronunciation or normalized_ruby,
+            )
+
         fallback_tokens = self._fallback_reader.tokenize(token.surface)
-        fallback_ruby = "".join(item.ruby for item in fallback_tokens).strip()
+        fallback_ruby = _normalize_reading_key("".join(item.ruby for item in fallback_tokens))
         if not fallback_ruby:
             return token
 
-        pronunciation = token.pronunciation
-        if pronunciation == token.ruby:
+        ruby = normalized_ruby or fallback_ruby
+        pronunciation = normalized_pronunciation or fallback_ruby
+        if not _reading_looks_resolved(token.surface, ruby):
+            ruby = fallback_ruby
+        if not _reading_looks_resolved(token.surface, pronunciation):
             pronunciation = fallback_ruby
 
         return ReadingToken(
             surface=token.surface,
-            ruby=fallback_ruby,
+            ruby=ruby,
             pronunciation=pronunciation,
         )
 
@@ -766,7 +788,7 @@ def _parse_compact_furigana_parts(text: str, spec: str) -> list[RubyPart]:
     return parts
 
 
-def _build_approximate_parts(
+def _build_aligned_parts(
     text: str,
     reading: str,
     processor: JapaneseTextProcessor,
@@ -777,11 +799,74 @@ def _build_approximate_parts(
         return [RubyPart(ruby=text, rt=None)]
 
     normalized_reading = _normalize_reading_key(reading)
+    if not normalized_reading:
+        return [RubyPart(ruby=text, rt=None)]
+
+    runs = _split_surface_runs(text)
+
+    parts: list[RubyPart] = []
+    reading_pos = 0
+
+    for index, (segment, is_kanji_run) in enumerate(runs):
+        if not is_kanji_run:
+            plain_reading = _normalize_surface_reading(segment, processor)
+            if plain_reading and normalized_reading[reading_pos:].startswith(plain_reading):
+                reading_pos += len(plain_reading)
+            parts.append(RubyPart(ruby=segment, rt=None))
+            continue
+
+        next_plain = _next_anchor_reading(runs[index + 1 :], processor)
+        min_remaining = _minimum_reading_for_runs(runs[index + 1 :], processor)
+        max_end = max(reading_pos, len(normalized_reading) - min_remaining)
+
+        if next_plain:
+            next_index = normalized_reading.find(next_plain, reading_pos, max_end + 1)
+            if next_index == -1:
+                next_index = max_end
+        else:
+            next_index = max_end
+
+        rt = normalized_reading[reading_pos:next_index]
+        reading_pos = next_index
+        if not rt:
+            parts.append(RubyPart(ruby=segment, rt=normalized_reading[reading_pos:] or normalized_reading))
+            reading_pos = len(normalized_reading)
+            continue
+
+        parts.extend(_segment_kanji_run(segment, rt, processor))
+
+    return _merge_adjacent_parts(parts)
+
+
+def _normalize_reading_key(text: str) -> str:
+    return katakana_to_hiragana(text).replace("\u3000", " ").strip()
+
+
+def _reading_looks_resolved(surface: str, reading: str) -> bool:
+    if not reading:
+        return False
+    normalized_surface = _normalize_reading_key(surface)
+    return not has_kanji(reading) and (
+        not has_kanji(surface) or reading != normalized_surface
+    )
+
+
+def _normalize_surface_reading(
+    text: str,
+    processor: JapaneseTextProcessor,
+) -> str:
+    return _normalize_reading_key(processor.to_ruby_hiragana(text))
+
+
+def _split_surface_runs(text: str) -> list[tuple[str, bool]]:
+    if not text:
+        return []
+
     runs: list[tuple[str, bool]] = []
     current = text[0]
-    current_is_kanji = has_kanji(current)
+    current_is_kanji = _is_kanji_like(text[0])
     for char in text[1:]:
-        is_kanji = has_kanji(char)
+        is_kanji = _is_kanji_like(char)
         if is_kanji == current_is_kanji:
             current += char
         else:
@@ -789,43 +874,125 @@ def _build_approximate_parts(
             current = char
             current_is_kanji = is_kanji
     runs.append((current, current_is_kanji))
+    return runs
 
-    parts: list[RubyPart] = []
-    reading_pos = 0
 
-    for index, (segment, is_kanji_run) in enumerate(runs):
-        if not is_kanji_run:
-            plain_reading = processor.to_ruby_hiragana(segment)
-            if normalized_reading[reading_pos:].startswith(plain_reading):
-                reading_pos += len(plain_reading)
-            parts.append(RubyPart(ruby=segment, rt=None))
+def _next_anchor_reading(
+    runs: list[tuple[str, bool]],
+    processor: JapaneseTextProcessor,
+) -> str:
+    for segment, is_kanji_run in runs:
+        if is_kanji_run:
             continue
+        anchor = _normalize_surface_reading(segment, processor)
+        if anchor:
+            return anchor
+    return ""
 
-        next_plain = ""
-        for future_segment, future_is_kanji in runs[index + 1 :]:
-            if not future_is_kanji:
-                next_plain = processor.to_ruby_hiragana(future_segment)
-                break
 
-        if next_plain:
-            next_index = normalized_reading.find(next_plain, reading_pos)
-            if next_index != -1:
-                rt = normalized_reading[reading_pos:next_index]
-                reading_pos = next_index
-            else:
-                rt = normalized_reading[reading_pos:]
-                reading_pos = len(normalized_reading)
+def _minimum_reading_for_runs(
+    runs: list[tuple[str, bool]],
+    processor: JapaneseTextProcessor,
+) -> int:
+    minimum = 0
+    for segment, is_kanji_run in runs:
+        if is_kanji_run:
+            minimum += len(segment)
         else:
-            rt = normalized_reading[reading_pos:]
-            reading_pos = len(normalized_reading)
-
-        parts.append(RubyPart(ruby=segment, rt=rt or normalized_reading))
-
-    return parts
+            minimum += len(_normalize_surface_reading(segment, processor))
+    return minimum
 
 
-def _normalize_reading_key(text: str) -> str:
-    return katakana_to_hiragana(text).replace("\u3000", " ").strip()
+def _segment_kanji_run(
+    text: str,
+    reading: str,
+    processor: JapaneseTextProcessor,
+) -> list[RubyPart]:
+    if not text:
+        return []
+    if len(text) == 1 or len(reading) <= 1:
+        return [RubyPart(ruby=text, rt=reading)]
+
+    @lru_cache(maxsize=None)
+    def segment_bonus(ruby: str, rt: str) -> float:
+        entry, _ = processor._lookup_entry(ruby, rt)
+        if entry is None:
+            return 0.0
+        return 1.35 if entry.parts else 1.0
+
+    @lru_cache(maxsize=None)
+    def solve(text_pos: int, reading_pos: int) -> tuple[float, tuple[RubyPart, ...]] | None:
+        if text_pos == len(text) and reading_pos == len(reading):
+            return 0.0, ()
+        if text_pos >= len(text) or reading_pos >= len(reading):
+            return None
+
+        remaining_chars = len(text) - text_pos
+        remaining_reading = len(reading) - reading_pos
+        if remaining_reading < remaining_chars:
+            return None
+
+        best: tuple[float, tuple[RubyPart, ...]] | None = None
+        max_group_size = min(remaining_chars, 4)
+        for group_size in range(1, max_group_size + 1):
+            ruby = text[text_pos : text_pos + group_size]
+            min_segment_reading = 1
+            max_segment_reading = remaining_reading - (remaining_chars - group_size)
+            for segment_reading_len in range(max_segment_reading, min_segment_reading - 1, -1):
+                rt = reading[reading_pos : reading_pos + segment_reading_len]
+                tail = solve(text_pos + group_size, reading_pos + segment_reading_len)
+                if tail is None:
+                    continue
+
+                tail_cost, tail_parts = tail
+                cost = _segment_cost(
+                    ruby=ruby,
+                    rt=rt,
+                    has_prefix=text_pos > 0,
+                    has_tail=bool(tail_parts),
+                ) - segment_bonus(ruby, rt) + tail_cost
+                candidate = (cost, (RubyPart(ruby=ruby, rt=rt),) + tail_parts)
+                if best is None or candidate[0] < best[0]:
+                    best = candidate
+        return best
+
+    resolved = solve(0, 0)
+    if resolved is None:
+        return [RubyPart(ruby=text, rt=reading)]
+    return list(resolved[1])
+
+
+def _segment_cost(*, ruby: str, rt: str, has_prefix: bool, has_tail: bool) -> float:
+    group_len = len(ruby)
+    reading_len = len(rt)
+    average = reading_len / max(1, group_len)
+    cost = abs(average - 2.0)
+    cost += 1.0 * max(0, group_len - 1)
+
+    if rt[0] in LEADING_DISCOURAGED_KANA:
+        cost += 3.0
+    if has_prefix and rt[0] in {"う", "い"}:
+        cost += 0.95
+    if has_tail and rt[-1] in SMALL_KANA:
+        cost += 0.85
+    if reading_len > group_len * 4:
+        cost += (reading_len - group_len * 4) * 0.5
+    return cost
+
+
+def _merge_adjacent_parts(parts: list[RubyPart]) -> list[RubyPart]:
+    merged: list[RubyPart] = []
+    for part in parts:
+        if not part.ruby:
+            continue
+        if merged and merged[-1].rt == part.rt:
+            merged[-1] = RubyPart(
+                ruby=merged[-1].ruby + part.ruby,
+                rt=part.rt,
+            )
+            continue
+        merged.append(part)
+    return merged
 
 
 def _resolve_source(sources: list[str]) -> str:

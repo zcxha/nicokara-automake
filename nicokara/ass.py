@@ -231,15 +231,20 @@ def _line_to_karaoke_events(
             cursor_x += float(segment["display_width"])
             continue
 
-        part_cursor = 0.0
+        boundaries = _measure_text_boundaries(text, KARAOKE_FONT_NAME, KARAOKE_FONT_SIZE)
+        part_cursor = 0
         rendered_any = False
         for part in ruby_parts:
             part_text = str(part.get("ruby", ""))
             part_rt = part.get("rt")
             if not part_text:
                 continue
-            part_width = _measure_text(part_text, KARAOKE_FONT_NAME, KARAOKE_FONT_SIZE)
-            part_center_x = word_left + part_cursor + part_width / 2.0
+            next_cursor = min(len(text), part_cursor + len(part_text))
+            part_left = word_left + boundaries[part_cursor]
+            part_right = word_left + boundaries[next_cursor]
+            if part_right <= part_left:
+                part_right = part_left + _measure_text(part_text, KARAOKE_FONT_NAME, KARAOKE_FONT_SIZE)
+            part_center_x = part_left + (part_right - part_left) / 2.0
             if part_rt:
                 rendered_any = True
                 ruby_events.append(
@@ -252,7 +257,7 @@ def _line_to_karaoke_events(
                     r")}"
                     + escape_ass_text(str(part_rt))
                 )
-            part_cursor += part_width
+            part_cursor = next_cursor
 
         if not rendered_any:
             ruby_text = str(unit.get("ruby_text", "")).strip()
@@ -381,3 +386,12 @@ def _measure_text(text: str, font_name: str, font_size: int) -> float:
     except AttributeError:
         bbox = font.getbbox(text)
         return float(max(0, bbox[2] - bbox[0]))
+
+
+def _measure_text_boundaries(text: str, font_name: str, font_size: int) -> list[float]:
+    if not text:
+        return [0.0]
+    return [
+        _measure_text(text[:index], font_name, font_size)
+        for index in range(len(text) + 1)
+    ]

@@ -78,23 +78,23 @@ python3 build_nicokara_video.py \
 Typical setup commands:
 
 ```bash
+uv sync
 uv tool install --with packaging --with setuptools whisper-timestamped
 uv tool install --with torchcodec demucs
-uv pip install --python .venv/bin/python -e .
 ```
 
 If your machine does not have a working CUDA runtime, prefer:
 
 ```bash
+uv sync
 uv tool install --force --torch-backend cpu --with packaging --with setuptools whisper-timestamped
 uv tool install --force --torch-backend cpu --with torchcodec demucs
-uv pip install --python .venv/bin/python -e .
 ```
 
 If you also want the Sudachi backend:
 
 ```bash
-uv pip install --python .venv/bin/python -e ".[sudachi]"
+uv sync --extra sudachi
 ```
 
 ## Notes On Lyric Segmentation
@@ -103,7 +103,9 @@ uv pip install --python .venv/bin/python -e ".[sudachi]"
 - If a lyric line has no spaces, the project now uses a pluggable Japanese reading backend to infer smaller highlight units automatically.
 - This means Japanese lyrics without manual spacing no longer collapse into one giant highlighted block.
 - If a word contains kanji, the ASS output now renders per-segment furigana aligned above the matching kanji span instead of writing one squeezed ruby line.
-- The default `auto` mode prefers `fugashi + UniDic`, augments it with the official `JmdictFurigana` / `JmnedictFurigana` data on first run, and falls back to `pykakasi` when a lightweight reading refinement helps.
+- The default `auto` mode prefers `fugashi + UniDic`, augments it with the official `JmdictFurigana` / `JmnedictFurigana` data on first run, and only uses `pykakasi` as a weak fallback when the primary backend cannot produce a usable kanji reading.
+- Furigana segmentation is now handled by a generic lexicon-aware dynamic-programming aligner, so the workflow stays reusable for arbitrary Japanese lyrics instead of depending on hardcoded word fixes.
+- ASS placement now uses whole-word prefix boundaries when positioning each ruby part, which keeps the kana centered on the actual kanji span more reliably than summing isolated substring widths.
 
 ## Reading Backends
 

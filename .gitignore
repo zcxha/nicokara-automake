@@ -10,3 +10,6 @@ jsyd.txt
 *.mp4
 *test
 __pycache__
+*.mkv
+*.egg-info
+uv.lock
