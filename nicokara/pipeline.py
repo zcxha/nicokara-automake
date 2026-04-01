@@ -396,6 +396,7 @@ def build_nicokara_video(
             reading_split_mode=reading_split_mode,
             furigana_resource_path=furigana_resource_path,
             reading_overrides_path=reading_overrides_path,
+            ass_path=karaoke_ass_path,
         ),
         encoding="utf-8",
     )

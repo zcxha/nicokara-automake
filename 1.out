@@ -1,0 +1,1294 @@
+_measure転換点 
+_measure転換点
+_measureいつかノートに
+_measureいつかノートに
+此行歌词长度：531.640625
+此行左起点：694.1796875
+layout_segments [{'text': '転換点', 'display_text': '転換点 ', 'display_width': 167.640625, 'word_width': 156.0, 'unit': {'global_word_id': 0, 'line_id': 0, 'word_id': 0, 'text': '転換点', 'normalized_text': 'てんかんてん', 'ruby_text': 'てんかんてん', 'ruby_parts': [{'ruby': '転', 'rt': 'てん'}, {'ruby': '換', 'rt': 'かん'}, {'ruby': '点', 'rt': 'てん'}], 'ruby_source': 'builtin', 'start': 1.28, 'end': 1.309090909090909, 'matched_chars': 3, 'total_chars': 6, 'coverage': 0.5, 'segment_ids': [0]}}, {'text': 'いつかノートに', 'display_text': 'いつかノートに', 'display_width': 364.0, 'word_width': 364.0, 'unit': {'global_word_id': 1, 'line_id': 0, 'word_id': 1, 'text': 'いつかノートに', 'normalized_text': 'いつかのーとに', 'ruby_text': '', 'ruby_parts': [], 'ruby_source': 'none', 'start': 1.3127272727272727, 'end': 34.22, 'matched_chars': 6, 'total_chars': 7, 'coverage': 0.8571428571428571, 'segment_ids': [0, 1]}}]
+text転換点
+ruby_parts: [{'ruby': '転', 'rt': 'てん'}, {'ruby': '換', 'rt': 'かん'}, {'ruby': '点', 'rt': 'てん'}]
+_measure
+_measure転
+_measure転換
+_measure転換点
+boundaries: [0.0, 52.0, 104.0, 156.0]
+part_center_x 720.1796875
+part_center_x 772.1796875
+part_center_x 824.1796875
+textいつかノートに
+_measure書い
+_measure書い
+_measureた
+_measureた
+_measureあの
+_measureあの
+_measure言葉
+_measure言葉
+_measureたち
+_measureたち
+_measureは
+_measureは
+此行歌词长度：520.0
+此行左起点：700.0
+layout_segments [{'text': '書い', 'display_text': '書い', 'display_width': 104.0, 'word_width': 104.0, 'unit': {'global_word_id': 2, 'line_id': 1, 'word_id': 0, 'text': '書い', 'normalized_text': 'かい', 'ruby_text': 'かい', 'ruby_parts': [{'ruby': '書', 'rt': 'か'}, {'ruby': 'い', 'rt': None}], 'ruby_source': 'backend', 'start': 35.04, 'end': 35.129999999999995, 'matched_chars': 1, 'total_chars': 2, 'coverage': 0.5, 'segment_ids': [1]}}, {'text': 'た', 'display_text': 'た', 'display_width': 52.0, 'word_width': 52.0, 'unit': {'global_word_id': 3, 'line_id': 1, 'word_id': 1, 'text': 'た', 'normalized_text': 'た', 'ruby_text': '', 'ruby_parts': [], 'ruby_source': 'none', 'start': 35.129999999999995, 'end': 35.22, 'matched_chars': 1, 'total_chars': 1, 'coverage': 1.0, 'segment_ids': [1]}}, {'text': 'あの', 'display_text': 'あの', 'display_width': 104.0, 'word_width': 104.0, 'unit': {'global_word_id': 4, 'line_id': 1, 'word_id': 2, 'text': 'あの', 'normalized_text': 'あの', 'ruby_text': '', 'ruby_parts': [], 'ruby_source': 'none', 'start': 35.22, 'end': 35.88, 'matched_chars': 2, 'total_chars': 2, 'coverage': 1.0, 'segment_ids': [1]}}, {'text': '言葉', 'display_text': '言葉', 'display_width': 104.0, 'word_width': 104.0, 'unit': {'global_word_id': 5, 'line_id': 1, 'word_id': 3, 'text': '言葉', 'normalized_text': 'ことば', 'ruby_text': 'ことば', 'ruby_parts': [{'ruby': '言', 'rt': 'こと'}, {'ruby': '葉', 'rt': 'ば'}], 'ruby_source': 'builtin', 'start': 35.88, 'end': 36.08, 'matched_chars': 2, 'total_chars': 3, 'coverage': 0.6666666666666666, 'segment_ids': [1]}}, {'text': 'たち', 'display_text': 'たち', 'display_width': 104.0, 'word_width': 104.0, 'unit': {'global_word_id': 6, 'line_id': 1, 'word_id': 4, 'text': 'たち', 'normalized_text': 'たち', 'ruby_text': '', 'ruby_parts': [], 'ruby_source': 'none', 'start': 36.08, 'end': 37.38, 'matched_chars': 2, 'total_chars': 2, 'coverage': 1.0, 'segment_ids': [1]}}, {'text': 'は', 'display_text': 'は', 'display_width': 52.0, 'word_width': 52.0, 'unit': {'global_word_id': 7, 'line_id': 1, 'word_id': 5, 'text': 'は', 'normalized_text': 'わ', 'ruby_text': '', 'ruby_parts': [], 'ruby_source': 'none', 'start': 37.38, 'end': 37.4, 'matched_chars': 1, 'total_chars': 1, 'coverage': 1.0, 'segment_ids': [1]}}]
+text書い
+ruby_parts: [{'ruby': '書', 'rt': 'か'}, {'ruby': 'い', 'rt': None}]
+_measure
+_measure書
+_measure書い
+boundaries: [0.0, 52.0, 104.0]
+part_center_x 726.0
+part_center_x 778.0
+textた
+textあの
+text言葉
+ruby_parts: [{'ruby': '言', 'rt': 'こと'}, {'ruby': '葉', 'rt': 'ば'}]
+_measure
+_measure言
+_measure言葉
+boundaries: [0.0, 52.0, 104.0]
+part_center_x 986.0
+part_center_x 1038.0
+textたち
+textは
+_measureきっと 
+_measureきっと
+_measure泡になって消えた
+_measure泡になって消えた
+此行歌词长度：578.96875
+此行左起点：670.515625
+layout_segments [{'text': 'きっと', 'display_text': 'きっと ', 'display_width': 165.5625, 'word_width': 153.921875, 'unit': {'global_word_id': 8, 'line_id': 2, 'word_id': 0, 'text': 'きっと', 'normalized_text': 'きっと', 'ruby_text': '', 'ruby_parts': [], 'ruby_source': 'none', 'start': 47.86, 'end': 48.78, 'matched_chars': 3, 'total_chars': 3, 'coverage': 1.0, 'segment_ids': [2]}}, {'text': '泡になって消えた', 'display_text': '泡になって消えた', 'display_width': 413.40625, 'word_width': 413.40625, 'unit': {'global_word_id': 9, 'line_id': 2, 'word_id': 1, 'text': '泡になって消えた', 'normalized_text': 'あわになってきえた', 'ruby_text': 'あわになってきえた', 'ruby_parts': [{'ruby': '泡', 'rt': 'あわ'}, {'ruby': 'に', 'rt': None}, {'ruby': 'なっ', 'rt': None}, {'ruby': 'て', 'rt': None}, {'ruby': '消', 'rt': 'き'}, {'ruby': 'え', 'rt': None}, {'ruby': 'た', 'rt': None}], 'ruby_source': 'builtin', 'start': 48.78, 'end': 51.16, 'matched_chars': 9, 'total_chars': 9, 'coverage': 1.0, 'segment_ids': [2]}}]
+textきっと
+text泡になって消えた
+ruby_parts: [{'ruby': '泡', 'rt': 'あわ'}, {'ruby': 'に', 'rt': None}, {'ruby': 'なっ', 'rt': None}, {'ruby': 'て', 'rt': None}, {'ruby': '消', 'rt': 'き'}, {'ruby': 'え', 'rt': None}, {'ruby': 'た', 'rt': None}]
+_measure
+_measure泡
+_measure泡に
+_measure泡にな
+_measure泡になっ
+_measure泡になって
+_measure泡になって消
+_measure泡になって消え
+_measure泡になって消えた
+boundaries: [0.0, 52.0, 104.0, 156.0, 208.0, 257.40625, 309.40625, 361.40625, 413.40625]
+part_center_x 862.078125
+part_center_x 914.078125
+part_center_x 992.078125
+part_center_x 1068.78125
+part_center_x 1119.484375
+part_center_x 1171.484375
+part_center_x 1223.484375
+_measure行方
+_measure行方
+_measureなんて
+_measureなんて
+_measure知ら
+_measure知ら
+_measureない
+_measureない
+此行歌词长度：465.40625
+此行左起点：727.296875
+layout_segments [{'text': '行方', 'display_text': '行方', 'display_width': 104.0, 'word_width': 104.0, 'unit': {'global_word_id': 10, 'line_id': 3, 'word_id': 0, 'text': '行方', 'normalized_text': 'ゆくえ', 'ruby_text': 'ゆくえ', 'ruby_parts': [{'ruby': '行方', 'rt': 'ゆくえ'}], 'ruby_source': 'builtin', 'start': 51.510000000000005, 'end': 52.88, 'matched_chars': 3, 'total_chars': 3, 'coverage': 1.0, 'segment_ids': [2, 3]}}, {'text': 'なんて', 'display_text': 'なんて', 'display_width': 153.40625, 'word_width': 153.40625, 'unit': {'global_word_id': 11, 'line_id': 3, 'word_id': 1, 'text': 'なんて', 'normalized_text': 'なんて', 'ruby_text': '', 'ruby_parts': [], 'ruby_source': 'none', 'start': 52.88, 'end': 53.4, 'matched_chars': 3, 'total_chars': 3, 'coverage': 1.0, 'segment_ids': [3]}}, {'text': '知ら', 'display_text': '知ら', 'display_width': 104.0, 'word_width': 104.0, 'unit': {'global_word_id': 12, 'line_id': 3, 'word_id': 2, 'text': '知ら', 'normalized_text': 'しら', 'ruby_text': 'しら', 'ruby_parts': [{'ruby': '知', 'rt': 'し'}, {'ruby': 'ら', 'rt': None}], 'ruby_source': 'backend', 'start': 53.4, 'end': 54.06, 'matched_chars': 2, 'total_chars': 2, 'coverage': 1.0, 'segment_ids': [3]}}, {'text': 'ない', 'display_text': 'ない', 'display_width': 104.0, 'word_width': 104.0, 'unit': {'global_word_id': 13, 'line_id': 3, 'word_id': 3, 'text': 'ない', 'normalized_text': 'ない', 'ruby_text': '', 'ruby_parts': [], 'ruby_source': 'none', 'start': 54.06, 'end': 54.36, 'matched_chars': 2, 'total_chars': 2, 'coverage': 1.0, 'segment_ids': [3]}}]
+text行方
+ruby_parts: [{'ruby': '行方', 'rt': 'ゆくえ'}]
+_measure
+_measure行
+_measure行方
+boundaries: [0.0, 52.0, 104.0]
+part_center_x 779.296875
+textなんて
+text知ら
+ruby_parts: [{'ruby': '知', 'rt': 'し'}, {'ruby': 'ら', 'rt': None}]
+_measure
+_measure知
+_measure知ら
+boundaries: [0.0, 52.0, 104.0]
+part_center_x 1010.703125
+part_center_x 1062.703125
+textない
+_measure擦り切っ
+_measure擦り切っ
+_measureた
+_measureた
+_measure白い
+_measure白い
+_measureチョーク
+_measureチョーク
+_measureが
+_measureが
+此行歌词长度：624.0
+此行左起点：648.0
+layout_segments [{'text': '擦り切っ', 'display_text': '擦り切っ', 'display_width': 208.0, 'word_width': 208.0, 'unit': {'global_word_id': 14, 'line_id': 4, 'word_id': 0, 'text': '擦り切っ', 'normalized_text': 'すりきっ', 'ruby_text': 'すりきっ', 'ruby_parts': [{'ruby': '擦', 'rt': 'す'}, {'ruby': 'り', 'rt': None}, {'ruby': '切', 'rt': 'き'}, {'ruby': 'っ', 'rt': None}], 'ruby_source': 'backend', 'start': 54.82, 'end': 55.58, 'matched_chars': 4, 'total_chars': 4, 'coverage': 1.0, 'segment_ids': [3]}}, {'text': 'た', 'display_text': 'た', 'display_width': 52.0, 'word_width': 52.0, 'unit': {'global_word_id': 15, 'line_id': 4, 'word_id': 1, 'text': 'た', 'normalized_text': 'た', 'ruby_text': '', 'ruby_parts': [], 'ruby_source': 'none', 'start': 55.58, 'end': 55.78, 'matched_chars': 1, 'total_chars': 1, 'coverage': 1.0, 'segment_ids': [3]}}, {'text': '白い', 'display_text': '白い', 'display_width': 104.0, 'word_width': 104.0, 'unit': {'global_word_id': 16, 'line_id': 4, 'word_id': 2, 'text': '白い', 'normalized_text': 'しろい', 'ruby_text': 'しろい', 'ruby_parts': [{'ruby': '白', 'rt': 'しろ'}, {'ruby': 'い', 'rt': None}], 'ruby_source': 'builtin', 'start': 55.78, 'end': 56.58, 'matched_chars': 3, 'total_chars': 3, 'coverage': 1.0, 'segment_ids': [3]}}, {'text': 'チョーク', 'display_text': 'チョーク', 'display_width': 208.0, 'word_width': 208.0, 'unit': {'global_word_id': 17, 'line_id': 4, 'word_id': 3, 'text': 'チョーク', 'normalized_text': 'ちょーく', 'ruby_text': '', 'ruby_parts': [], 'ruby_source': 'none', 'start': 56.58, 'end': 57.18, 'matched_chars': 3, 'total_chars': 4, 'coverage': 0.75, 'segment_ids': [3]}}, {'text': 'が', 'display_text': 'が', 'display_width': 52.0, 'word_width': 52.0, 'unit': {'global_word_id': 18, 'line_id': 4, 'word_id': 4, 'text': 'が', 'normalized_text': 'が', 'ruby_text': '', 'ruby_parts': [], 'ruby_source': 'none', 'start': 57.18, 'end': 57.4, 'matched_chars': 1, 'total_chars': 1, 'coverage': 1.0, 'segment_ids': [3]}}]
+text擦り切っ
+ruby_parts: [{'ruby': '擦', 'rt': 'す'}, {'ruby': 'り', 'rt': None}, {'ruby': '切', 'rt': 'き'}, {'ruby': 'っ', 'rt': None}]
+_measure
+_measure擦
+_measure擦り
+_measure擦り切
+_measure擦り切っ
+boundaries: [0.0, 52.0, 104.0, 156.0, 208.0]
+part_center_x 674.0
+part_center_x 726.0
+part_center_x 778.0
+part_center_x 830.0
+textた
+text白い
+ruby_parts: [{'ruby': '白', 'rt': 'しろ'}, {'ruby': 'い', 'rt': None}]
+_measure
+_measure白
+_measure白い
+boundaries: [0.0, 52.0, 104.0]
+part_center_x 934.0
+part_center_x 986.0
+textチョーク
+textが
+_measureはらはら
+_measureはらはら
+_measureと
+_measureと
+_measure落ち
+_measure落ち
+_measureて
+_measureて
+_measureいっ
+_measureいっ
+_measureた
+_measureた
+此行歌词长度：572.0
+此行左起点：674.0
+layout_segments [{'text': 'はらはら', 'display_text': 'はらはら', 'display_width': 208.0, 'word_width': 208.0, 'unit': {'global_word_id': 19, 'line_id': 5, 'word_id': 0, 'text': 'はらはら', 'normalized_text': 'はらはら', 'ruby_text': '', 'ruby_parts': [], 'ruby_source': 'none', 'start': 57.7, 'end': 58.42, 'matched_chars': 4, 'total_chars': 4, 'coverage': 1.0, 'segment_ids': [3]}}, {'text': 'と', 'display_text': 'と', 'display_width': 52.0, 'word_width': 52.0, 'unit': {'global_word_id': 20, 'line_id': 5, 'word_id': 1, 'text': 'と', 'normalized_text': 'と', 'ruby_text': '', 'ruby_parts': [], 'ruby_source': 'none', 'start': 58.42, 'end': 58.68, 'matched_chars': 1, 'total_chars': 1, 'coverage': 1.0, 'segment_ids': [3]}}, {'text': '落ち', 'display_text': '落ち', 'display_width': 104.0, 'word_width': 104.0, 'unit': {'global_word_id': 21, 'line_id': 5, 'word_id': 2, 'text': '落ち', 'normalized_text': 'おち', 'ruby_text': 'おち', 'ruby_parts': [{'ruby': '落', 'rt': 'お'}, {'ruby': 'ち', 'rt': None}], 'ruby_source': 'builtin', 'start': 58.68, 'end': 59.1, 'matched_chars': 2, 'total_chars': 2, 'coverage': 1.0, 'segment_ids': [3]}}, {'text': 'て', 'display_text': 'て', 'display_width': 52.0, 'word_width': 52.0, 'unit': {'global_word_id': 22, 'line_id': 5, 'word_id': 3, 'text': 'て', 'normalized_text': 'て', 'ruby_text': '', 'ruby_parts': [], 'ruby_source': 'none', 'start': 59.1, 'end': 59.32, 'matched_chars': 1, 'total_chars': 1, 'coverage': 1.0, 'segment_ids': [3]}}, {'text': 'いっ', 'display_text': 'いっ', 'display_width': 104.0, 'word_width': 104.0, 'unit': {'global_word_id': 23, 'line_id': 5, 'word_id': 4, 'text': 'いっ', 'normalized_text': 'いっ', 'ruby_text': '', 'ruby_parts': [], 'ruby_source': 'none', 'start': 59.32, 'end': 59.72, 'matched_chars': 2, 'total_chars': 2, 'coverage': 1.0, 'segment_ids': [3]}}, {'text': 'た', 'display_text': 'た', 'display_width': 52.0, 'word_width': 52.0, 'unit': {'global_word_id': 24, 'line_id': 5, 'word_id': 5, 'text': 'た', 'normalized_text': 'た', 'ruby_text': '', 'ruby_parts': [], 'ruby_source': 'none', 'start': 59.72, 'end': 59.88, 'matched_chars': 1, 'total_chars': 1, 'coverage': 1.0, 'segment_ids': [3]}}]
+textはらはら
+textと
+text落ち
+ruby_parts: [{'ruby': '落', 'rt': 'お'}, {'ruby': 'ち', 'rt': None}]
+_measure
+_measure落
+_measure落ち
+boundaries: [0.0, 52.0, 104.0]
+part_center_x 960.0
+part_center_x 1012.0
+textて
+textいっ
+textた
+_measureまるで 
+_measureまるで
+_measure星屑みたいだと
+_measure星屑みたいだと
+此行歌词长度：531.640625
+此行左起点：694.1796875
+layout_segments [{'text': 'まるで', 'display_text': 'まるで ', 'display_width': 167.640625, 'word_width': 156.0, 'unit': {'global_word_id': 25, 'line_id': 6, 'word_id': 0, 'text': 'まるで', 'normalized_text': 'まるで', 'ruby_text': '', 'ruby_parts': [], 'ruby_source': 'none', 'start': 60.74, 'end': 61.32, 'matched_chars': 3, 'total_chars': 3, 'coverage': 1.0, 'segment_ids': [4]}}, {'text': '星屑みたいだと', 'display_text': '星屑みたいだと', 'display_width': 364.0, 'word_width': 364.0, 'unit': {'global_word_id': 26, 'line_id': 6, 'word_id': 1, 'text': '星屑みたいだと', 'normalized_text': 'ほしくずみたいだと', 'ruby_text': 'ほしくずみたいだと', 'ruby_parts': [{'ruby': '星', 'rt': 'ほし'}, {'ruby': '屑', 'rt': 'くず'}, {'ruby': 'みたい', 'rt': None}, {'ruby': 'だ', 'rt': None}, {'ruby': 'と', 'rt': None}], 'ruby_source': 'builtin', 'start': 61.32, 'end': 63.62, 'matched_chars': 9, 'total_chars': 9, 'coverage': 1.0, 'segment_ids': [4]}}]
+textまるで
+text星屑みたいだと
+ruby_parts: [{'ruby': '星', 'rt': 'ほし'}, {'ruby': '屑', 'rt': 'くず'}, {'ruby': 'みたい', 'rt': None}, {'ruby': 'だ', 'rt': None}, {'ruby': 'と', 'rt': None}]
+_measure
+_measure星
+_measure星屑
+_measure星屑み
+_measure星屑みた
+_measure星屑みたい
+_measure星屑みたいだ
+_measure星屑みたいだと
+boundaries: [0.0, 52.0, 104.0, 156.0, 208.0, 260.0, 312.0, 364.0]
+part_center_x 887.8203125
+part_center_x 939.8203125
+part_center_x 1043.8203125
+part_center_x 1147.8203125
+part_center_x 1199.8203125
+_measure見とれていたんだ 
+_measure見とれていたんだ
+_measure嗚呼
+_measure嗚呼
+此行歌词长度：530.078125
+此行左起点：694.9609375
+layout_segments [{'text': '見とれていたんだ', 'display_text': '見とれていたんだ ', 'display_width': 426.078125, 'word_width': 414.4375, 'unit': {'global_word_id': 27, 'line_id': 7, 'word_id': 0, 'text': '見とれていたんだ', 'normalized_text': 'みとれていたんだ', 'ruby_text': 'みとれていたんだ', 'ruby_parts': [{'ruby': '見', 'rt': 'み'}, {'ruby': 'とれ', 'rt': None}, {'ruby': 'て', 'rt': None}, {'ruby': 'い', 'rt': None}, {'ruby': 'た', 'rt': None}, {'ruby': 'ん', 'rt': None}, {'ruby': 'だ', 'rt': None}], 'ruby_source': 'backend', 'start': 63.94, 'end': 66.08, 'matched_chars': 7, 'total_chars': 8, 'coverage': 0.875, 'segment_ids': [4]}}, {'text': '嗚呼', 'display_text': '嗚呼', 'display_width': 104.0, 'word_width': 104.0, 'unit': {'global_word_id': 28, 'line_id': 7, 'word_id': 1, 'text': '嗚呼', 'normalized_text': 'ああ', 'ruby_text': 'ああ', 'ruby_parts': [{'ruby': '嗚呼', 'rt': 'ああ'}], 'ruby_source': 'builtin', 'start': 67.02, 'end': 67.14, 'matched_chars': 1, 'total_chars': 2, 'coverage': 0.5, 'segment_ids': [5]}}]
+text見とれていたんだ
+ruby_parts: [{'ruby': '見', 'rt': 'み'}, {'ruby': 'とれ', 'rt': None}, {'ruby': 'て', 'rt': None}, {'ruby': 'い', 'rt': None}, {'ruby': 'た', 'rt': None}, {'ruby': 'ん', 'rt': None}, {'ruby': 'だ', 'rt': None}]
+_measure
+_measure見
+_measure見と
+_measure見とれ
+_measure見とれて
+_measure見とれてい
+_measure見とれていた
+_measure見とれていたん
+_measure見とれていたんだ
+boundaries: [0.0, 52.0, 104.0, 156.0, 206.4375, 258.4375, 310.4375, 362.4375, 414.4375]
+part_center_x 720.9609375
+part_center_x 798.9609375
+part_center_x 876.1796875
+part_center_x 927.3984375
+part_center_x 979.3984375
+part_center_x 1031.3984375
+part_center_x 1083.3984375
+text嗚呼
+ruby_parts: [{'ruby': '嗚呼', 'rt': 'ああ'}]
+_measure
+_measure嗚
+_measure嗚呼
+boundaries: [0.0, 52.0, 104.0]
+part_center_x 1173.0390625
+_measureいつ
+_measureいつ
+_measureか
+_measureか
+_measureは
+_measureは
+_measure消え
+_measure消え
+_measureて
+_measureて
+_measureしまう
+_measureしまう
+_measureけど
+_measureけど
+此行歌词长度：624.0
+此行左起点：648.0
+layout_segments [{'text': 'いつ', 'display_text': 'いつ', 'display_width': 104.0, 'word_width': 104.0, 'unit': {'global_word_id': 29, 'line_id': 8, 'word_id': 0, 'text': 'いつ', 'normalized_text': 'いつ', 'ruby_text': '', 'ruby_parts': [], 'ruby_source': 'none', 'start': 67.74, 'end': 67.96, 'matched_chars': 2, 'total_chars': 2, 'coverage': 1.0, 'segment_ids': [5]}}, {'text': 'か', 'display_text': 'か', 'display_width': 52.0, 'word_width': 52.0, 'unit': {'global_word_id': 30, 'line_id': 8, 'word_id': 1, 'text': 'か', 'normalized_text': 'か', 'ruby_text': '', 'ruby_parts': [], 'ruby_source': 'none', 'start': 67.96, 'end': 68.11, 'matched_chars': 1, 'total_chars': 1, 'coverage': 1.0, 'segment_ids': [5]}}, {'text': 'は', 'display_text': 'は', 'display_width': 52.0, 'word_width': 52.0, 'unit': {'global_word_id': 31, 'line_id': 8, 'word_id': 2, 'text': 'は', 'normalized_text': 'わ', 'ruby_text': '', 'ruby_parts': [], 'ruby_source': 'none', 'start': 68.11, 'end': 68.26, 'matched_chars': 1, 'total_chars': 1, 'coverage': 1.0, 'segment_ids': [5]}}, {'text': '消え', 'display_text': '消え', 'display_width': 104.0, 'word_width': 104.0, 'unit': {'global_word_id': 32, 'line_id': 8, 'word_id': 3, 'text': '消え', 'normalized_text': 'きえ', 'ruby_text': 'きえ', 'ruby_parts': [{'ruby': '消', 'rt': 'き'}, {'ruby': 'え', 'rt': None}], 'ruby_source': 'backend', 'start': 68.26, 'end': 68.75999999999999, 'matched_chars': 2, 'total_chars': 2, 'coverage': 1.0, 'segment_ids': [5]}}, {'text': 'て', 'display_text': 'て', 'display_width': 52.0, 'word_width': 52.0, 'unit': {'global_word_id': 33, 'line_id': 8, 'word_id': 4, 'text': 'て', 'normalized_text': 'て', 'ruby_text': '', 'ruby_parts': [], 'ruby_source': 'none', 'start': 68.75999999999999, 'end': 68.92, 'matched_chars': 1, 'total_chars': 1, 'coverage': 1.0, 'segment_ids': [5]}}, {'text': 'しまう', 'display_text': 'しまう', 'display_width': 156.0, 'word_width': 156.0, 'unit': {'global_word_id': 34, 'line_id': 8, 'word_id': 5, 'text': 'しまう', 'normalized_text': 'しまう', 'ruby_text': '', 'ruby_parts': [], 'ruby_source': 'none', 'start': 68.92, 'end': 69.64, 'matched_chars': 3, 'total_chars': 3, 'coverage': 1.0, 'segment_ids': [5]}}, {'text': 'けど', 'display_text': 'けど', 'display_width': 104.0, 'word_width': 104.0, 'unit': {'global_word_id': 35, 'line_id': 8, 'word_id': 6, 'text': 'けど', 'normalized_text': 'けど', 'ruby_text': '', 'ruby_parts': [], 'ruby_source': 'none', 'start': 69.64, 'end': 69.94, 'matched_chars': 2, 'total_chars': 2, 'coverage': 1.0, 'segment_ids': [5]}}]
+textいつ
+textか
+textは
+text消え
+ruby_parts: [{'ruby': '消', 'rt': 'き'}, {'ruby': 'え', 'rt': None}]
+_measure
+_measure消
+_measure消え
+boundaries: [0.0, 52.0, 104.0]
+part_center_x 882.0
+part_center_x 934.0
+textて
+textしまう
+textけど
+_measure誰
+_measure誰
+_measureか
+_measureか
+_measureの
+_measureの
+_measure記憶
+_measure記憶
+_measureに
+_measureに
+_measureは
+_measureは
+_measure残れる
+_measure残れる
+_measureか
+_measureか
+_measureな
+_measureな
+此行歌词长度：624.0
+此行左起点：648.0
+layout_segments [{'text': '誰', 'display_text': '誰', 'display_width': 52.0, 'word_width': 52.0, 'unit': {'global_word_id': 36, 'line_id': 9, 'word_id': 0, 'text': '誰', 'normalized_text': 'だれ', 'ruby_text': 'だれ', 'ruby_parts': [{'ruby': '誰', 'rt': 'だれ'}], 'ruby_source': 'builtin', 'start': 70.28, 'end': 70.46, 'matched_chars': 2, 'total_chars': 2, 'coverage': 1.0, 'segment_ids': [5]}}, {'text': 'か', 'display_text': 'か', 'display_width': 52.0, 'word_width': 52.0, 'unit': {'global_word_id': 37, 'line_id': 9, 'word_id': 1, 'text': 'か', 'normalized_text': 'か', 'ruby_text': '', 'ruby_parts': [], 'ruby_source': 'none', 'start': 70.46, 'end': 70.8, 'matched_chars': 1, 'total_chars': 1, 'coverage': 1.0, 'segment_ids': [5]}}, {'text': 'の', 'display_text': 'の', 'display_width': 52.0, 'word_width': 52.0, 'unit': {'global_word_id': 38, 'line_id': 9, 'word_id': 2, 'text': 'の', 'normalized_text': 'の', 'ruby_text': '', 'ruby_parts': [], 'ruby_source': 'none', 'start': 70.8, 'end': 70.96, 'matched_chars': 1, 'total_chars': 1, 'coverage': 1.0, 'segment_ids': [5]}}, {'text': '記憶', 'display_text': '記憶', 'display_width': 104.0, 'word_width': 104.0, 'unit': {'global_word_id': 39, 'line_id': 9, 'word_id': 3, 'text': '記憶', 'normalized_text': 'きおく', 'ruby_text': 'きおく', 'ruby_parts': [{'ruby': '記', 'rt': 'き'}, {'ruby': '憶', 'rt': 'おく'}], 'ruby_source': 'builtin', 'start': 70.96, 'end': 71.4, 'matched_chars': 3, 'total_chars': 3, 'coverage': 1.0, 'segment_ids': [5]}}, {'text': 'に', 'display_text': 'に', 'display_width': 52.0, 'word_width': 52.0, 'unit': {'global_word_id': 40, 'line_id': 9, 'word_id': 4, 'text': 'に', 'normalized_text': 'に', 'ruby_text': '', 'ruby_parts': [], 'ruby_source': 'none', 'start': 71.4, 'end': 71.66, 'matched_chars': 1, 'total_chars': 1, 'coverage': 1.0, 'segment_ids': [5]}}, {'text': 'は', 'display_text': 'は', 'display_width': 52.0, 'word_width': 52.0, 'unit': {'global_word_id': 41, 'line_id': 9, 'word_id': 5, 'text': 'は', 'normalized_text': 'わ', 'ruby_text': '', 'ruby_parts': [], 'ruby_source': 'none', 'start': 71.66, 'end': 71.92, 'matched_chars': 1, 'total_chars': 1, 'coverage': 1.0, 'segment_ids': [5]}}, {'text': '残れる', 'display_text': '残れる', 'display_width': 156.0, 'word_width': 156.0, 'unit': {'global_word_id': 42, 'line_id': 9, 'word_id': 6, 'text': '残れる', 'normalized_text': 'のこれる', 'ruby_text': 'のこれる', 'ruby_parts': [{'ruby': '残', 'rt': 'のこ'}, {'ruby': 'れる', 'rt': None}], 'ruby_source': 'backend', 'start': 72.5, 'end': 73.06, 'matched_chars': 2, 'total_chars': 4, 'coverage': 0.5, 'segment_ids': [5]}}, {'text': 'か', 'display_text': 'か', 'display_width': 52.0, 'word_width': 52.0, 'unit': {'global_word_id': 43, 'line_id': 9, 'word_id': 7, 'text': 'か', 'normalized_text': 'か', 'ruby_text': '', 'ruby_parts': [], 'ruby_source': 'none', 'start': 73.06, 'end': 73.41, 'matched_chars': 1, 'total_chars': 1, 'coverage': 1.0, 'segment_ids': [5]}}, {'text': 'な', 'display_text': 'な', 'display_width': 52.0, 'word_width': 52.0, 'unit': {'global_word_id': 44, 'line_id': 9, 'word_id': 8, 'text': 'な', 'normalized_text': 'な', 'ruby_text': '', 'ruby_parts': [], 'ruby_source': 'none', 'start': 73.41, 'end': 73.76, 'matched_chars': 1, 'total_chars': 1, 'coverage': 1.0, 'segment_ids': [5]}}]
+text誰
+ruby_parts: [{'ruby': '誰', 'rt': 'だれ'}]
+_measure
+_measure誰
+boundaries: [0.0, 52.0]
+part_center_x 674.0
+textか
+textの
+text記憶
+ruby_parts: [{'ruby': '記', 'rt': 'き'}, {'ruby': '憶', 'rt': 'おく'}]
+_measure
+_measure記
+_measure記憶
+boundaries: [0.0, 52.0, 104.0]
+part_center_x 830.0
+part_center_x 882.0
+textに
+textは
+text残れる
+ruby_parts: [{'ruby': '残', 'rt': 'のこ'}, {'ruby': 'れる', 'rt': None}]
+_measure
+_measure残
+_measure残れ
+_measure残れる
+boundaries: [0.0, 52.0, 104.0, 156.0]
+part_center_x 1038.0
+part_center_x 1116.0
+textか
+textな
+_measureこの
+_measureこの
+_measure瞬間
+_measure瞬間
+_measureを
+_measureを
+_measure切り取っ
+_measure切り取っ
+_measureて
+_measureて
+_measureさ
+_measureさ
+此行歌词长度：572.0
+此行左起点：674.0
+layout_segments [{'text': 'この', 'display_text': 'この', 'display_width': 104.0, 'word_width': 104.0, 'unit': {'global_word_id': 45, 'line_id': 10, 'word_id': 0, 'text': 'この', 'normalized_text': 'この', 'ruby_text': '', 'ruby_parts': [], 'ruby_source': 'none', 'start': 75.48, 'end': 75.6, 'matched_chars': 2, 'total_chars': 2, 'coverage': 1.0, 'segment_ids': [6]}}, {'text': '瞬間', 'display_text': '瞬間', 'display_width': 104.0, 'word_width': 104.0, 'unit': {'global_word_id': 46, 'line_id': 10, 'word_id': 1, 'text': '瞬間', 'normalized_text': 'しゅんかん', 'ruby_text': 'しゅんかん', 'ruby_parts': [{'ruby': '瞬', 'rt': 'しゅん'}, {'ruby': '間', 'rt': 'かん'}], 'ruby_source': 'builtin', 'start': 76.06666666666666, 'end': 76.3, 'matched_chars': 1, 'total_chars': 5, 'coverage': 0.2, 'segment_ids': [6]}}, {'text': 'を', 'display_text': 'を', 'display_width': 52.0, 'word_width': 52.0, 'unit': {'global_word_id': 47, 'line_id': 10, 'word_id': 2, 'text': 'を', 'normalized_text': 'お', 'ruby_text': '', 'ruby_parts': [], 'ruby_source': 'none', 'start': 77.1, 'end': 77.66, 'matched_chars': 1, 'total_chars': 1, 'coverage': 1.0, 'segment_ids': [6]}}, {'text': '切り取っ', 'display_text': '切り取っ', 'display_width': 208.0, 'word_width': 208.0, 'unit': {'global_word_id': 48, 'line_id': 10, 'word_id': 3, 'text': '切り取っ', 'normalized_text': 'きりとっ', 'ruby_text': 'きりとっ', 'ruby_parts': [{'ruby': '切', 'rt': 'き'}, {'ruby': 'り', 'rt': None}, {'ruby': '取', 'rt': 'と'}, {'ruby': 'っ', 'rt': None}], 'ruby_source': 'backend', 'start': 78.1, 'end': 79.07, 'matched_chars': 3, 'total_chars': 4, 'coverage': 0.75, 'segment_ids': [6]}}, {'text': 'て', 'display_text': 'て', 'display_width': 52.0, 'word_width': 52.0, 'unit': {'global_word_id': 49, 'line_id': 10, 'word_id': 4, 'text': 'て', 'normalized_text': 'て', 'ruby_text': '', 'ruby_parts': [], 'ruby_source': 'none', 'start': 79.07, 'end': 79.3, 'matched_chars': 1, 'total_chars': 1, 'coverage': 1.0, 'segment_ids': [6]}}, {'text': 'さ', 'display_text': 'さ', 'display_width': 52.0, 'word_width': 52.0, 'unit': {'global_word_id': 50, 'line_id': 10, 'word_id': 5, 'text': 'さ', 'normalized_text': 'さ', 'ruby_text': '', 'ruby_parts': [], 'ruby_source': 'none', 'start': 79.3, 'end': 79.6, 'matched_chars': 1, 'total_chars': 1, 'coverage': 1.0, 'segment_ids': [6]}}]
+textこの
+text瞬間
+ruby_parts: [{'ruby': '瞬', 'rt': 'しゅん'}, {'ruby': '間', 'rt': 'かん'}]
+_measure
+_measure瞬
+_measure瞬間
+boundaries: [0.0, 52.0, 104.0]
+part_center_x 804.0
+part_center_x 856.0
+textを
+text切り取っ
+ruby_parts: [{'ruby': '切', 'rt': 'き'}, {'ruby': 'り', 'rt': None}, {'ruby': '取', 'rt': 'と'}, {'ruby': 'っ', 'rt': None}]
+_measure
+_measure切
+_measure切り
+_measure切り取
+_measure切り取っ
+boundaries: [0.0, 52.0, 104.0, 156.0, 208.0]
+part_center_x 960.0
+part_center_x 1012.0
+part_center_x 1064.0
+part_center_x 1116.0
+textて
+textさ
+_measure光る朝が 
+_measure光る朝が
+_measure朝が
+_measure朝が
+此行歌词长度：323.640625
+此行左起点：798.1796875
+layout_segments [{'text': '光る朝が', 'display_text': '光る朝が ', 'display_width': 219.640625, 'word_width': 208.0, 'unit': {'global_word_id': 51, 'line_id': 11, 'word_id': 0, 'text': '光る朝が', 'normalized_text': 'ひかるあさが', 'ruby_text': 'ひかるあさが', 'ruby_parts': [{'ruby': '光', 'rt': 'ひか'}, {'ruby': 'る', 'rt': None}, {'ruby': '朝', 'rt': 'あさ'}, {'ruby': 'が', 'rt': None}], 'ruby_source': 'builtin', 'start': 80.88, 'end': 84.2, 'matched_chars': 6, 'total_chars': 6, 'coverage': 1.0, 'segment_ids': [6]}}, {'text': '朝が', 'display_text': '朝が', 'display_width': 104.0, 'word_width': 104.0, 'unit': {'global_word_id': 52, 'line_id': 11, 'word_id': 1, 'text': '朝が', 'normalized_text': 'あさが', 'ruby_text': 'あさが', 'ruby_parts': [{'ruby': '朝', 'rt': 'あさ'}, {'ruby': 'が', 'rt': None}], 'ruby_source': 'builtin', 'start': 84.22, 'end': 85.08, 'matched_chars': 3, 'total_chars': 3, 'coverage': 1.0, 'segment_ids': [6]}}]
+text光る朝が
+ruby_parts: [{'ruby': '光', 'rt': 'ひか'}, {'ruby': 'る', 'rt': None}, {'ruby': '朝', 'rt': 'あさ'}, {'ruby': 'が', 'rt': None}]
+_measure
+_measure光
+_measure光る
+_measure光る朝
+_measure光る朝が
+boundaries: [0.0, 52.0, 104.0, 156.0, 208.0]
+part_center_x 824.1796875
+part_center_x 876.1796875
+part_center_x 928.1796875
+part_center_x 980.1796875
+text朝が
+ruby_parts: [{'ruby': '朝', 'rt': 'あさ'}, {'ruby': 'が', 'rt': None}]
+_measure
+_measure朝
+_measure朝が
+boundaries: [0.0, 52.0, 104.0]
+part_center_x 1043.8203125
+part_center_x 1095.8203125
+_measureあまりに眩しい 
+_measureあまりに眩しい
+_measure眩しいからさ
+_measure眩しいからさ
+此行歌词长度：687.640625
+此行左起点：616.1796875
+layout_segments [{'text': 'あまりに眩しい', 'display_text': 'あまりに眩しい ', 'display_width': 375.640625, 'word_width': 364.0, 'unit': {'global_word_id': 53, 'line_id': 12, 'word_id': 0, 'text': 'あまりに眩しい', 'normalized_text': 'あまりにまぶしい', 'ruby_text': 'あまりにまぶしい', 'ruby_parts': [{'ruby': 'あまり', 'rt': None}, {'ruby': 'に', 'rt': None}, {'ruby': '眩', 'rt': 'まぶ'}, {'ruby': 'しい', 'rt': None}], 'ruby_source': 'builtin', 'start': 85.08, 'end': 87.08, 'matched_chars': 8, 'total_chars': 8, 'coverage': 1.0, 'segment_ids': [6]}}, {'text': '眩しいからさ', 'display_text': '眩しいからさ', 'display_width': 312.0, 'word_width': 312.0, 'unit': {'global_word_id': 54, 'line_id': 12, 'word_id': 1, 'text': '眩しいからさ', 'normalized_text': 'まぶしいからさ', 'ruby_text': 'まぶしいからさ', 'ruby_parts': [{'ruby': '眩', 'rt': 'まぶ'}, {'ruby': 'しい', 'rt': None}, {'ruby': 'から', 'rt': None}, {'ruby': 'さ', 'rt': None}], 'ruby_source': 'builtin', 'start': 87.3, 'end': 89.3, 'matched_chars': 7, 'total_chars': 7, 'coverage': 1.0, 'segment_ids': [6]}}]
+textあまりに眩しい
+ruby_parts: [{'ruby': 'あまり', 'rt': None}, {'ruby': 'に', 'rt': None}, {'ruby': '眩', 'rt': 'まぶ'}, {'ruby': 'しい', 'rt': None}]
+_measure
+_measureあ
+_measureあま
+_measureあまり
+_measureあまりに
+_measureあまりに眩
+_measureあまりに眩し
+_measureあまりに眩しい
+boundaries: [0.0, 52.0, 104.0, 156.0, 208.0, 260.0, 312.0, 364.0]
+part_center_x 694.1796875
+part_center_x 798.1796875
+part_center_x 850.1796875
+part_center_x 928.1796875
+text眩しいからさ
+ruby_parts: [{'ruby': '眩', 'rt': 'まぶ'}, {'ruby': 'しい', 'rt': None}, {'ruby': 'から', 'rt': None}, {'ruby': 'さ', 'rt': None}]
+_measure
+_measure眩
+_measure眩し
+_measure眩しい
+_measure眩しいか
+_measure眩しいから
+_measure眩しいからさ
+boundaries: [0.0, 52.0, 104.0, 156.0, 208.0, 260.0, 312.0]
+part_center_x 1017.8203125
+part_center_x 1095.8203125
+part_center_x 1199.8203125
+part_center_x 1277.8203125
+_measureなんかもう 
+_measureなんかもう
+_measureそれだけで
+_measureそれだけで
+此行歌词长度：530.078125
+此行左起点：694.9609375
+layout_segments [{'text': 'なんかもう', 'display_text': 'なんかもう ', 'display_width': 270.078125, 'word_width': 258.4375, 'unit': {'global_word_id': 55, 'line_id': 13, 'word_id': 0, 'text': 'なんかもう', 'normalized_text': 'なんかもー', 'ruby_text': '', 'ruby_parts': [], 'ruby_source': 'none', 'start': 89.76, 'end': 90.5, 'matched_chars': 4, 'total_chars': 5, 'coverage': 0.8, 'segment_ids': [6]}}, {'text': 'それだけで', 'display_text': 'それだけで', 'display_width': 260.0, 'word_width': 260.0, 'unit': {'global_word_id': 56, 'line_id': 13, 'word_id': 1, 'text': 'それだけで', 'normalized_text': 'それだけで', 'ruby_text': '', 'ruby_parts': [], 'ruby_source': 'none', 'start': 90.5, 'end': 92.08, 'matched_chars': 5, 'total_chars': 5, 'coverage': 1.0, 'segment_ids': [6]}}]
+textなんかもう
+textそれだけで
+_measure心
+_measure心
+_measureが
+_measureが
+_measure宙
+_measure宙
+_measureに
+_measureに
+_measure舞う
+_measure舞う
+此行歌词长度：312.0
+此行左起点：804.0
+layout_segments [{'text': '心', 'display_text': '心', 'display_width': 52.0, 'word_width': 52.0, 'unit': {'global_word_id': 57, 'line_id': 14, 'word_id': 0, 'text': '心', 'normalized_text': 'こころ', 'ruby_text': 'こころ', 'ruby_parts': [{'ruby': '心', 'rt': 'こころ'}], 'ruby_source': 'builtin', 'start': 92.54, 'end': 92.74, 'matched_chars': 3, 'total_chars': 3, 'coverage': 1.0, 'segment_ids': [6]}}, {'text': 'が', 'display_text': 'が', 'display_width': 52.0, 'word_width': 52.0, 'unit': {'global_word_id': 58, 'line_id': 14, 'word_id': 1, 'text': 'が', 'normalized_text': 'が', 'ruby_text': '', 'ruby_parts': [], 'ruby_source': 'none', 'start': 92.74, 'end': 93.56, 'matched_chars': 1, 'total_chars': 1, 'coverage': 1.0, 'segment_ids': [6]}}, {'text': '宙', 'display_text': '宙', 'display_width': 52.0, 'word_width': 52.0, 'unit': {'global_word_id': 59, 'line_id': 14, 'word_id': 2, 'text': '宙', 'normalized_text': 'ちゅう', 'ruby_text': 'ちゅう', 'ruby_parts': [{'ruby': '宙', 'rt': 'ちゅう'}], 'ruby_source': 'builtin', 'start': 93.56, 'end': 94.04, 'matched_chars': 3, 'total_chars': 3, 'coverage': 1.0, 'segment_ids': [6]}}, {'text': 'に', 'display_text': 'に', 'display_width': 52.0, 'word_width': 52.0, 'unit': {'global_word_id': 60, 'line_id': 14, 'word_id': 3, 'text': 'に', 'normalized_text': 'に', 'ruby_text': '', 'ruby_parts': [], 'ruby_source': 'none', 'start': 94.04, 'end': 94.8, 'matched_chars': 1, 'total_chars': 1, 'coverage': 1.0, 'segment_ids': [6]}}, {'text': '舞う', 'display_text': '舞う', 'display_width': 104.0, 'word_width': 104.0, 'unit': {'global_word_id': 61, 'line_id': 14, 'word_id': 4, 'text': '舞う', 'normalized_text': 'まう', 'ruby_text': 'まう', 'ruby_parts': [{'ruby': '舞', 'rt': 'ま'}, {'ruby': 'う', 'rt': None}], 'ruby_source': 'builtin', 'start': 94.8, 'end': 95.54, 'matched_chars': 2, 'total_chars': 2, 'coverage': 1.0, 'segment_ids': [6]}}]
+text心
+ruby_parts: [{'ruby': '心', 'rt': 'こころ'}]
+_measure
+_measure心
+boundaries: [0.0, 52.0]
+part_center_x 830.0
+textが
+text宙
+ruby_parts: [{'ruby': '宙', 'rt': 'ちゅう'}]
+_measure
+_measure宙
+boundaries: [0.0, 52.0]
+part_center_x 934.0
+textに
+text舞う
+ruby_parts: [{'ruby': '舞', 'rt': 'ま'}, {'ruby': 'う', 'rt': None}]
+_measure
+_measure舞
+_measure舞う
+boundaries: [0.0, 52.0, 104.0]
+part_center_x 1038.0
+part_center_x 1090.0
+_measure君
+_measure君
+_measureの
+_measureの
+_measure言葉
+_measure言葉
+_measureが
+_measureが
+_measureずっと
+_measureずっと
+此行歌词长度：416.0
+此行左起点：752.0
+layout_segments [{'text': '君', 'display_text': '君', 'display_width': 52.0, 'word_width': 52.0, 'unit': {'global_word_id': 62, 'line_id': 15, 'word_id': 0, 'text': '君', 'normalized_text': 'きみ', 'ruby_text': 'きみ', 'ruby_parts': [{'ruby': '君', 'rt': 'きみ'}], 'ruby_source': 'builtin', 'start': 96.26, 'end': 96.4, 'matched_chars': 2, 'total_chars': 2, 'coverage': 1.0, 'segment_ids': [7]}}, {'text': 'の', 'display_text': 'の', 'display_width': 52.0, 'word_width': 52.0, 'unit': {'global_word_id': 63, 'line_id': 15, 'word_id': 1, 'text': 'の', 'normalized_text': 'の', 'ruby_text': '', 'ruby_parts': [], 'ruby_source': 'none', 'start': 96.4, 'end': 96.72, 'matched_chars': 1, 'total_chars': 1, 'coverage': 1.0, 'segment_ids': [7]}}, {'text': '言葉', 'display_text': '言葉', 'display_width': 104.0, 'word_width': 104.0, 'unit': {'global_word_id': 64, 'line_id': 15, 'word_id': 2, 'text': '言葉', 'normalized_text': 'ことば', 'ruby_text': 'ことば', 'ruby_parts': [{'ruby': '言', 'rt': 'こと'}, {'ruby': '葉', 'rt': 'ば'}], 'ruby_source': 'builtin', 'start': 96.72, 'end': 97.82, 'matched_chars': 2, 'total_chars': 3, 'coverage': 0.6666666666666666, 'segment_ids': [7]}}, {'text': 'が', 'display_text': 'が', 'display_width': 52.0, 'word_width': 52.0, 'unit': {'global_word_id': 65, 'line_id': 15, 'word_id': 3, 'text': 'が', 'normalized_text': 'が', 'ruby_text': '', 'ruby_parts': [], 'ruby_source': 'none', 'start': 97.82, 'end': 98.02, 'matched_chars': 1, 'total_chars': 1, 'coverage': 1.0, 'segment_ids': [7]}}, {'text': 'ずっと', 'display_text': 'ずっと', 'display_width': 156.0, 'word_width': 156.0, 'unit': {'global_word_id': 66, 'line_id': 15, 'word_id': 4, 'text': 'ずっと', 'normalized_text': 'ずっと', 'ruby_text': '', 'ruby_parts': [], 'ruby_source': 'none', 'start': 98.02, 'end': 98.6, 'matched_chars': 3, 'total_chars': 3, 'coverage': 1.0, 'segment_ids': [7]}}]
+text君
+ruby_parts: [{'ruby': '君', 'rt': 'きみ'}]
+_measure
+_measure君
+boundaries: [0.0, 52.0]
+part_center_x 778.0
+textの
+text言葉
+ruby_parts: [{'ruby': '言', 'rt': 'こと'}, {'ruby': '葉', 'rt': 'ば'}]
+_measure
+_measure言
+_measure言葉
+boundaries: [0.0, 52.0, 104.0]
+part_center_x 882.0
+part_center_x 934.0
+textが
+textずっと
+_measure離れない 
+_measure離れない
+_measure離れない
+_measure離れない
+此行歌词长度：427.640625
+此行左起点：746.1796875
+layout_segments [{'text': '離れない', 'display_text': '離れない ', 'display_width': 219.640625, 'word_width': 208.0, 'unit': {'global_word_id': 67, 'line_id': 16, 'word_id': 0, 'text': '離れない', 'normalized_text': 'はなれない', 'ruby_text': 'はなれない', 'ruby_parts': [{'ruby': '離', 'rt': 'はな'}, {'ruby': 'れ', 'rt': None}, {'ruby': 'ない', 'rt': None}], 'ruby_source': 'builtin', 'start': 98.94, 'end': 99.5, 'matched_chars': 3, 'total_chars': 5, 'coverage': 0.6, 'segment_ids': [7]}}, {'text': '離れない', 'display_text': '離れない', 'display_width': 208.0, 'word_width': 208.0, 'unit': {'global_word_id': 68, 'line_id': 16, 'word_id': 1, 'text': '離れない', 'normalized_text': 'はなれない', 'ruby_text': 'はなれない', 'ruby_parts': [{'ruby': '離', 'rt': 'はな'}, {'ruby': 'れ', 'rt': None}, {'ruby': 'ない', 'rt': None}], 'ruby_source': 'builtin', 'start': 100.28, 'end': 101.35, 'matched_chars': 2, 'total_chars': 5, 'coverage': 0.4, 'segment_ids': [7]}}]
+text離れない
+ruby_parts: [{'ruby': '離', 'rt': 'はな'}, {'ruby': 'れ', 'rt': None}, {'ruby': 'ない', 'rt': None}]
+_measure
+_measure離
+_measure離れ
+_measure離れな
+_measure離れない
+boundaries: [0.0, 52.0, 104.0, 156.0, 208.0]
+part_center_x 772.1796875
+part_center_x 824.1796875
+part_center_x 902.1796875
+text離れない
+ruby_parts: [{'ruby': '離', 'rt': 'はな'}, {'ruby': 'れ', 'rt': None}, {'ruby': 'ない', 'rt': None}]
+_measure
+_measure離
+_measure離れ
+_measure離れな
+_measure離れない
+boundaries: [0.0, 52.0, 104.0, 156.0, 208.0]
+part_center_x 991.8203125
+part_center_x 1043.8203125
+part_center_x 1121.8203125
+_measureフラッシュ
+_measureフラッシュ
+_measureバッカー
+_measureバッカー
+此行歌词长度：468.0
+此行左起点：726.0
+layout_segments [{'text': 'フラッシュ', 'display_text': 'フラッシュ', 'display_width': 260.0, 'word_width': 260.0, 'unit': {'global_word_id': 69, 'line_id': 17, 'word_id': 0, 'text': 'フラッシュ', 'normalized_text': 'ふらっしゅ', 'ruby_text': '', 'ruby_parts': [], 'ruby_source': 'none', 'start': 101.35, 'end': 102.94, 'matched_chars': 4, 'total_chars': 5, 'coverage': 0.8, 'segment_ids': [7]}}, {'text': 'バッカー', 'display_text': 'バッカー', 'display_width': 208.0, 'word_width': 208.0, 'unit': {'global_word_id': 70, 'line_id': 17, 'word_id': 1, 'text': 'バッカー', 'normalized_text': 'ばっかー', 'ruby_text': '', 'ruby_parts': [], 'ruby_source': 'none', 'start': 102.94, 'end': 104.14, 'matched_chars': 2, 'total_chars': 4, 'coverage': 0.5, 'segment_ids': [7]}}]
+textフラッシュ
+textバッカー
+_measure今
+_measure今
+_measureも
+_measureも
+_measure思い出し
+_measure思い出し
+_measureてる
+_measureてる
+此行歌词长度：416.0
+此行左起点：752.0
+layout_segments [{'text': '今', 'display_text': '今', 'display_width': 52.0, 'word_width': 52.0, 'unit': {'global_word_id': 71, 'line_id': 18, 'word_id': 0, 'text': '今', 'normalized_text': 'いま', 'ruby_text': 'いま', 'ruby_parts': [{'ruby': '今', 'rt': 'いま'}], 'ruby_source': 'builtin', 'start': 104.14, 'end': 105.02, 'matched_chars': 2, 'total_chars': 2, 'coverage': 1.0, 'segment_ids': [7]}}, {'text': 'も', 'display_text': 'も', 'display_width': 52.0, 'word_width': 52.0, 'unit': {'global_word_id': 72, 'line_id': 18, 'word_id': 1, 'text': 'も', 'normalized_text': 'も', 'ruby_text': '', 'ruby_parts': [], 'ruby_source': 'none', 'start': 105.02, 'end': 105.48, 'matched_chars': 1, 'total_chars': 1, 'coverage': 1.0, 'segment_ids': [7]}}, {'text': '思い出し', 'display_text': '思い出し', 'display_width': 208.0, 'word_width': 208.0, 'unit': {'global_word_id': 73, 'line_id': 18, 'word_id': 2, 'text': '思い出し', 'normalized_text': 'おもいだし', 'ruby_text': 'おもいだし', 'ruby_parts': [{'ruby': '思', 'rt': 'おも'}, {'ruby': 'い', 'rt': None}, {'ruby': '出', 'rt': 'だ'}, {'ruby': 'し', 'rt': None}], 'ruby_source': 'backend', 'start': 105.48, 'end': 107.58, 'matched_chars': 5, 'total_chars': 5, 'coverage': 1.0, 'segment_ids': [7]}}, {'text': 'てる', 'display_text': 'てる', 'display_width': 104.0, 'word_width': 104.0, 'unit': {'global_word_id': 74, 'line_id': 18, 'word_id': 3, 'text': 'てる', 'normalized_text': 'てる', 'ruby_text': '', 'ruby_parts': [], 'ruby_source': 'none', 'start': 107.58, 'end': 108.04, 'matched_chars': 2, 'total_chars': 2, 'coverage': 1.0, 'segment_ids': [7]}}]
+text今
+ruby_parts: [{'ruby': '今', 'rt': 'いま'}]
+_measure
+_measure今
+boundaries: [0.0, 52.0]
+part_center_x 778.0
+textも
+text思い出し
+ruby_parts: [{'ruby': '思', 'rt': 'おも'}, {'ruby': 'い', 'rt': None}, {'ruby': '出', 'rt': 'だ'}, {'ruby': 'し', 'rt': None}]
+_measure
+_measure思
+_measure思い
+_measure思い出
+_measure思い出し
+boundaries: [0.0, 52.0, 104.0, 156.0, 208.0]
+part_center_x 882.0
+part_center_x 934.0
+part_center_x 986.0
+part_center_x 1038.0
+textてる
+_measure薄明
+_measure薄明
+_measureに
+_measureに
+_measure染まる
+_measure染まる
+_measure空
+_measure空
+_measureが
+_measureが
+此行歌词长度：416.0
+此行左起点：752.0
+layout_segments [{'text': '薄明', 'display_text': '薄明', 'display_width': 104.0, 'word_width': 104.0, 'unit': {'global_word_id': 75, 'line_id': 19, 'word_id': 0, 'text': '薄明', 'normalized_text': 'はくめい', 'ruby_text': 'はくめい', 'ruby_parts': [{'ruby': '薄', 'rt': 'はく'}, {'ruby': '明', 'rt': 'めい'}], 'ruby_source': 'builtin', 'start': 120.5, 'end': 120.78, 'matched_chars': 2, 'total_chars': 4, 'coverage': 0.5, 'segment_ids': [8]}}, {'text': 'に', 'display_text': 'に', 'display_width': 52.0, 'word_width': 52.0, 'unit': {'global_word_id': 76, 'line_id': 19, 'word_id': 1, 'text': 'に', 'normalized_text': 'に', 'ruby_text': '', 'ruby_parts': [], 'ruby_source': 'none', 'start': 120.92, 'end': 121.24, 'matched_chars': 1, 'total_chars': 1, 'coverage': 1.0, 'segment_ids': [8]}}, {'text': '染まる', 'display_text': '染まる', 'display_width': 156.0, 'word_width': 156.0, 'unit': {'global_word_id': 77, 'line_id': 19, 'word_id': 2, 'text': '染まる', 'normalized_text': 'そまる', 'ruby_text': 'そまる', 'ruby_parts': [{'ruby': '染', 'rt': 'そ'}, {'ruby': 'まる', 'rt': None}], 'ruby_source': 'builtin', 'start': 121.24, 'end': 122.0, 'matched_chars': 3, 'total_chars': 3, 'coverage': 1.0, 'segment_ids': [8]}}, {'text': '空', 'display_text': '空', 'display_width': 52.0, 'word_width': 52.0, 'unit': {'global_word_id': 78, 'line_id': 19, 'word_id': 3, 'text': '空', 'normalized_text': 'そら', 'ruby_text': 'そら', 'ruby_parts': [{'ruby': '空', 'rt': 'そら'}], 'ruby_source': 'builtin', 'start': 122.0, 'end': 122.4, 'matched_chars': 2, 'total_chars': 2, 'coverage': 1.0, 'segment_ids': [8]}}, {'text': 'が', 'display_text': 'が', 'display_width': 52.0, 'word_width': 52.0, 'unit': {'global_word_id': 79, 'line_id': 19, 'word_id': 4, 'text': 'が', 'normalized_text': 'が', 'ruby_text': '', 'ruby_parts': [], 'ruby_source': 'none', 'start': 122.4, 'end': 122.8, 'matched_chars': 1, 'total_chars': 1, 'coverage': 1.0, 'segment_ids': [8]}}]
+text薄明
+ruby_parts: [{'ruby': '薄', 'rt': 'はく'}, {'ruby': '明', 'rt': 'めい'}]
+_measure
+_measure薄
+_measure薄明
+boundaries: [0.0, 52.0, 104.0]
+part_center_x 778.0
+part_center_x 830.0
+textに
+text染まる
+ruby_parts: [{'ruby': '染', 'rt': 'そ'}, {'ruby': 'まる', 'rt': None}]
+_measure
+_measure染
+_measure染ま
+_measure染まる
+boundaries: [0.0, 52.0, 104.0, 156.0]
+part_center_x 934.0
+part_center_x 1012.0
+text空
+ruby_parts: [{'ruby': '空', 'rt': 'そら'}]
+_measure
+_measure空
+boundaries: [0.0, 52.0]
+part_center_x 1090.0
+textが
+_measure淡い
+_measure淡い
+_measure彩り
+_measure彩り
+_measureこぼし
+_measureこぼし
+_measureて
+_measureて
+此行歌词长度：416.0
+此行左起点：752.0
+layout_segments [{'text': '淡い', 'display_text': '淡い', 'display_width': 104.0, 'word_width': 104.0, 'unit': {'global_word_id': 80, 'line_id': 20, 'word_id': 0, 'text': '淡い', 'normalized_text': 'あわい', 'ruby_text': 'あわい', 'ruby_parts': [{'ruby': '淡', 'rt': 'あわ'}, {'ruby': 'い', 'rt': None}], 'ruby_source': 'builtin', 'start': 123.2, 'end': 123.82, 'matched_chars': 3, 'total_chars': 3, 'coverage': 1.0, 'segment_ids': [8]}}, {'text': '彩り', 'display_text': '彩り', 'display_width': 104.0, 'word_width': 104.0, 'unit': {'global_word_id': 81, 'line_id': 20, 'word_id': 1, 'text': '彩り', 'normalized_text': 'いろどり', 'ruby_text': 'いろどり', 'ruby_parts': [{'ruby': '彩', 'rt': 'いろど'}, {'ruby': 'り', 'rt': None}], 'ruby_source': 'builtin', 'start': 123.82, 'end': 124.54, 'matched_chars': 4, 'total_chars': 4, 'coverage': 1.0, 'segment_ids': [8]}}, {'text': 'こぼし', 'display_text': 'こぼし', 'display_width': 156.0, 'word_width': 156.0, 'unit': {'global_word_id': 82, 'line_id': 20, 'word_id': 2, 'text': 'こぼし', 'normalized_text': 'こぼし', 'ruby_text': '', 'ruby_parts': [], 'ruby_source': 'none', 'start': 124.54, 'end': 125.09, 'matched_chars': 3, 'total_chars': 3, 'coverage': 1.0, 'segment_ids': [8]}}, {'text': 'て', 'display_text': 'て', 'display_width': 52.0, 'word_width': 52.0, 'unit': {'global_word_id': 83, 'line_id': 20, 'word_id': 3, 'text': 'て', 'normalized_text': 'て', 'ruby_text': '', 'ruby_parts': [], 'ruby_source': 'none', 'start': 125.09, 'end': 125.22, 'matched_chars': 1, 'total_chars': 1, 'coverage': 1.0, 'segment_ids': [8]}}]
+text淡い
+ruby_parts: [{'ruby': '淡', 'rt': 'あわ'}, {'ruby': 'い', 'rt': None}]
+_measure
+_measure淡
+_measure淡い
+boundaries: [0.0, 52.0, 104.0]
+part_center_x 778.0
+part_center_x 830.0
+text彩り
+ruby_parts: [{'ruby': '彩', 'rt': 'いろど'}, {'ruby': 'り', 'rt': None}]
+_measure
+_measure彩
+_measure彩り
+boundaries: [0.0, 52.0, 104.0]
+part_center_x 882.0
+part_center_x 934.0
+textこぼし
+textて
+_measureこんな
+_measureこんな
+_measureちっぽけ
+_measureちっぽけ
+_measureな
+_measureな
+_measure僕
+_measure僕
+_measureの
+_measureの
+此行歌词长度：520.0
+此行左起点：700.0
+layout_segments [{'text': 'こんな', 'display_text': 'こんな', 'display_width': 156.0, 'word_width': 156.0, 'unit': {'global_word_id': 84, 'line_id': 21, 'word_id': 0, 'text': 'こんな', 'normalized_text': 'こんな', 'ruby_text': '', 'ruby_parts': [], 'ruby_source': 'none', 'start': 125.22, 'end': 126.64, 'matched_chars': 3, 'total_chars': 3, 'coverage': 1.0, 'segment_ids': [8]}}, {'text': 'ちっぽけ', 'display_text': 'ちっぽけ', 'display_width': 208.0, 'word_width': 208.0, 'unit': {'global_word_id': 85, 'line_id': 21, 'word_id': 1, 'text': 'ちっぽけ', 'normalized_text': 'ちっぽけ', 'ruby_text': '', 'ruby_parts': [], 'ruby_source': 'none', 'start': 126.64, 'end': 127.86, 'matched_chars': 4, 'total_chars': 4, 'coverage': 1.0, 'segment_ids': [8]}}, {'text': 'な', 'display_text': 'な', 'display_width': 52.0, 'word_width': 52.0, 'unit': {'global_word_id': 86, 'line_id': 21, 'word_id': 2, 'text': 'な', 'normalized_text': 'な', 'ruby_text': '', 'ruby_parts': [], 'ruby_source': 'none', 'start': 127.86, 'end': 128.22, 'matched_chars': 1, 'total_chars': 1, 'coverage': 1.0, 'segment_ids': [8]}}, {'text': '僕', 'display_text': '僕', 'display_width': 52.0, 'word_width': 52.0, 'unit': {'global_word_id': 87, 'line_id': 21, 'word_id': 3, 'text': '僕', 'normalized_text': 'ぼく', 'ruby_text': 'ぼく', 'ruby_parts': [{'ruby': '僕', 'rt': 'ぼく'}], 'ruby_source': 'builtin', 'start': 128.22, 'end': 128.6, 'matched_chars': 2, 'total_chars': 2, 'coverage': 1.0, 'segment_ids': [8]}}, {'text': 'の', 'display_text': 'の', 'display_width': 52.0, 'word_width': 52.0, 'unit': {'global_word_id': 88, 'line_id': 21, 'word_id': 4, 'text': 'の', 'normalized_text': 'の', 'ruby_text': '', 'ruby_parts': [], 'ruby_source': 'none', 'start': 128.6, 'end': 129.08, 'matched_chars': 1, 'total_chars': 1, 'coverage': 1.0, 'segment_ids': [8]}}]
+textこんな
+textちっぽけ
+textな
+text僕
+ruby_parts: [{'ruby': '僕', 'rt': 'ぼく'}]
+_measure
+_measure僕
+boundaries: [0.0, 52.0]
+part_center_x 1142.0
+textの
+_measure背中
+_measure背中
+_measureを
+_measureを
+_measure包ん
+_measure包ん
+_measureでく
+_measureでく
+此行歌词长度：364.0
+此行左起点：778.0
+layout_segments [{'text': '背中', 'display_text': '背中', 'display_width': 104.0, 'word_width': 104.0, 'unit': {'global_word_id': 89, 'line_id': 22, 'word_id': 0, 'text': '背中', 'normalized_text': 'せなか', 'ruby_text': 'せなか', 'ruby_parts': [{'ruby': '背', 'rt': 'せ'}, {'ruby': '中', 'rt': 'なか'}], 'ruby_source': 'builtin', 'start': 129.08, 'end': 130.66, 'matched_chars': 3, 'total_chars': 3, 'coverage': 1.0, 'segment_ids': [8]}}, {'text': 'を', 'display_text': 'を', 'display_width': 52.0, 'word_width': 52.0, 'unit': {'global_word_id': 90, 'line_id': 22, 'word_id': 1, 'text': 'を', 'normalized_text': 'お', 'ruby_text': '', 'ruby_parts': [], 'ruby_source': 'none', 'start': 130.66, 'end': 131.0, 'matched_chars': 1, 'total_chars': 1, 'coverage': 1.0, 'segment_ids': [8]}}, {'text': '包ん', 'display_text': '包ん', 'display_width': 104.0, 'word_width': 104.0, 'unit': {'global_word_id': 91, 'line_id': 22, 'word_id': 2, 'text': '包ん', 'normalized_text': 'つつん', 'ruby_text': 'つつん', 'ruby_parts': [{'ruby': '包', 'rt': 'つつ'}, {'ruby': 'ん', 'rt': None}], 'ruby_source': 'backend', 'start': 131.0, 'end': 131.64, 'matched_chars': 3, 'total_chars': 3, 'coverage': 1.0, 'segment_ids': [8]}}, {'text': 'でく', 'display_text': 'でく', 'display_width': 104.0, 'word_width': 104.0, 'unit': {'global_word_id': 92, 'line_id': 22, 'word_id': 3, 'text': 'でく', 'normalized_text': 'でく', 'ruby_text': '', 'ruby_parts': [], 'ruby_source': 'none', 'start': 131.64, 'end': 132.12, 'matched_chars': 2, 'total_chars': 2, 'coverage': 1.0, 'segment_ids': [8]}}]
+text背中
+ruby_parts: [{'ruby': '背', 'rt': 'せ'}, {'ruby': '中', 'rt': 'なか'}]
+_measure
+_measure背
+_measure背中
+boundaries: [0.0, 52.0, 104.0]
+part_center_x 804.0
+part_center_x 856.0
+textを
+text包ん
+ruby_parts: [{'ruby': '包', 'rt': 'つつ'}, {'ruby': 'ん', 'rt': None}]
+_measure
+_measure包
+_measure包ん
+boundaries: [0.0, 52.0, 104.0]
+part_center_x 960.0
+part_center_x 1012.0
+textでく
+_measure透明
+_measure透明
+_measureな
+_measureな
+_measureこの
+_measureこの
+_measure体
+_measure体
+_measureは
+_measureは
+此行歌词长度：364.0
+此行左起点：778.0
+layout_segments [{'text': '透明', 'display_text': '透明', 'display_width': 104.0, 'word_width': 104.0, 'unit': {'global_word_id': 93, 'line_id': 23, 'word_id': 0, 'text': '透明', 'normalized_text': 'とうめい', 'ruby_text': 'とうめい', 'ruby_parts': [{'ruby': '透', 'rt': 'とう'}, {'ruby': '明', 'rt': 'めい'}], 'ruby_source': 'builtin', 'start': 132.82, 'end': 133.34, 'matched_chars': 2, 'total_chars': 4, 'coverage': 0.5, 'segment_ids': [9]}}, {'text': 'な', 'display_text': 'な', 'display_width': 52.0, 'word_width': 52.0, 'unit': {'global_word_id': 94, 'line_id': 23, 'word_id': 1, 'text': 'な', 'normalized_text': 'な', 'ruby_text': '', 'ruby_parts': [], 'ruby_source': 'none', 'start': 133.34, 'end': 133.72, 'matched_chars': 1, 'total_chars': 1, 'coverage': 1.0, 'segment_ids': [9]}}, {'text': 'この', 'display_text': 'この', 'display_width': 104.0, 'word_width': 104.0, 'unit': {'global_word_id': 95, 'line_id': 23, 'word_id': 2, 'text': 'この', 'normalized_text': 'この', 'ruby_text': '', 'ruby_parts': [], 'ruby_source': 'none', 'start': 133.72, 'end': 134.16, 'matched_chars': 2, 'total_chars': 2, 'coverage': 1.0, 'segment_ids': [9]}}, {'text': '体', 'display_text': '体', 'display_width': 52.0, 'word_width': 52.0, 'unit': {'global_word_id': 96, 'line_id': 23, 'word_id': 3, 'text': '体', 'normalized_text': 'からだ', 'ruby_text': 'からだ', 'ruby_parts': [{'ruby': '体', 'rt': 'からだ'}], 'ruby_source': 'builtin', 'start': 134.16, 'end': 134.68, 'matched_chars': 3, 'total_chars': 3, 'coverage': 1.0, 'segment_ids': [9]}}, {'text': 'は', 'display_text': 'は', 'display_width': 52.0, 'word_width': 52.0, 'unit': {'global_word_id': 97, 'line_id': 23, 'word_id': 4, 'text': 'は', 'normalized_text': 'わ', 'ruby_text': '', 'ruby_parts': [], 'ruby_source': 'none', 'start': 134.68, 'end': 135.36, 'matched_chars': 1, 'total_chars': 1, 'coverage': 1.0, 'segment_ids': [9]}}]
+text透明
+ruby_parts: [{'ruby': '透', 'rt': 'とう'}, {'ruby': '明', 'rt': 'めい'}]
+_measure
+_measure透
+_measure透明
+boundaries: [0.0, 52.0, 104.0]
+part_center_x 804.0
+part_center_x 856.0
+textな
+textこの
+text体
+ruby_parts: [{'ruby': '体', 'rt': 'からだ'}]
+_measure
+_measure体
+boundaries: [0.0, 52.0]
+part_center_x 1064.0
+textは
+_measure何色
+_measure何色
+_measureに
+_measureに
+_measure成れる
+_measure成れる
+_measureの
+_measureの
+此行歌词长度：364.0
+此行左起点：778.0
+layout_segments [{'text': '何色', 'display_text': '何色', 'display_width': 104.0, 'word_width': 104.0, 'unit': {'global_word_id': 98, 'line_id': 24, 'word_id': 0, 'text': '何色', 'normalized_text': 'なにいろ', 'ruby_text': 'なにいろ', 'ruby_parts': [{'ruby': '何', 'rt': 'なに'}, {'ruby': '色', 'rt': 'いろ'}], 'ruby_source': 'builtin', 'start': 135.74, 'end': 136.54, 'matched_chars': 3, 'total_chars': 4, 'coverage': 0.75, 'segment_ids': [9]}}, {'text': 'に', 'display_text': 'に', 'display_width': 52.0, 'word_width': 52.0, 'unit': {'global_word_id': 99, 'line_id': 24, 'word_id': 1, 'text': 'に', 'normalized_text': 'に', 'ruby_text': '', 'ruby_parts': [], 'ruby_source': 'none', 'start': 136.54, 'end': 136.7, 'matched_chars': 1, 'total_chars': 1, 'coverage': 1.0, 'segment_ids': [9]}}, {'text': '成れる', 'display_text': '成れる', 'display_width': 156.0, 'word_width': 156.0, 'unit': {'global_word_id': 100, 'line_id': 24, 'word_id': 2, 'text': '成れる', 'normalized_text': 'なれる', 'ruby_text': 'なれる', 'ruby_parts': [{'ruby': '成', 'rt': 'な'}, {'ruby': 'れる', 'rt': None}], 'ruby_source': 'backend', 'start': 136.7, 'end': 137.32, 'matched_chars': 3, 'total_chars': 3, 'coverage': 1.0, 'segment_ids': [9]}}, {'text': 'の', 'display_text': 'の', 'display_width': 52.0, 'word_width': 52.0, 'unit': {'global_word_id': 101, 'line_id': 24, 'word_id': 3, 'text': 'の', 'normalized_text': 'の', 'ruby_text': '', 'ruby_parts': [], 'ruby_source': 'none', 'start': 137.32, 'end': 137.6, 'matched_chars': 1, 'total_chars': 1, 'coverage': 1.0, 'segment_ids': [9]}}]
+text何色
+ruby_parts: [{'ruby': '何', 'rt': 'なに'}, {'ruby': '色', 'rt': 'いろ'}]
+_measure
+_measure何
+_measure何色
+boundaries: [0.0, 52.0, 104.0]
+part_center_x 804.0
+part_center_x 856.0
+textに
+text成れる
+ruby_parts: [{'ruby': '成', 'rt': 'な'}, {'ruby': 'れる', 'rt': None}]
+_measure
+_measure成
+_measure成れ
+_measure成れる
+boundaries: [0.0, 52.0, 104.0, 156.0]
+part_center_x 960.0
+part_center_x 1038.0
+textの
+_measureただ 
+_measureただ
+_measure水のように流れ
+_measure水のように流れ
+此行歌词长度：479.640625
+此行左起点：720.1796875
+layout_segments [{'text': 'ただ', 'display_text': 'ただ ', 'display_width': 115.640625, 'word_width': 104.0, 'unit': {'global_word_id': 102, 'line_id': 25, 'word_id': 0, 'text': 'ただ', 'normalized_text': 'ただ', 'ruby_text': '', 'ruby_parts': [], 'ruby_source': 'none', 'start': 138.56, 'end': 138.94, 'matched_chars': 2, 'total_chars': 2, 'coverage': 1.0, 'segment_ids': [10]}}, {'text': '水のように流れ', 'display_text': '水のように流れ', 'display_width': 364.0, 'word_width': 364.0, 'unit': {'global_word_id': 103, 'line_id': 25, 'word_id': 1, 'text': '水のように流れ', 'normalized_text': 'みずのよーにながれ', 'ruby_text': 'みずのようにながれ', 'ruby_parts': [{'ruby': '水', 'rt': 'みず'}, {'ruby': 'の', 'rt': None}, {'ruby': 'よう', 'rt': None}, {'ruby': 'に', 'rt': None}, {'ruby': '流', 'rt': 'なが'}, {'ruby': 'れ', 'rt': None}], 'ruby_source': 'builtin', 'start': 138.94, 'end': 141.58, 'matched_chars': 7, 'total_chars': 9, 'coverage': 0.7777777777777778, 'segment_ids': [10]}}]
+textただ
+text水のように流れ
+ruby_parts: [{'ruby': '水', 'rt': 'みず'}, {'ruby': 'の', 'rt': None}, {'ruby': 'よう', 'rt': None}, {'ruby': 'に', 'rt': None}, {'ruby': '流', 'rt': 'なが'}, {'ruby': 'れ', 'rt': None}]
+_measure
+_measure水
+_measure水の
+_measure水のよ
+_measure水のよう
+_measure水のように
+_measure水のように流
+_measure水のように流れ
+boundaries: [0.0, 52.0, 104.0, 156.0, 208.0, 260.0, 312.0, 364.0]
+part_center_x 861.8203125
+part_center_x 913.8203125
+part_center_x 991.8203125
+part_center_x 1069.8203125
+part_center_x 1121.8203125
+part_center_x 1173.8203125
+_measure消えてゆくだけ？ 
+_measure消えてゆくだけ？
+_measureねぇ
+_measureねぇ
+此行歌词长度：529.046875
+此行左起点：695.4765625
+layout_segments [{'text': '消えてゆくだけ？', 'display_text': '消えてゆくだけ？ ', 'display_width': 425.046875, 'word_width': 413.40625, 'unit': {'global_word_id': 104, 'line_id': 26, 'word_id': 0, 'text': '消えてゆくだけ？', 'normalized_text': 'きえてゆくだけ', 'ruby_text': 'きえてゆくだけ？', 'ruby_parts': [{'ruby': '消', 'rt': 'き'}, {'ruby': 'え', 'rt': None}, {'ruby': 'て', 'rt': None}, {'ruby': 'ゆく', 'rt': None}, {'ruby': 'だけ', 'rt': None}, {'ruby': '？', 'rt': None}], 'ruby_source': 'backend', 'start': 142.22, 'end': 143.88, 'matched_chars': 7, 'total_chars': 7, 'coverage': 1.0, 'segment_ids': [10]}}, {'text': 'ねぇ', 'display_text': 'ねぇ', 'display_width': 104.0, 'word_width': 104.0, 'unit': {'global_word_id': 105, 'line_id': 26, 'word_id': 1, 'text': 'ねぇ', 'normalized_text': 'ねー', 'ruby_text': '', 'ruby_parts': [], 'ruby_source': 'none', 'start': 144.86, 'end': 145.12, 'matched_chars': 2, 'total_chars': 2, 'coverage': 1.0, 'segment_ids': [11]}}]
+text消えてゆくだけ？
+ruby_parts: [{'ruby': '消', 'rt': 'き'}, {'ruby': 'え', 'rt': None}, {'ruby': 'て', 'rt': None}, {'ruby': 'ゆく', 'rt': None}, {'ruby': 'だけ', 'rt': None}, {'ruby': '？', 'rt': None}]
+_measure
+_measure消
+_measure消え
+_measure消えて
+_measure消えてゆ
+_measure消えてゆく
+_measure消えてゆくだ
+_measure消えてゆくだけ
+_measure消えてゆくだけ？
+boundaries: [0.0, 52.0, 104.0, 153.40625, 205.40625, 257.40625, 309.40625, 361.40625, 413.40625]
+part_center_x 721.4765625
+part_center_x 773.4765625
+part_center_x 824.1796875
+part_center_x 900.8828125
+part_center_x 1004.8828125
+part_center_x 1082.8828125
+textねぇ
+_measureぼやけ
+_measureぼやけ
+_measureた
+_measureた
+_measureまま
+_measureまま
+_measureの
+_measureの
+_measureフォーカス
+_measureフォーカス
+_measureじゃ
+_measureじゃ
+此行歌词长度：728.0
+此行左起点：596.0
+layout_segments [{'text': 'ぼやけ', 'display_text': 'ぼやけ', 'display_width': 156.0, 'word_width': 156.0, 'unit': {'global_word_id': 106, 'line_id': 27, 'word_id': 0, 'text': 'ぼやけ', 'normalized_text': 'ぼやけ', 'ruby_text': '', 'ruby_parts': [], 'ruby_source': 'none', 'start': 145.56, 'end': 146.16, 'matched_chars': 3, 'total_chars': 3, 'coverage': 1.0, 'segment_ids': [11]}}, {'text': 'た', 'display_text': 'た', 'display_width': 52.0, 'word_width': 52.0, 'unit': {'global_word_id': 107, 'line_id': 27, 'word_id': 1, 'text': 'た', 'normalized_text': 'た', 'ruby_text': '', 'ruby_parts': [], 'ruby_source': 'none', 'start': 146.16, 'end': 146.36, 'matched_chars': 1, 'total_chars': 1, 'coverage': 1.0, 'segment_ids': [11]}}, {'text': 'まま', 'display_text': 'まま', 'display_width': 104.0, 'word_width': 104.0, 'unit': {'global_word_id': 108, 'line_id': 27, 'word_id': 2, 'text': 'まま', 'normalized_text': 'まま', 'ruby_text': '', 'ruby_parts': [], 'ruby_source': 'none', 'start': 146.36, 'end': 146.76, 'matched_chars': 2, 'total_chars': 2, 'coverage': 1.0, 'segment_ids': [11]}}, {'text': 'の', 'display_text': 'の', 'display_width': 52.0, 'word_width': 52.0, 'unit': {'global_word_id': 109, 'line_id': 27, 'word_id': 3, 'text': 'の', 'normalized_text': 'の', 'ruby_text': '', 'ruby_parts': [], 'ruby_source': 'none', 'start': 146.76, 'end': 146.92, 'matched_chars': 1, 'total_chars': 1, 'coverage': 1.0, 'segment_ids': [11]}}, {'text': 'フォーカス', 'display_text': 'フォーカス', 'display_width': 260.0, 'word_width': 260.0, 'unit': {'global_word_id': 110, 'line_id': 27, 'word_id': 4, 'text': 'フォーカス', 'normalized_text': 'ふぉーかす', 'ruby_text': '', 'ruby_parts': [], 'ruby_source': 'none', 'start': 146.92, 'end': 147.74, 'matched_chars': 4, 'total_chars': 5, 'coverage': 0.8, 'segment_ids': [11]}}, {'text': 'じゃ', 'display_text': 'じゃ', 'display_width': 104.0, 'word_width': 104.0, 'unit': {'global_word_id': 111, 'line_id': 27, 'word_id': 5, 'text': 'じゃ', 'normalized_text': 'じゃ', 'ruby_text': '', 'ruby_parts': [], 'ruby_source': 'none', 'start': 147.74, 'end': 147.88, 'matched_chars': 2, 'total_chars': 2, 'coverage': 1.0, 'segment_ids': [11]}}]
+textぼやけ
+textた
+textまま
+textの
+textフォーカス
+textじゃ
+_measure君
+_measure君
+_measureの
+_measureの
+_measureホンモノ
+_measureホンモノ
+_measureは
+_measureは
+_measure写せ
+_measure写せ
+_measureない
+_measureない
+_measureよ
+_measureよ
+此行歌词长度：624.0
+此行左起点：648.0
+layout_segments [{'text': '君', 'display_text': '君', 'display_width': 52.0, 'word_width': 52.0, 'unit': {'global_word_id': 112, 'line_id': 28, 'word_id': 0, 'text': '君', 'normalized_text': 'きみ', 'ruby_text': 'きみ', 'ruby_parts': [{'ruby': '君', 'rt': 'きみ'}], 'ruby_source': 'builtin', 'start': 148.18, 'end': 148.42, 'matched_chars': 2, 'total_chars': 2, 'coverage': 1.0, 'segment_ids': [11]}}, {'text': 'の', 'display_text': 'の', 'display_width': 52.0, 'word_width': 52.0, 'unit': {'global_word_id': 113, 'line_id': 28, 'word_id': 1, 'text': 'の', 'normalized_text': 'の', 'ruby_text': '', 'ruby_parts': [], 'ruby_source': 'none', 'start': 148.42, 'end': 148.72, 'matched_chars': 1, 'total_chars': 1, 'coverage': 1.0, 'segment_ids': [11]}}, {'text': 'ホンモノ', 'display_text': 'ホンモノ', 'display_width': 208.0, 'word_width': 208.0, 'unit': {'global_word_id': 114, 'line_id': 28, 'word_id': 2, 'text': 'ホンモノ', 'normalized_text': 'ほんもの', 'ruby_text': '', 'ruby_parts': [], 'ruby_source': 'none', 'start': 148.72, 'end': 149.38, 'matched_chars': 4, 'total_chars': 4, 'coverage': 1.0, 'segment_ids': [11]}}, {'text': 'は', 'display_text': 'は', 'display_width': 52.0, 'word_width': 52.0, 'unit': {'global_word_id': 115, 'line_id': 28, 'word_id': 3, 'text': 'は', 'normalized_text': 'わ', 'ruby_text': '', 'ruby_parts': [], 'ruby_source': 'none', 'start': 149.38, 'end': 149.76, 'matched_chars': 1, 'total_chars': 1, 'coverage': 1.0, 'segment_ids': [11]}}, {'text': '写せ', 'display_text': '写せ', 'display_width': 104.0, 'word_width': 104.0, 'unit': {'global_word_id': 116, 'line_id': 28, 'word_id': 4, 'text': '写せ', 'normalized_text': 'うつせ', 'ruby_text': 'うつせ', 'ruby_parts': [{'ruby': '写', 'rt': 'うつ'}, {'ruby': 'せ', 'rt': None}], 'ruby_source': 'backend', 'start': 149.76, 'end': 150.82, 'matched_chars': 2, 'total_chars': 3, 'coverage': 0.6666666666666666, 'segment_ids': [11]}}, {'text': 'ない', 'display_text': 'ない', 'display_width': 104.0, 'word_width': 104.0, 'unit': {'global_word_id': 117, 'line_id': 28, 'word_id': 5, 'text': 'ない', 'normalized_text': 'ない', 'ruby_text': '', 'ruby_parts': [], 'ruby_source': 'none', 'start': 150.82, 'end': 151.36, 'matched_chars': 2, 'total_chars': 2, 'coverage': 1.0, 'segment_ids': [11]}}, {'text': 'よ', 'display_text': 'よ', 'display_width': 52.0, 'word_width': 52.0, 'unit': {'global_word_id': 118, 'line_id': 28, 'word_id': 6, 'text': 'よ', 'normalized_text': 'よ', 'ruby_text': '', 'ruby_parts': [], 'ruby_source': 'none', 'start': 151.36, 'end': 152.08, 'matched_chars': 1, 'total_chars': 1, 'coverage': 1.0, 'segment_ids': [11]}}]
+text君
+ruby_parts: [{'ruby': '君', 'rt': 'きみ'}]
+_measure
+_measure君
+boundaries: [0.0, 52.0]
+part_center_x 674.0
+textの
+textホンモノ
+textは
+text写せ
+ruby_parts: [{'ruby': '写', 'rt': 'うつ'}, {'ruby': 'せ', 'rt': None}]
+_measure
+_measure写
+_measure写せ
+boundaries: [0.0, 52.0, 104.0]
+part_center_x 1038.0
+part_center_x 1090.0
+textない
+textよ
+_measure寂しげな顔で 
+_measure寂しげな顔で
+_measure君が笑う
+_measure君が笑う
+此行歌词长度：531.640625
+此行左起点：694.1796875
+layout_segments [{'text': '寂しげな顔で', 'display_text': '寂しげな顔で ', 'display_width': 323.640625, 'word_width': 312.0, 'unit': {'global_word_id': 119, 'line_id': 29, 'word_id': 0, 'text': '寂しげな顔で', 'normalized_text': 'さびしげなかおで', 'ruby_text': 'さびしげなかおで', 'ruby_parts': [{'ruby': '寂', 'rt': 'さび'}, {'ruby': 'し', 'rt': None}, {'ruby': 'げ', 'rt': None}, {'ruby': 'な', 'rt': None}, {'ruby': '顔', 'rt': 'かお'}, {'ruby': 'で', 'rt': None}], 'ruby_source': 'builtin', 'start': 153.08, 'end': 155.98, 'matched_chars': 8, 'total_chars': 8, 'coverage': 1.0, 'segment_ids': [12]}}, {'text': '君が笑う', 'display_text': '君が笑う', 'display_width': 208.0, 'word_width': 208.0, 'unit': {'global_word_id': 120, 'line_id': 29, 'word_id': 1, 'text': '君が笑う', 'normalized_text': 'きみがわらう', 'ruby_text': 'きみがわらう', 'ruby_parts': [{'ruby': '君', 'rt': 'きみ'}, {'ruby': 'が', 'rt': None}, {'ruby': '笑', 'rt': 'わら'}, {'ruby': 'う', 'rt': None}], 'ruby_source': 'builtin', 'start': 156.36, 'end': 158.78, 'matched_chars': 6, 'total_chars': 6, 'coverage': 1.0, 'segment_ids': [12]}}]
+text寂しげな顔で
+ruby_parts: [{'ruby': '寂', 'rt': 'さび'}, {'ruby': 'し', 'rt': None}, {'ruby': 'げ', 'rt': None}, {'ruby': 'な', 'rt': None}, {'ruby': '顔', 'rt': 'かお'}, {'ruby': 'で', 'rt': None}]
+_measure
+_measure寂
+_measure寂し
+_measure寂しげ
+_measure寂しげな
+_measure寂しげな顔
+_measure寂しげな顔で
+boundaries: [0.0, 52.0, 104.0, 156.0, 208.0, 260.0, 312.0]
+part_center_x 720.1796875
+part_center_x 772.1796875
+part_center_x 824.1796875
+part_center_x 876.1796875
+part_center_x 928.1796875
+part_center_x 980.1796875
+text君が笑う
+ruby_parts: [{'ruby': '君', 'rt': 'きみ'}, {'ruby': 'が', 'rt': None}, {'ruby': '笑', 'rt': 'わら'}, {'ruby': 'う', 'rt': None}]
+_measure
+_measure君
+_measure君が
+_measure君が笑
+_measure君が笑う
+boundaries: [0.0, 52.0, 104.0, 156.0, 208.0]
+part_center_x 1043.8203125
+part_center_x 1095.8203125
+part_center_x 1147.8203125
+part_center_x 1199.8203125
+_measure光る朝が 
+_measure光る朝が
+_measure朝が
+_measure朝が
+此行歌词长度：323.640625
+此行左起点：798.1796875
+layout_segments [{'text': '光る朝が', 'display_text': '光る朝が ', 'display_width': 219.640625, 'word_width': 208.0, 'unit': {'global_word_id': 121, 'line_id': 30, 'word_id': 0, 'text': '光る朝が', 'normalized_text': 'ひかるあさが', 'ruby_text': 'ひかるあさが', 'ruby_parts': [{'ruby': '光', 'rt': 'ひか'}, {'ruby': 'る', 'rt': None}, {'ruby': '朝', 'rt': 'あさ'}, {'ruby': 'が', 'rt': None}], 'ruby_source': 'builtin', 'start': 158.82, 'end': 162.16, 'matched_chars': 6, 'total_chars': 6, 'coverage': 1.0, 'segment_ids': [12]}}, {'text': '朝が', 'display_text': '朝が', 'display_width': 104.0, 'word_width': 104.0, 'unit': {'global_word_id': 122, 'line_id': 30, 'word_id': 1, 'text': '朝が', 'normalized_text': 'あさが', 'ruby_text': 'あさが', 'ruby_parts': [{'ruby': '朝', 'rt': 'あさ'}, {'ruby': 'が', 'rt': None}], 'ruby_source': 'builtin', 'start': 162.2, 'end': 162.98, 'matched_chars': 3, 'total_chars': 3, 'coverage': 1.0, 'segment_ids': [12]}}]
+text光る朝が
+ruby_parts: [{'ruby': '光', 'rt': 'ひか'}, {'ruby': 'る', 'rt': None}, {'ruby': '朝', 'rt': 'あさ'}, {'ruby': 'が', 'rt': None}]
+_measure
+_measure光
+_measure光る
+_measure光る朝
+_measure光る朝が
+boundaries: [0.0, 52.0, 104.0, 156.0, 208.0]
+part_center_x 824.1796875
+part_center_x 876.1796875
+part_center_x 928.1796875
+part_center_x 980.1796875
+text朝が
+ruby_parts: [{'ruby': '朝', 'rt': 'あさ'}, {'ruby': 'が', 'rt': None}]
+_measure
+_measure朝
+_measure朝が
+boundaries: [0.0, 52.0, 104.0]
+part_center_x 1043.8203125
+part_center_x 1095.8203125
+_measureあまりに眩しい 
+_measureあまりに眩しい
+_measure眩しいからさ
+_measure眩しいからさ
+此行歌词长度：687.640625
+此行左起点：616.1796875
+layout_segments [{'text': 'あまりに眩しい', 'display_text': 'あまりに眩しい ', 'display_width': 375.640625, 'word_width': 364.0, 'unit': {'global_word_id': 123, 'line_id': 31, 'word_id': 0, 'text': 'あまりに眩しい', 'normalized_text': 'あまりにまぶしい', 'ruby_text': 'あまりにまぶしい', 'ruby_parts': [{'ruby': 'あまり', 'rt': None}, {'ruby': 'に', 'rt': None}, {'ruby': '眩', 'rt': 'まぶ'}, {'ruby': 'しい', 'rt': None}], 'ruby_source': 'builtin', 'start': 162.98, 'end': 165.04, 'matched_chars': 8, 'total_chars': 8, 'coverage': 1.0, 'segment_ids': [12]}}, {'text': '眩しいからさ', 'display_text': '眩しいからさ', 'display_width': 312.0, 'word_width': 312.0, 'unit': {'global_word_id': 124, 'line_id': 31, 'word_id': 1, 'text': '眩しいからさ', 'normalized_text': 'まぶしいからさ', 'ruby_text': 'まぶしいからさ', 'ruby_parts': [{'ruby': '眩', 'rt': 'まぶ'}, {'ruby': 'しい', 'rt': None}, {'ruby': 'から', 'rt': None}, {'ruby': 'さ', 'rt': None}], 'ruby_source': 'builtin', 'start': 165.48, 'end': 167.24, 'matched_chars': 7, 'total_chars': 7, 'coverage': 1.0, 'segment_ids': [12]}}]
+textあまりに眩しい
+ruby_parts: [{'ruby': 'あまり', 'rt': None}, {'ruby': 'に', 'rt': None}, {'ruby': '眩', 'rt': 'まぶ'}, {'ruby': 'しい', 'rt': None}]
+_measure
+_measureあ
+_measureあま
+_measureあまり
+_measureあまりに
+_measureあまりに眩
+_measureあまりに眩し
+_measureあまりに眩しい
+boundaries: [0.0, 52.0, 104.0, 156.0, 208.0, 260.0, 312.0, 364.0]
+part_center_x 694.1796875
+part_center_x 798.1796875
+part_center_x 850.1796875
+part_center_x 928.1796875
+text眩しいからさ
+ruby_parts: [{'ruby': '眩', 'rt': 'まぶ'}, {'ruby': 'しい', 'rt': None}, {'ruby': 'から', 'rt': None}, {'ruby': 'さ', 'rt': None}]
+_measure
+_measure眩
+_measure眩し
+_measure眩しい
+_measure眩しいか
+_measure眩しいから
+_measure眩しいからさ
+boundaries: [0.0, 52.0, 104.0, 156.0, 208.0, 260.0, 312.0]
+part_center_x 1017.8203125
+part_center_x 1095.8203125
+part_center_x 1199.8203125
+part_center_x 1277.8203125
+_measureちょっとさ 
+_measureちょっとさ
+_measureらしくはない
+_measureらしくはない
+此行歌词长度：583.640625
+此行左起点：668.1796875
+layout_segments [{'text': 'ちょっとさ', 'display_text': 'ちょっとさ ', 'display_width': 271.640625, 'word_width': 260.0, 'unit': {'global_word_id': 125, 'line_id': 32, 'word_id': 0, 'text': 'ちょっとさ', 'normalized_text': 'ちょっとさ', 'ruby_text': '', 'ruby_parts': [], 'ruby_source': 'none', 'start': 167.72, 'end': 168.44, 'matched_chars': 5, 'total_chars': 5, 'coverage': 1.0, 'segment_ids': [13]}}, {'text': 'らしくはない', 'display_text': 'らしくはない', 'display_width': 312.0, 'word_width': 312.0, 'unit': {'global_word_id': 126, 'line_id': 32, 'word_id': 1, 'text': 'らしくはない', 'normalized_text': 'らしくわない', 'ruby_text': '', 'ruby_parts': [], 'ruby_source': 'none', 'start': 168.44, 'end': 170.22, 'matched_chars': 6, 'total_chars': 6, 'coverage': 1.0, 'segment_ids': [13]}}]
+textちょっとさ
+textらしくはない
+_measure未来
+_measure未来
+_measureも
+_measureも
+_measure信じ
+_measure信じ
+_measureちゃう
+_measureちゃう
+_measureよ
+_measureよ
+此行歌词长度：468.0
+此行左起点：726.0
+layout_segments [{'text': '未来', 'display_text': '未来', 'display_width': 104.0, 'word_width': 104.0, 'unit': {'global_word_id': 127, 'line_id': 33, 'word_id': 0, 'text': '未来', 'normalized_text': 'みらい', 'ruby_text': 'みらい', 'ruby_parts': [{'ruby': '未', 'rt': 'み'}, {'ruby': '来', 'rt': 'らい'}], 'ruby_source': 'builtin', 'start': 170.4, 'end': 171.0, 'matched_chars': 2, 'total_chars': 3, 'coverage': 0.6666666666666666, 'segment_ids': [13]}}, {'text': 'も', 'display_text': 'も', 'display_width': 52.0, 'word_width': 52.0, 'unit': {'global_word_id': 128, 'line_id': 33, 'word_id': 1, 'text': 'も', 'normalized_text': 'も', 'ruby_text': '', 'ruby_parts': [], 'ruby_source': 'none', 'start': 171.0, 'end': 171.5, 'matched_chars': 1, 'total_chars': 1, 'coverage': 1.0, 'segment_ids': [13]}}, {'text': '信じ', 'display_text': '信じ', 'display_width': 104.0, 'word_width': 104.0, 'unit': {'global_word_id': 129, 'line_id': 33, 'word_id': 2, 'text': '信じ', 'normalized_text': 'しんじ', 'ruby_text': 'しんじ', 'ruby_parts': [{'ruby': '信', 'rt': 'しん'}, {'ruby': 'じ', 'rt': None}], 'ruby_source': 'backend', 'start': 171.5, 'end': 172.7, 'matched_chars': 3, 'total_chars': 3, 'coverage': 1.0, 'segment_ids': [13]}}, {'text': 'ちゃう', 'display_text': 'ちゃう', 'display_width': 156.0, 'word_width': 156.0, 'unit': {'global_word_id': 130, 'line_id': 33, 'word_id': 3, 'text': 'ちゃう', 'normalized_text': 'ちゃう', 'ruby_text': '', 'ruby_parts': [], 'ruby_source': 'none', 'start': 172.7, 'end': 173.28, 'matched_chars': 3, 'total_chars': 3, 'coverage': 1.0, 'segment_ids': [13]}}, {'text': 'よ', 'display_text': 'よ', 'display_width': 52.0, 'word_width': 52.0, 'unit': {'global_word_id': 131, 'line_id': 33, 'word_id': 4, 'text': 'よ', 'normalized_text': 'よ', 'ruby_text': '', 'ruby_parts': [], 'ruby_source': 'none', 'start': 173.28, 'end': 173.44, 'matched_chars': 1, 'total_chars': 1, 'coverage': 1.0, 'segment_ids': [13]}}]
+text未来
+ruby_parts: [{'ruby': '未', 'rt': 'み'}, {'ruby': '来', 'rt': 'らい'}]
+_measure
+_measure未
+_measure未来
+boundaries: [0.0, 52.0, 104.0]
+part_center_x 752.0
+part_center_x 804.0
+textも
+text信じ
+ruby_parts: [{'ruby': '信', 'rt': 'しん'}, {'ruby': 'じ', 'rt': None}]
+_measure
+_measure信
+_measure信じ
+boundaries: [0.0, 52.0, 104.0]
+part_center_x 908.0
+part_center_x 960.0
+textちゃう
+textよ
+_measure君
+_measure君
+_measureの
+_measureの
+_measure言葉
+_measure言葉
+_measureが
+_measureが
+_measureずっと
+_measureずっと
+此行歌词长度：416.0
+此行左起点：752.0
+layout_segments [{'text': '君', 'display_text': '君', 'display_width': 52.0, 'word_width': 52.0, 'unit': {'global_word_id': 132, 'line_id': 34, 'word_id': 0, 'text': '君', 'normalized_text': 'きみ', 'ruby_text': 'きみ', 'ruby_parts': [{'ruby': '君', 'rt': 'きみ'}], 'ruby_source': 'builtin', 'start': 174.12, 'end': 174.34, 'matched_chars': 2, 'total_chars': 2, 'coverage': 1.0, 'segment_ids': [14]}}, {'text': 'の', 'display_text': 'の', 'display_width': 52.0, 'word_width': 52.0, 'unit': {'global_word_id': 133, 'line_id': 34, 'word_id': 1, 'text': 'の', 'normalized_text': 'の', 'ruby_text': '', 'ruby_parts': [], 'ruby_source': 'none', 'start': 174.34, 'end': 174.66, 'matched_chars': 1, 'total_chars': 1, 'coverage': 1.0, 'segment_ids': [14]}}, {'text': '言葉', 'display_text': '言葉', 'display_width': 104.0, 'word_width': 104.0, 'unit': {'global_word_id': 134, 'line_id': 34, 'word_id': 2, 'text': '言葉', 'normalized_text': 'ことば', 'ruby_text': 'ことば', 'ruby_parts': [{'ruby': '言', 'rt': 'こと'}, {'ruby': '葉', 'rt': 'ば'}], 'ruby_source': 'builtin', 'start': 174.66, 'end': 175.72, 'matched_chars': 2, 'total_chars': 3, 'coverage': 0.6666666666666666, 'segment_ids': [14]}}, {'text': 'が', 'display_text': 'が', 'display_width': 52.0, 'word_width': 52.0, 'unit': {'global_word_id': 135, 'line_id': 34, 'word_id': 3, 'text': 'が', 'normalized_text': 'が', 'ruby_text': '', 'ruby_parts': [], 'ruby_source': 'none', 'start': 175.72, 'end': 175.94, 'matched_chars': 1, 'total_chars': 1, 'coverage': 1.0, 'segment_ids': [14]}}, {'text': 'ずっと', 'display_text': 'ずっと', 'display_width': 156.0, 'word_width': 156.0, 'unit': {'global_word_id': 136, 'line_id': 34, 'word_id': 4, 'text': 'ずっと', 'normalized_text': 'ずっと', 'ruby_text': '', 'ruby_parts': [], 'ruby_source': 'none', 'start': 175.94, 'end': 176.52, 'matched_chars': 3, 'total_chars': 3, 'coverage': 1.0, 'segment_ids': [14]}}]
+text君
+ruby_parts: [{'ruby': '君', 'rt': 'きみ'}]
+_measure
+_measure君
+boundaries: [0.0, 52.0]
+part_center_x 778.0
+textの
+text言葉
+ruby_parts: [{'ruby': '言', 'rt': 'こと'}, {'ruby': '葉', 'rt': 'ば'}]
+_measure
+_measure言
+_measure言葉
+boundaries: [0.0, 52.0, 104.0]
+part_center_x 882.0
+part_center_x 934.0
+textが
+textずっと
+_measure離れない 
+_measure離れない
+_measure離れない
+_measure離れない
+此行歌词长度：427.640625
+此行左起点：746.1796875
+layout_segments [{'text': '離れない', 'display_text': '離れない ', 'display_width': 219.640625, 'word_width': 208.0, 'unit': {'global_word_id': 137, 'line_id': 35, 'word_id': 0, 'text': '離れない', 'normalized_text': 'はなれない', 'ruby_text': 'はなれない', 'ruby_parts': [{'ruby': '離', 'rt': 'はな'}, {'ruby': 'れ', 'rt': None}, {'ruby': 'ない', 'rt': None}], 'ruby_source': 'builtin', 'start': 176.86, 'end': 177.42, 'matched_chars': 3, 'total_chars': 5, 'coverage': 0.6, 'segment_ids': [14]}}, {'text': '離れない', 'display_text': '離れない', 'display_width': 208.0, 'word_width': 208.0, 'unit': {'global_word_id': 138, 'line_id': 35, 'word_id': 1, 'text': '離れない', 'normalized_text': 'はなれない', 'ruby_text': 'はなれない', 'ruby_parts': [{'ruby': '離', 'rt': 'はな'}, {'ruby': 'れ', 'rt': None}, {'ruby': 'ない', 'rt': None}], 'ruby_source': 'builtin', 'start': 178.24, 'end': 179.26, 'matched_chars': 3, 'total_chars': 5, 'coverage': 0.6, 'segment_ids': [14]}}]
+text離れない
+ruby_parts: [{'ruby': '離', 'rt': 'はな'}, {'ruby': 'れ', 'rt': None}, {'ruby': 'ない', 'rt': None}]
+_measure
+_measure離
+_measure離れ
+_measure離れな
+_measure離れない
+boundaries: [0.0, 52.0, 104.0, 156.0, 208.0]
+part_center_x 772.1796875
+part_center_x 824.1796875
+part_center_x 902.1796875
+text離れない
+ruby_parts: [{'ruby': '離', 'rt': 'はな'}, {'ruby': 'れ', 'rt': None}, {'ruby': 'ない', 'rt': None}]
+_measure
+_measure離
+_measure離れ
+_measure離れな
+_measure離れない
+boundaries: [0.0, 52.0, 104.0, 156.0, 208.0]
+part_center_x 991.8203125
+part_center_x 1043.8203125
+part_center_x 1121.8203125
+_measureフラッシュ
+_measureフラッシュ
+_measureバッカー
+_measureバッカー
+此行歌词长度：468.0
+此行左起点：726.0
+layout_segments [{'text': 'フラッシュ', 'display_text': 'フラッシュ', 'display_width': 260.0, 'word_width': 260.0, 'unit': {'global_word_id': 139, 'line_id': 36, 'word_id': 0, 'text': 'フラッシュ', 'normalized_text': 'ふらっしゅ', 'ruby_text': '', 'ruby_parts': [], 'ruby_source': 'none', 'start': 180.04, 'end': 180.22, 'matched_chars': 2, 'total_chars': 5, 'coverage': 0.4, 'segment_ids': [14]}}, {'text': 'バッカー', 'display_text': 'バッカー', 'display_width': 208.0, 'word_width': 208.0, 'unit': {'global_word_id': 140, 'line_id': 36, 'word_id': 1, 'text': 'バッカー', 'normalized_text': 'ばっかー', 'ruby_text': '', 'ruby_parts': [], 'ruby_source': 'none', 'start': 180.22, 'end': 182.02, 'matched_chars': 2, 'total_chars': 4, 'coverage': 0.5, 'segment_ids': [14]}}]
+textフラッシュ
+textバッカー
+_measure今も 
+_measure今も
+_measure思い出してる
+_measure思い出してる
+此行歌词长度：426.078125
+此行左起点：746.9609375
+layout_segments [{'text': '今も', 'display_text': '今も ', 'display_width': 115.640625, 'word_width': 104.0, 'unit': {'global_word_id': 141, 'line_id': 37, 'word_id': 0, 'text': '今も', 'normalized_text': 'いまも', 'ruby_text': 'いまも', 'ruby_parts': [{'ruby': '今', 'rt': 'いま'}, {'ruby': 'も', 'rt': None}], 'ruby_source': 'builtin', 'start': 182.02, 'end': 183.38, 'matched_chars': 3, 'total_chars': 3, 'coverage': 1.0, 'segment_ids': [14]}}, {'text': '思い出してる', 'display_text': '思い出してる', 'display_width': 310.4375, 'word_width': 310.4375, 'unit': {'global_word_id': 142, 'line_id': 37, 'word_id': 1, 'text': '思い出してる', 'normalized_text': 'おもいだしてる', 'ruby_text': 'おもいだしてる', 'ruby_parts': [{'ruby': '思', 'rt': 'おも'}, {'ruby': 'い', 'rt': None}, {'ruby': '出', 'rt': 'だ'}, {'ruby': 'し', 'rt': None}, {'ruby': 'てる', 'rt': None}], 'ruby_source': 'backend', 'start': 183.38, 'end': 186.0, 'matched_chars': 7, 'total_chars': 7, 'coverage': 1.0, 'segment_ids': [14]}}]
+text今も
+ruby_parts: [{'ruby': '今', 'rt': 'いま'}, {'ruby': 'も', 'rt': None}]
+_measure
+_measure今
+_measure今も
+boundaries: [0.0, 52.0, 104.0]
+part_center_x 772.9609375
+part_center_x 824.9609375
+text思い出してる
+ruby_parts: [{'ruby': '思', 'rt': 'おも'}, {'ruby': 'い', 'rt': None}, {'ruby': '出', 'rt': 'だ'}, {'ruby': 'し', 'rt': None}, {'ruby': 'てる', 'rt': None}]
+_measure
+_measure思
+_measure思い
+_measure思い出
+_measure思い出し
+_measure思い出して
+_measure思い出してる
+boundaries: [0.0, 52.0, 104.0, 156.0, 208.0, 258.4375, 310.4375]
+part_center_x 888.6015625
+part_center_x 940.6015625
+part_center_x 992.6015625
+part_center_x 1044.6015625
+part_center_x 1121.8203125
+_measure光る朝が 
+_measure光る朝が
+_measure朝が
+_measure朝が
+此行歌词长度：323.640625
+此行左起点：798.1796875
+layout_segments [{'text': '光る朝が', 'display_text': '光る朝が ', 'display_width': 219.640625, 'word_width': 208.0, 'unit': {'global_word_id': 143, 'line_id': 38, 'word_id': 0, 'text': '光る朝が', 'normalized_text': 'ひかるあさが', 'ruby_text': 'ひかるあさが', 'ruby_parts': [{'ruby': '光', 'rt': 'ひか'}, {'ruby': 'る', 'rt': None}, {'ruby': '朝', 'rt': 'あさ'}, {'ruby': 'が', 'rt': None}], 'ruby_source': 'builtin', 'start': 209.92, 'end': 214.86, 'matched_chars': 6, 'total_chars': 6, 'coverage': 1.0, 'segment_ids': [15]}}, {'text': '朝が', 'display_text': '朝が', 'display_width': 104.0, 'word_width': 104.0, 'unit': {'global_word_id': 144, 'line_id': 38, 'word_id': 1, 'text': '朝が', 'normalized_text': 'あさが', 'ruby_text': 'あさが', 'ruby_parts': [{'ruby': '朝', 'rt': 'あさ'}, {'ruby': 'が', 'rt': None}], 'ruby_source': 'builtin', 'start': 215.1, 'end': 215.94, 'matched_chars': 3, 'total_chars': 3, 'coverage': 1.0, 'segment_ids': [15]}}]
+text光る朝が
+ruby_parts: [{'ruby': '光', 'rt': 'ひか'}, {'ruby': 'る', 'rt': None}, {'ruby': '朝', 'rt': 'あさ'}, {'ruby': 'が', 'rt': None}]
+_measure
+_measure光
+_measure光る
+_measure光る朝
+_measure光る朝が
+boundaries: [0.0, 52.0, 104.0, 156.0, 208.0]
+part_center_x 824.1796875
+part_center_x 876.1796875
+part_center_x 928.1796875
+part_center_x 980.1796875
+text朝が
+ruby_parts: [{'ruby': '朝', 'rt': 'あさ'}, {'ruby': 'が', 'rt': None}]
+_measure
+_measure朝
+_measure朝が
+boundaries: [0.0, 52.0, 104.0]
+part_center_x 1043.8203125
+part_center_x 1095.8203125
+_measureあまりに眩しい 
+_measureあまりに眩しい
+_measure眩しいからさ
+_measure眩しいからさ
+此行歌词长度：687.640625
+此行左起点：616.1796875
+layout_segments [{'text': 'あまりに眩しい', 'display_text': 'あまりに眩しい ', 'display_width': 375.640625, 'word_width': 364.0, 'unit': {'global_word_id': 145, 'line_id': 39, 'word_id': 0, 'text': 'あまりに眩しい', 'normalized_text': 'あまりにまぶしい', 'ruby_text': 'あまりにまぶしい', 'ruby_parts': [{'ruby': 'あまり', 'rt': None}, {'ruby': 'に', 'rt': None}, {'ruby': '眩', 'rt': 'まぶ'}, {'ruby': 'しい', 'rt': None}], 'ruby_source': 'builtin', 'start': 215.94, 'end': 218.0, 'matched_chars': 8, 'total_chars': 8, 'coverage': 1.0, 'segment_ids': [15]}}, {'text': '眩しいからさ', 'display_text': '眩しいからさ', 'display_width': 312.0, 'word_width': 312.0, 'unit': {'global_word_id': 146, 'line_id': 39, 'word_id': 1, 'text': '眩しいからさ', 'normalized_text': 'まぶしいからさ', 'ruby_text': 'まぶしいからさ', 'ruby_parts': [{'ruby': '眩', 'rt': 'まぶ'}, {'ruby': 'しい', 'rt': None}, {'ruby': 'から', 'rt': None}, {'ruby': 'さ', 'rt': None}], 'ruby_source': 'builtin', 'start': 218.28, 'end': 220.18, 'matched_chars': 7, 'total_chars': 7, 'coverage': 1.0, 'segment_ids': [15]}}]
+textあまりに眩しい
+ruby_parts: [{'ruby': 'あまり', 'rt': None}, {'ruby': 'に', 'rt': None}, {'ruby': '眩', 'rt': 'まぶ'}, {'ruby': 'しい', 'rt': None}]
+_measure
+_measureあ
+_measureあま
+_measureあまり
+_measureあまりに
+_measureあまりに眩
+_measureあまりに眩し
+_measureあまりに眩しい
+boundaries: [0.0, 52.0, 104.0, 156.0, 208.0, 260.0, 312.0, 364.0]
+part_center_x 694.1796875
+part_center_x 798.1796875
+part_center_x 850.1796875
+part_center_x 928.1796875
+text眩しいからさ
+ruby_parts: [{'ruby': '眩', 'rt': 'まぶ'}, {'ruby': 'しい', 'rt': None}, {'ruby': 'から', 'rt': None}, {'ruby': 'さ', 'rt': None}]
+_measure
+_measure眩
+_measure眩し
+_measure眩しい
+_measure眩しいか
+_measure眩しいから
+_measure眩しいからさ
+boundaries: [0.0, 52.0, 104.0, 156.0, 208.0, 260.0, 312.0]
+part_center_x 1017.8203125
+part_center_x 1095.8203125
+part_center_x 1199.8203125
+part_center_x 1277.8203125
+_measureなんかもう 
+_measureなんかもう
+_measureそれだけで
+_measureそれだけで
+此行歌词长度：530.078125
+此行左起点：694.9609375
+layout_segments [{'text': 'なんかもう', 'display_text': 'なんかもう ', 'display_width': 270.078125, 'word_width': 258.4375, 'unit': {'global_word_id': 147, 'line_id': 40, 'word_id': 0, 'text': 'なんかもう', 'normalized_text': 'なんかもー', 'ruby_text': '', 'ruby_parts': [], 'ruby_source': 'none', 'start': 220.62, 'end': 221.4, 'matched_chars': 4, 'total_chars': 5, 'coverage': 0.8, 'segment_ids': [16]}}, {'text': 'それだけで', 'display_text': 'それだけで', 'display_width': 260.0, 'word_width': 260.0, 'unit': {'global_word_id': 148, 'line_id': 40, 'word_id': 1, 'text': 'それだけで', 'normalized_text': 'それだけで', 'ruby_text': '', 'ruby_parts': [], 'ruby_source': 'none', 'start': 221.4, 'end': 222.96, 'matched_chars': 5, 'total_chars': 5, 'coverage': 1.0, 'segment_ids': [16]}}]
+textなんかもう
+textそれだけで
+_measure心
+_measure心
+_measureが
+_measureが
+_measure宙
+_measure宙
+_measureに
+_measureに
+_measure舞う
+_measure舞う
+此行歌词长度：312.0
+此行左起点：804.0
+layout_segments [{'text': '心', 'display_text': '心', 'display_width': 52.0, 'word_width': 52.0, 'unit': {'global_word_id': 149, 'line_id': 41, 'word_id': 0, 'text': '心', 'normalized_text': 'こころ', 'ruby_text': 'こころ', 'ruby_parts': [{'ruby': '心', 'rt': 'こころ'}], 'ruby_source': 'builtin', 'start': 223.2, 'end': 223.62, 'matched_chars': 3, 'total_chars': 3, 'coverage': 1.0, 'segment_ids': [16]}}, {'text': 'が', 'display_text': 'が', 'display_width': 52.0, 'word_width': 52.0, 'unit': {'global_word_id': 150, 'line_id': 41, 'word_id': 1, 'text': 'が', 'normalized_text': 'が', 'ruby_text': '', 'ruby_parts': [], 'ruby_source': 'none', 'start': 223.62, 'end': 224.5, 'matched_chars': 1, 'total_chars': 1, 'coverage': 1.0, 'segment_ids': [16]}}, {'text': '宙', 'display_text': '宙', 'display_width': 52.0, 'word_width': 52.0, 'unit': {'global_word_id': 151, 'line_id': 41, 'word_id': 2, 'text': '宙', 'normalized_text': 'ちゅう', 'ruby_text': 'ちゅう', 'ruby_parts': [{'ruby': '宙', 'rt': 'ちゅう'}], 'ruby_source': 'builtin', 'start': 224.5, 'end': 225.0, 'matched_chars': 3, 'total_chars': 3, 'coverage': 1.0, 'segment_ids': [16]}}, {'text': 'に', 'display_text': 'に', 'display_width': 52.0, 'word_width': 52.0, 'unit': {'global_word_id': 152, 'line_id': 41, 'word_id': 3, 'text': 'に', 'normalized_text': 'に', 'ruby_text': '', 'ruby_parts': [], 'ruby_source': 'none', 'start': 225.0, 'end': 225.7, 'matched_chars': 1, 'total_chars': 1, 'coverage': 1.0, 'segment_ids': [16]}}, {'text': '舞う', 'display_text': '舞う', 'display_width': 104.0, 'word_width': 104.0, 'unit': {'global_word_id': 153, 'line_id': 41, 'word_id': 4, 'text': '舞う', 'normalized_text': 'まう', 'ruby_text': 'まう', 'ruby_parts': [{'ruby': '舞', 'rt': 'ま'}, {'ruby': 'う', 'rt': None}], 'ruby_source': 'builtin', 'start': 225.7, 'end': 226.34, 'matched_chars': 2, 'total_chars': 2, 'coverage': 1.0, 'segment_ids': [16]}}]
+text心
+ruby_parts: [{'ruby': '心', 'rt': 'こころ'}]
+_measure
+_measure心
+boundaries: [0.0, 52.0]
+part_center_x 830.0
+textが
+text宙
+ruby_parts: [{'ruby': '宙', 'rt': 'ちゅう'}]
+_measure
+_measure宙
+boundaries: [0.0, 52.0]
+part_center_x 934.0
+textに
+text舞う
+ruby_parts: [{'ruby': '舞', 'rt': 'ま'}, {'ruby': 'う', 'rt': None}]
+_measure
+_measure舞
+_measure舞う
+boundaries: [0.0, 52.0, 104.0]
+part_center_x 1038.0
+part_center_x 1090.0
+_measure君
+_measure君
+_measureの
+_measureの
+_measure言葉
+_measure言葉
+_measureを
+_measureを
+_measureぎゅっ
+_measureぎゅっ
+_measureと
+_measureと
+此行歌词长度：466.4375
+此行左起点：726.78125
+layout_segments [{'text': '君', 'display_text': '君', 'display_width': 52.0, 'word_width': 52.0, 'unit': {'global_word_id': 154, 'line_id': 42, 'word_id': 0, 'text': '君', 'normalized_text': 'きみ', 'ruby_text': 'きみ', 'ruby_parts': [{'ruby': '君', 'rt': 'きみ'}], 'ruby_source': 'builtin', 'start': 227.04, 'end': 227.34, 'matched_chars': 2, 'total_chars': 2, 'coverage': 1.0, 'segment_ids': [17]}}, {'text': 'の', 'display_text': 'の', 'display_width': 52.0, 'word_width': 52.0, 'unit': {'global_word_id': 155, 'line_id': 42, 'word_id': 1, 'text': 'の', 'normalized_text': 'の', 'ruby_text': '', 'ruby_parts': [], 'ruby_source': 'none', 'start': 227.34, 'end': 227.64, 'matched_chars': 1, 'total_chars': 1, 'coverage': 1.0, 'segment_ids': [17]}}, {'text': '言葉', 'display_text': '言葉', 'display_width': 104.0, 'word_width': 104.0, 'unit': {'global_word_id': 156, 'line_id': 42, 'word_id': 2, 'text': '言葉', 'normalized_text': 'ことば', 'ruby_text': 'ことば', 'ruby_parts': [{'ruby': '言', 'rt': 'こと'}, {'ruby': '葉', 'rt': 'ば'}], 'ruby_source': 'builtin', 'start': 227.64, 'end': 228.72, 'matched_chars': 2, 'total_chars': 3, 'coverage': 0.6666666666666666, 'segment_ids': [17]}}, {'text': 'を', 'display_text': 'を', 'display_width': 52.0, 'word_width': 52.0, 'unit': {'global_word_id': 157, 'line_id': 42, 'word_id': 3, 'text': 'を', 'normalized_text': 'お', 'ruby_text': '', 'ruby_parts': [], 'ruby_source': 'none', 'start': 228.72, 'end': 228.92, 'matched_chars': 1, 'total_chars': 1, 'coverage': 1.0, 'segment_ids': [17]}}, {'text': 'ぎゅっ', 'display_text': 'ぎゅっ', 'display_width': 154.4375, 'word_width': 154.4375, 'unit': {'global_word_id': 158, 'line_id': 42, 'word_id': 4, 'text': 'ぎゅっ', 'normalized_text': 'ぎゅっ', 'ruby_text': '', 'ruby_parts': [], 'ruby_source': 'none', 'start': 228.92, 'end': 229.37, 'matched_chars': 3, 'total_chars': 3, 'coverage': 1.0, 'segment_ids': [17]}}, {'text': 'と', 'display_text': 'と', 'display_width': 52.0, 'word_width': 52.0, 'unit': {'global_word_id': 159, 'line_id': 42, 'word_id': 5, 'text': 'と', 'normalized_text': 'と', 'ruby_text': '', 'ruby_parts': [], 'ruby_source': 'none', 'start': 229.37, 'end': 229.5, 'matched_chars': 1, 'total_chars': 1, 'coverage': 1.0, 'segment_ids': [17]}}]
+text君
+ruby_parts: [{'ruby': '君', 'rt': 'きみ'}]
+_measure
+_measure君
+boundaries: [0.0, 52.0]
+part_center_x 752.78125
+textの
+text言葉
+ruby_parts: [{'ruby': '言', 'rt': 'こと'}, {'ruby': '葉', 'rt': 'ば'}]
+_measure
+_measure言
+_measure言葉
+boundaries: [0.0, 52.0, 104.0]
+part_center_x 856.78125
+part_center_x 908.78125
+textを
+textぎゅっ
+textと
+_measure離さない 
+_measure離さない
+_measure離さない
+_measure離さない
+此行歌词长度：427.640625
+此行左起点：746.1796875
+layout_segments [{'text': '離さない', 'display_text': '離さない ', 'display_width': 219.640625, 'word_width': 208.0, 'unit': {'global_word_id': 160, 'line_id': 43, 'word_id': 0, 'text': '離さない', 'normalized_text': 'はなさない', 'ruby_text': 'はなさない', 'ruby_parts': [{'ruby': '離', 'rt': 'はな'}, {'ruby': 'さ', 'rt': None}, {'ruby': 'ない', 'rt': None}], 'ruby_source': 'backend', 'start': 230.12, 'end': 232.3, 'matched_chars': 4, 'total_chars': 5, 'coverage': 0.8, 'segment_ids': [17]}}, {'text': '離さない', 'display_text': '離さない', 'display_width': 208.0, 'word_width': 208.0, 'unit': {'global_word_id': 161, 'line_id': 43, 'word_id': 1, 'text': '離さない', 'normalized_text': 'はなさない', 'ruby_text': 'はなさない', 'ruby_parts': [{'ruby': '離', 'rt': 'はな'}, {'ruby': 'さ', 'rt': None}, {'ruby': 'ない', 'rt': None}], 'ruby_source': 'backend', 'start': 233.02, 'end': 238.16, 'matched_chars': 4, 'total_chars': 5, 'coverage': 0.8, 'segment_ids': [17]}}]
+text離さない
+ruby_parts: [{'ruby': '離', 'rt': 'はな'}, {'ruby': 'さ', 'rt': None}, {'ruby': 'ない', 'rt': None}]
+_measure
+_measure離
+_measure離さ
+_measure離さな
+_measure離さない
+boundaries: [0.0, 52.0, 104.0, 156.0, 208.0]
+part_center_x 772.1796875
+part_center_x 824.1796875
+part_center_x 902.1796875
+text離さない
+ruby_parts: [{'ruby': '離', 'rt': 'はな'}, {'ruby': 'さ', 'rt': None}, {'ruby': 'ない', 'rt': None}]
+_measure
+_measure離
+_measure離さ
+_measure離さな
+_measure離さない
+boundaries: [0.0, 52.0, 104.0, 156.0, 208.0]
+part_center_x 991.8203125
+part_center_x 1043.8203125
+part_center_x 1121.8203125
+_measureフラッシュ
+_measureフラッシュ
+_measureバッカー
+_measureバッカー
+此行歌词长度：468.0
+此行左起点：726.0
+layout_segments [{'text': 'フラッシュ', 'display_text': 'フラッシュ', 'display_width': 260.0, 'word_width': 260.0, 'unit': {'global_word_id': 162, 'line_id': 44, 'word_id': 0, 'text': 'フラッシュ', 'normalized_text': 'ふらっしゅ', 'ruby_text': '', 'ruby_parts': [], 'ruby_source': 'none', 'start': 238.47, 'end': 258.5133333333333, 'matched_chars': 3, 'total_chars': 5, 'coverage': 0.6, 'segment_ids': [17, 18]}}, {'text': 'バッカー', 'display_text': 'バッカー', 'display_width': 208.0, 'word_width': 208.0, 'unit': {'global_word_id': 163, 'line_id': 44, 'word_id': 1, 'text': 'バッカー', 'normalized_text': 'ばっかー', 'ruby_text': '', 'ruby_parts': [], 'ruby_source': 'none', 'start': 258.76, 'end': 258.7690909090909, 'matched_chars': 3, 'total_chars': 4, 'coverage': 0.75, 'segment_ids': [18]}}]
+textフラッシュ
+textバッカー
+_measure今
+_measure今
+_measureも
+_measureも
+_measure思い出し
+_measure思い出し
+_measureてる
+_measureてる
+此行歌词长度：416.0
+此行左起点：752.0
+layout_segments [{'text': '今', 'display_text': '今', 'display_width': 52.0, 'word_width': 52.0, 'unit': {'global_word_id': 164, 'line_id': 45, 'word_id': 0, 'text': '今', 'normalized_text': 'いま', 'ruby_text': 'いま', 'ruby_parts': [{'ruby': '今', 'rt': 'いま'}], 'ruby_source': 'builtin', 'start': 258.77272727272725, 'end': 258.7763636363636, 'matched_chars': 2, 'total_chars': 2, 'coverage': 1.0, 'segment_ids': [18]}}, {'text': 'も', 'display_text': 'も', 'display_width': 52.0, 'word_width': 52.0, 'unit': {'global_word_id': 165, 'line_id': 45, 'word_id': 1, 'text': 'も', 'normalized_text': 'も', 'ruby_text': '', 'ruby_parts': [], 'ruby_source': 'none', 'start': 288.40666666666664, 'end': 288.41333333333336, 'matched_chars': 1, 'total_chars': 1, 'coverage': 1.0, 'segment_ids': [19]}}, {'text': '思い出し', 'display_text': '思い出し', 'display_width': 208.0, 'word_width': 208.0, 'unit': {'global_word_id': 166, 'line_id': 45, 'word_id': 2, 'text': '思い出し', 'normalized_text': 'おもいだし', 'ruby_text': 'おもいだし', 'ruby_parts': [{'ruby': '思', 'rt': 'おも'}, {'ruby': 'い', 'rt': None}, {'ruby': '出', 'rt': 'だ'}, {'ruby': 'し', 'rt': None}], 'ruby_source': 'backend', 'start': 288.41333333333336, 'end': 288.4381818181818, 'matched_chars': 5, 'total_chars': 5, 'coverage': 1.0, 'segment_ids': [19]}}, {'text': 'てる', 'display_text': 'てる', 'display_width': 104.0, 'word_width': 104.0, 'unit': {'global_word_id': 167, 'line_id': 45, 'word_id': 3, 'text': 'てる', 'normalized_text': 'てる', 'ruby_text': '', 'ruby_parts': [], 'ruby_source': 'none', 'start': 288.4381818181818, 'end': 288.44, 'matched_chars': 1, 'total_chars': 2, 'coverage': 0.5, 'segment_ids': [19]}}]
+text今
+ruby_parts: [{'ruby': '今', 'rt': 'いま'}]
+_measure
+_measure今
+boundaries: [0.0, 52.0]
+part_center_x 778.0
+textも
+text思い出し
+ruby_parts: [{'ruby': '思', 'rt': 'おも'}, {'ruby': 'い', 'rt': None}, {'ruby': '出', 'rt': 'だ'}, {'ruby': 'し', 'rt': None}]
+_measure
+_measure思
+_measure思い
+_measure思い出
+_measure思い出し
+boundaries: [0.0, 52.0, 104.0, 156.0, 208.0]
+part_center_x 882.0
+part_center_x 934.0
+part_center_x 986.0
+part_center_x 1038.0
+textてる
+gdyg.nicokara/gdyg.audio.wav
+gdyg.nicokara/gdyg.vocals.wav
+gdyg.nicokara/gdyg.vocals.wav.words.json
+gdyg.nicokara/gdyg.nicokara.json
+gdyg.nicokara/gdyg.nicokara.srt
+gdyg.nicokara/gdyg.karaoke.ass
