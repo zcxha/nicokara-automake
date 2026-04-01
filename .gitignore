@@ -8,5 +8,8 @@ jsyd.txt
 *.json
 *.ass
 *.mp4
-*test*
+*test
 __pycache__
+*.mkv
+*.egg-info
+uv.lock

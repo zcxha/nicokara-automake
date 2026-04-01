@@ -9,6 +9,7 @@ from nicokara.pipeline import build_nicokara_video
 
 
 def parse_args() -> argparse.Namespace:
+    """Parse CLI arguments for the nicokara build entry point."""
     parser = argparse.ArgumentParser(
         description=(
             "Build a NicoKara-style MP4 from a source video and official lyrics. "
@@ -70,10 +71,31 @@ def parse_args() -> argparse.Namespace:
         action="store_true",
         help="Stop after writing ASS/SRT/JSON and skip final MP4 burning",
     )
+    parser.add_argument(
+        "--reading-backend",
+        default="auto",
+        choices=["auto", "fugashi", "sudachi", "pykakasi"],
+        help="Japanese reading backend (default: auto, prefers fugashi/unidic over SudachiPy over pykakasi)",
+    )
+    parser.add_argument(
+        "--reading-split-mode",
+        default="C",
+        choices=["A", "B", "C", "a", "b", "c"],
+        help="Sudachi split mode when --reading-backend=sudachi (default: C)",
+    )
+    parser.add_argument(
+        "--furigana-resource",
+        help="Optional furigana lexicon path, such as JmdictFurigana json/txt(.gz)",
+    )
+    parser.add_argument(
+        "--reading-overrides",
+        help="Optional exact-reading override file path (JSON object or tab-separated TXT)",
+    )
     return parser.parse_args()
 
 
 def main() -> int:
+    """Run the CLI entry point and print the produced artifact paths."""
     args = parse_args()
     try:
         artifacts = build_nicokara_video(
@@ -90,6 +112,10 @@ def main() -> int:
             vocals_audio_path=args.vocals,
             force=args.force,
             skip_burn=args.skip_burn,
+            reading_backend=args.reading_backend,
+            reading_split_mode=args.reading_split_mode.upper(),
+            furigana_resource_path=args.furigana_resource,
+            reading_overrides_path=args.reading_overrides,
         )
     except (ExternalToolError, FileNotFoundError, ValueError) as exc:
         print(f"error: {exc}", file=sys.stderr)

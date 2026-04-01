@@ -1,0 +1,32 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "nicokara-automake"
+version = "0.1.0"
+description = "Build NicoKara-style karaoke videos from a source video and official lyrics."
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+  "fugashi[unidic-lite]>=1.3.0",
+  "Pillow>=10.0.0",
+  "pykakasi>=2.3.0",
+]
+
+[project.optional-dependencies]
+sudachi = [
+  "SudachiPy>=0.6.8",
+  "sudachidict_core>=20240109",
+]
+
+[project.scripts]
+nicokara-build = "build_nicokara_video:main"
+nicokara-ruby-diagnostics = "nicokara.ruby_diagnostics:main"
+
+[tool.setuptools]
+include-package-data = true
+py-modules = ["build_nicokara_video"]
+
+[tool.setuptools.packages.find]
+include = ["nicokara*"]

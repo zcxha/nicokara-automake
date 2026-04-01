@@ -10,6 +10,7 @@ from pathlib import Path
 
 from .alignment import build_word_level_payload
 from .ass import payload_to_ass_text
+from .convert import build_text_processor
 from .media import (
     ExternalToolError,
     burn_ass_subtitles,
@@ -38,6 +39,7 @@ class PipelineArtifacts:
 
 
 def _resolve_demucs_command() -> list[str]:
+    """Resolve the best available Demucs invocation command."""
     demucs = shutil.which("demucs")
     if demucs:
         return [demucs]
@@ -56,6 +58,7 @@ def _resolve_demucs_command() -> list[str]:
 
 
 def _ensure_demucs_runtime_ready(command: list[str]) -> None:
+    """Validate that the resolved Demucs runtime has the required dependencies."""
     executable = Path(command[0])
     if not executable.is_file():
         return
@@ -123,6 +126,7 @@ def separate_vocals(
     work_dir: Path,
     model: str = "htdemucs_ft",
 ) -> Path:
+    """Run Demucs vocal separation and copy the vocals stem into a stable path."""
     command = _resolve_demucs_command()
     _ensure_demucs_runtime_ready(command)
     demucs_output_dir = ensure_directory(work_dir / "demucs")
@@ -146,6 +150,7 @@ def separate_vocals(
 
 
 def _resolve_whisper_command() -> tuple[list[str], dict[str, str] | None]:
+    """Resolve the best available whisper-timestamped invocation command."""
     executable = shutil.which("whisper_timestamped")
     if executable:
         command = [executable]
@@ -163,6 +168,7 @@ def _resolve_whisper_command() -> tuple[list[str], dict[str, str] | None]:
 
 
 def _ensure_whisper_runtime_ready(command: list[str]) -> None:
+    """Validate that the resolved whisper runtime can execute successfully."""
     executable = Path(command[0])
     if not executable.is_file():
         return
@@ -241,10 +247,12 @@ def run_whisper_timestamped(
     device: str | None = None,
     vad: bool = False,
 ) -> Path:
+    """Run whisper-timestamped and return the generated word-level JSON path."""
     command, env = _resolve_whisper_command()
     ensure_directory(output_dir)
 
     def cli_bool(value: bool) -> str:
+        """Serialize booleans into the CLI format expected by whisper-timestamped."""
         return "True" if value else "False"
 
     args = command + [
@@ -278,6 +286,7 @@ def run_whisper_timestamped(
 
 
 def _default_output_dir(video_path: Path) -> Path:
+    """Build the default nicokara artifact directory for a source video."""
     return video_path.with_name(f"{video_path.stem}.nicokara")
 
 
@@ -296,7 +305,12 @@ def build_nicokara_video(
     force: bool = False,
     skip_burn: bool = False,
     whisper_vad: bool = False,
+    reading_backend: str = "auto",
+    reading_split_mode: str = "C",
+    furigana_resource_path: str | Path | None = None,
+    reading_overrides_path: str | Path | None = None,
 ) -> PipelineArtifacts:
+    """Run the full nicokara pipeline and return the produced artifact paths."""
     video_source = Path(video_path)
     lyrics_source = Path(lyrics_path)
     build_dir = Path(output_dir) if output_dir else _default_output_dir(video_source)
@@ -336,7 +350,22 @@ def build_nicokara_video(
             vad=whisper_vad,
         )
 
-    payload = build_word_level_payload(stable_asr_json_path, lyrics_source)
+    text_processor = build_text_processor(
+        backend=reading_backend,
+        split_mode=reading_split_mode,
+        furigana_resource_path=furigana_resource_path,
+        reading_overrides_path=reading_overrides_path,
+    )
+
+    payload = build_word_level_payload(
+        stable_asr_json_path,
+        lyrics_source,
+        text_processor=text_processor,
+        reading_backend=reading_backend,
+        reading_split_mode=reading_split_mode,
+        furigana_resource_path=furigana_resource_path,
+        reading_overrides_path=reading_overrides_path,
+    )
     aligned_json_path.write_text(
         json.dumps(payload, ensure_ascii=False, indent=2) + "\n",
         encoding="utf-8",
@@ -357,7 +386,18 @@ def build_nicokara_video(
 
     width, height = probe_video_resolution(video_source)
     karaoke_ass_path.write_text(
-        payload_to_ass_text(payload, play_res_x=width, play_res_y=height, title=video_source.stem),
+        payload_to_ass_text(
+            payload,
+            play_res_x=width,
+            play_res_y=height,
+            title=video_source.stem,
+            text_processor=text_processor,
+            reading_backend=reading_backend,
+            reading_split_mode=reading_split_mode,
+            furigana_resource_path=furigana_resource_path,
+            reading_overrides_path=reading_overrides_path,
+            ass_path=karaoke_ass_path,
+        ),
         encoding="utf-8",
     )
 

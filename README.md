@@ -1,25 +1,84 @@
 # Nicokara Pipeline
 
-Chinese docs:
-
-- [中文架构说明](./docs/中文架构说明.md)
-- [中文使用说明](./docs/中文使用说明.md)
-
-This repository can now build a NicoKara-style finished video from:
+This repository builds a NicoKara-style karaoke video from:
 
 - an input `mp4`
 - an official lyric `txt`
 
+It is designed for two audiences at the same time:
+
+- people who just want a command they can run
+- people who also want to understand what each step is doing
+
+Chinese docs:
+
+- [中文使用说明](./docs/中文使用说明.md)
+- [中文架构说明](./docs/中文架构说明.md)
+
+## What This Project Produces
+
+The pipeline can generate:
+
+- aligned lyric timing data
+- line subtitles in `SRT`
+- karaoke subtitles in `ASS`
+- a final burned `MP4`
+
+Typical output files inside `input.nicokara/`:
+
+- `*.audio.wav`: audio extracted from the video
+- `*.vocals.wav`: separated vocal stem
+- `*.words.json`: word-level ASR output from `whisper-timestamped`
+- `*.nicokara.json`: official lyric timing payload after alignment
+- `*.nicokara.srt`: line-level subtitles
+- `*.karaoke.ass`: karaoke subtitles with furigana and progressive highlight
+- `*.nicokara.mp4`: final burned video
+
+## The Big Picture
+
 The full pipeline is:
 
 1. extract audio from the MP4
-2. separate vocals with Demucs (UVR-style source separation)
+2. separate vocals with Demucs
 3. transcribe the vocals with `whisper-timestamped`
 4. align the recognized text back to the official lyrics
-5. render karaoke ASS subtitles with furigana and progressive highlight
+5. render karaoke `ASS` subtitles with furigana and progressive highlight
 6. burn the subtitles into the original video with `ffmpeg`
 
-## Main entrypoint
+If you are new to the terminology, here is the short version:
+
+- `ffmpeg`: a command-line media toolbox that reads, converts, and writes video/audio
+- Demucs: a model that tries to split singing voice from accompaniment
+- ASR: automatic speech recognition; here it means turning sung audio into timed words
+- alignment: matching the timed ASR words back onto the correct official lyric text
+- `SRT`: a simple subtitle format, good for plain lines
+- `ASS`: a richer subtitle format that supports karaoke highlight and detailed positioning
+- furigana / ruby: small kana shown above kanji to explain pronunciation
+
+## Quick Start
+
+Project dependencies:
+
+```bash
+uv sync
+```
+
+CLI tools:
+
+```bash
+uv tool install --with packaging --with setuptools whisper-timestamped
+uv tool install --with torchcodec demucs
+```
+
+If your machine does not have a working CUDA runtime, prefer CPU tool environments:
+
+```bash
+uv sync
+uv tool install --force --torch-backend cpu --with packaging --with setuptools whisper-timestamped
+uv tool install --force --torch-backend cpu --with torchcodec demucs
+```
+
+Then run:
 
 ```bash
 python3 build_nicokara_video.py \
@@ -27,19 +86,15 @@ python3 build_nicokara_video.py \
   "lyrics.txt"
 ```
 
-By default this writes a directory named like `input.nicokara/` containing:
+You can also use the installed script entrypoint:
 
-- `*.audio.wav`: audio extracted from the video
-- `*.vocals.wav`: separated vocal stem
-- `*.words.json`: whisper word-level ASR output
-- `*.nicokara.json`: aligned official-lyrics timing payload
-- `*.nicokara.srt`: line-level SRT
-- `*.karaoke.ass`: karaoke ASS subtitles
-- `*.nicokara.mp4`: final burned NicoKara video
+```bash
+nicokara-build "input.mp4" "lyrics.txt"
+```
 
 ## Reusing Existing Intermediate Files
 
-If you already have separated vocals or an ASR JSON, you can skip those expensive steps:
+If you already have a vocal stem, skip source separation:
 
 ```bash
 python3 build_nicokara_video.py \
@@ -48,6 +103,8 @@ python3 build_nicokara_video.py \
   --vocals "song.vocals.wav"
 ```
 
+If you already have a whisper JSON, skip separation and ASR:
+
 ```bash
 python3 build_nicokara_video.py \
   "input.mp4" \
@@ -55,55 +112,163 @@ python3 build_nicokara_video.py \
   --asr-json "song.vocals.wav.words.json"
 ```
 
-If you only want the aligned JSON, legacy alignment still works:
+If you want to iterate on alignment and subtitle styling without burning video again:
 
 ```bash
-python3 ai_generated_build_nicokara.py \
-  "song.vocals.wav.words.json" \
-  "lyrics.txt"
+python3 build_nicokara_video.py \
+  "input.mp4" \
+  "lyrics.txt" \
+  --asr-json "song.vocals.wav.words.json" \
+  --skip-burn
 ```
 
 ## Requirements
 
-- `ffmpeg` and `ffprobe` must be available in `PATH`
-- `whisper_timestamped` should be available in `PATH`
-- `demucs` should be available in `PATH`, or `uvx`/`uv` should be available so the pipeline can launch Demucs automatically
-- Python needs `pykakasi`
+System tools:
 
-Typical setup commands:
+- `ffmpeg`
+- `ffprobe`
+
+Runtime tools:
+
+- `whisper_timestamped` in `PATH`
+- `demucs` in `PATH`, or `uvx` / `uv` available so the pipeline can launch Demucs automatically
+
+Python dependencies:
+
+- `fugashi[unidic-lite]`
+- `Pillow`
+- `pykakasi`
+
+Optional Python dependencies:
+
+- `SudachiPy`
+- `sudachidict_core`
+
+If you want the Sudachi backend:
 
 ```bash
-uv tool install --with packaging --with setuptools whisper-timestamped
-uv tool install --with torchcodec demucs
-uv pip install --python .venv/bin/python pykakasi
+uv sync --extra sudachi
 ```
 
-If your machine does not have a working CUDA runtime, prefer:
+## Why The Pipeline Uses “Recognized Words + Official Lyrics”
+
+This is the core idea of the project.
+
+Speech recognition is good at estimating time, but it is not always reliable at spelling lyrics perfectly, especially for:
+
+- homophones
+- rare names
+- stylized lyric writing
+- elongated sung vowels
+
+Official lyrics are textually correct, but they do not contain timing.
+
+So the project combines them:
+
+- ASR provides approximate time anchors
+- official lyrics provide the final text
+- alignment merges the two into usable karaoke timing
+
+This is why the project can often produce better subtitles than either source alone.
+
+## Font Consistency For `ASS` Burn-In
+
+Ruby placement in `*.karaoke.ass` is now measured with `ffmpeg/libass` itself instead of a separate Pillow width estimate.
+This makes the generated ruby positions match final burn-in more closely, but it also means ASS generation is a bit slower than before.
+To keep the measurement step and the final burn-in step consistent, both stages should see the same font files.
+
+The easiest setup is:
+
+1. put the font file into repo-root `fonts/`
+2. make sure the `ASS` font family name matches the font's internal family name
+3. run the pipeline normally
+
+The repository already includes a prepared example:
+
+- font file: `fonts/NotoSansCJKjp-Regular.otf`
+- internal family name: `Noto Sans CJK JP`
+- the default config already uses `Noto Sans CJK JP`
+
+Useful environment variables:
+
+- `NICOKARA_FONT_DIR=/path/to/fonts`
+- `NICOKARA_KARAOKE_FONT_NAME="Noto Sans CJK JP"`
+- `NICOKARA_RUBY_FONT_NAME="Noto Sans CJK JP"`
+
+If you want to force a different font family:
 
 ```bash
-uv tool install --force --torch-backend cpu --with packaging --with setuptools whisper-timestamped
-uv tool install --force --torch-backend cpu --with torchcodec demucs
+export NICOKARA_KARAOKE_FONT_NAME="Your Font Family"
+export NICOKARA_RUBY_FONT_NAME="Your Font Family"
+python3 build_nicokara_video.py "input.mp4" "lyrics.txt"
 ```
 
-## Notes On Lyric Segmentation
+## Reading Backends
 
-- If a lyric line already contains spaces, those spaces are treated as strong karaoke boundaries.
-- If a lyric line has no spaces, the project now uses `pykakasi` conversion chunks to infer smaller highlight units automatically.
-- This means Japanese lyrics without manual spacing no longer collapse into one giant highlighted block.
-- If a word contains kanji, the ASS output now also renders a furigana line above the main karaoke line.
+Japanese lyrics without spaces need extra help for segmentation and furigana.
 
-## Utility scripts
+The project supports:
 
-- `kks_convert.py`: convert JSON or TXT into hiragana
-- `lyrics_line_timestamp.py`: generate line-level lyric timing JSON
-- `json_convert_srt.py`: convert `segments`, `lyrics`, or `lines` JSON into SRT
+- `auto`
+- `fugashi`
+- `sudachi`
+- `pykakasi`
+
+Example:
+
+```bash
+python3 build_nicokara_video.py \
+  "input.mp4" \
+  "lyrics.txt" \
+  --reading-backend auto
+```
+
+Useful options:
+
+- `--reading-backend auto|fugashi|sudachi|pykakasi`
+- `--reading-split-mode A|B|C` for Sudachi
+- `--furigana-resource /path/to/JmdictFurigana.json.gz`
+- `--reading-overrides /path/to/overrides.json`
+
+Notes:
+
+- `auto` prefers `fugashi + UniDic`, can fall back to `SudachiPy`, and only uses `pykakasi` as a weak backup
+- first run may download and cache official `JmdictFurigana` / `JmnedictFurigana` resources
+- set `NICOKARA_DISABLE_AUTO_FURIGANA_DOWNLOAD=1` to force offline behavior
+
+## Ruby Diagnostics
+
+After generating `*.nicokara.json`, you can inspect entries that are likely worth manual review:
+
+```bash
+nicokara-ruby-diagnostics song.nicokara.json > suspicious_ruby.json
+```
+
+You can also generate a starter overrides file:
+
+```bash
+nicokara-ruby-diagnostics \
+  song.nicokara.json \
+  --overrides-template ruby_overrides.json
+```
 
 ## Output Format
 
 The NicoKara JSON contains:
 
 - `lines`: per-line timing and coverage
-- `words`: karaoke highlight units derived from the official lyrics
-- `alignment`: overall match statistics
+- `words`: karaoke highlight units derived from the official lyrics, including `ruby_text`, `ruby_parts`, and `ruby_source`
+- `alignment`: overall match statistics, including the effective `reading_backend`
 
-The texts come from the official lyric file, while the timestamps are inferred from the ASR word timings via monotonic character-level alignment.
+The texts come from the official lyric file, while the timestamps are inferred from ASR word timings through monotonic character-level alignment.
+
+## Where To Learn More
+
+If you want a beginner-friendly explanation of the concepts, read:
+
+- [中文使用说明](./docs/中文使用说明.md)
+
+If you want the internal design and data flow, read:
+
+- [中文架构说明](./docs/中文架构说明.md)
