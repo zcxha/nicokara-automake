@@ -9,6 +9,7 @@ from nicokara.pipeline import build_nicokara_video
 
 
 def parse_args() -> argparse.Namespace:
+    """Parse CLI arguments for the nicokara build entry point."""
     parser = argparse.ArgumentParser(
         description=(
             "Build a NicoKara-style MP4 from a source video and official lyrics. "
@@ -94,6 +95,7 @@ def parse_args() -> argparse.Namespace:
 
 
 def main() -> int:
+    """Run the CLI entry point and print the produced artifact paths."""
     args = parse_args()
     try:
         artifacts = build_nicokara_video(

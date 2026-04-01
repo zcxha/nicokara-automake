@@ -122,6 +122,7 @@ class LyricChar:
 
 
 def normalize_text_for_alignment(text: str, to_hiragana) -> str:
+    """Normalize text into a punctuation-free hiragana string for alignment."""
     normalized = to_hiragana(text).lower().replace("\u3000", " ")
     for source, target in SPECIAL_REPLACEMENTS.items():
         normalized = normalized.replace(source, target)
@@ -138,10 +139,12 @@ def normalize_text_for_alignment(text: str, to_hiragana) -> str:
 
 
 def canonical_kana(char: str) -> str:
+    """Collapse kana variants into a looser comparison form."""
     return char.translate(SMALL_KANA_MAP).translate(VOICED_BASE_MAP)
 
 
 def substitution_cost(asr_char: str, lyric_char: str) -> float:
+    """Score how expensive it is to align one ASR character to one lyric character."""
     if asr_char == lyric_char:
         return 0.0
 
@@ -161,10 +164,12 @@ def substitution_cost(asr_char: str, lyric_char: str) -> float:
 
 
 def deletion_cost(char: AsrChar) -> float:
+    """Score deleting an ASR character during dynamic-programming alignment."""
     return 0.3 + 0.7 * max(0.0, min(1.0, char.confidence))
 
 
 def insertion_cost(_: LyricChar) -> float:
+    """Score inserting a lyric character during dynamic-programming alignment."""
     return 0.9
 
 
@@ -173,6 +178,7 @@ def load_lyrics_lines(
     *,
     text_processor: JapaneseTextProcessor | None = None,
 ) -> tuple[list[LyricLine], list[LyricChar]]:
+    """Load lyric lines and flatten them into line and character alignment units."""
     processor = text_processor or build_text_processor()
     to_hiragana = processor.to_alignment_hiragana
     lines: list[LyricLine] = []
@@ -233,6 +239,7 @@ def load_asr_chars(
     *,
     text_processor: JapaneseTextProcessor | None = None,
 ) -> list[AsrChar]:
+    """Load ASR output and expand each recognized word into timed characters."""
     payload = json.loads(path.read_text(encoding="utf-8"))
     segments = payload.get("segments")
     if not isinstance(segments, list):
@@ -281,6 +288,7 @@ def load_asr_chars(
 
 
 def align_characters(asr_chars: list[AsrChar], lyric_chars: list[LyricChar]) -> list[int | None]:
+    """Align lyric characters to ASR characters with weighted edit distance."""
     m = len(asr_chars)
     n = len(lyric_chars)
 
@@ -338,6 +346,7 @@ def align_characters(asr_chars: list[AsrChar], lyric_chars: list[LyricChar]) -> 
 
 
 def _aggregate_indices(indices: list[int], asr_chars: list[AsrChar]) -> dict[str, Any]:
+    """Summarize timing and match counts for a group of aligned ASR indices."""
     matched_chars = len(indices)
     if not indices:
         return {
@@ -363,6 +372,7 @@ def _collect_matches(
     lyric_chars: list[LyricChar],
     lyric_to_asr: list[int | None],
 ) -> tuple[dict[int, list[int]], dict[tuple[int, int], list[int]]]:
+    """Group aligned ASR indices by lyric line and lyric word."""
     line_matches = {line.line_id: [] for line in lines}
     word_matches = {
         (line.line_id, word.word_id): []
@@ -390,6 +400,7 @@ def build_word_level_payload(
     furigana_resource_path: str | Path | None = None,
     reading_overrides_path: str | Path | None = None,
 ) -> dict[str, Any]:
+    """Build the word-level nicokara alignment payload from lyrics and ASR JSON."""
     json_source = Path(json_path)
     lyrics_source = Path(lyrics_path)
 
@@ -483,6 +494,7 @@ def build_line_level_payload(
     furigana_resource_path: str | Path | None = None,
     reading_overrides_path: str | Path | None = None,
 ) -> dict[str, Any]:
+    """Build a compact line-level alignment payload for legacy consumers."""
     word_payload = build_word_level_payload(
         json_path,
         lyrics_path,
@@ -529,6 +541,7 @@ def align_lyrics_to_asr(
     furigana_resource_path: str | Path | None = None,
     reading_overrides_path: str | Path | None = None,
 ) -> dict[str, Any]:
+    """Align official lyrics to ASR output and return the word-level payload."""
     return build_word_level_payload(
         json_path,
         lyrics_path,

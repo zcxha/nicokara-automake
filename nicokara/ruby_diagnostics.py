@@ -23,6 +23,7 @@ class CandidateAggregate:
     examples: list[dict[str, Any]] = field(default_factory=list)
 
     def add(self, candidate: dict[str, Any], *, example_limit: int) -> None:
+        """Merge one suspicious ruby occurrence into the aggregate bucket."""
         self.count += 1
         self.reasons.update(candidate["reasons"])
         self.min_coverage = min(self.min_coverage, candidate["coverage"])
@@ -41,6 +42,7 @@ class CandidateAggregate:
             )
 
     def to_dict(self) -> dict[str, Any]:
+        """Serialize the aggregate into a JSON-friendly mapping."""
         return {
             "text": self.text,
             "ruby_text": self.ruby_text,
@@ -55,6 +57,7 @@ class CandidateAggregate:
 
 
 def parse_args() -> argparse.Namespace:
+    """Parse CLI arguments for the ruby diagnostics tool."""
     parser = argparse.ArgumentParser(
         description=(
             "Export suspicious furigana entries from one or more *.nicokara.json files. "
@@ -103,6 +106,7 @@ def parse_args() -> argparse.Namespace:
 
 
 def iter_input_files(paths: list[str]) -> list[Path]:
+    """Expand file and directory arguments into a list of nicokara JSON files."""
     files: list[Path] = []
     for raw_path in paths:
         source = Path(raw_path)
@@ -121,6 +125,7 @@ def collect_candidates(
     *,
     min_coverage: float,
 ) -> list[dict[str, Any]]:
+    """Collect suspicious ruby entries from one aligned nicokara payload."""
     payload = json.loads(payload_path.read_text(encoding="utf-8"))
     line_map = {
         int(line.get("line_id", -1)): str(line.get("text", ""))
@@ -180,6 +185,7 @@ def build_reasons(
     coverage: float,
     min_coverage: float,
 ) -> list[str]:
+    """Build the reason codes that explain why an entry looks suspicious."""
     reasons = []
     if not ruby_text:
         reasons.append("missing_ruby")
@@ -195,6 +201,7 @@ def dedupe_candidates(
     *,
     example_limit: int,
 ) -> list[dict[str, Any]]:
+    """Group repeated suspicious entries by text, ruby, and source."""
     aggregates: dict[tuple[str, str, str], CandidateAggregate] = {}
     for candidate in candidates:
         key = (
@@ -228,6 +235,7 @@ def write_output(
     output_path: str | None,
     output_format: str,
 ) -> None:
+    """Write diagnostic rows as JSON or TSV."""
     if output_format == "json":
         text = json.dumps(rows, ensure_ascii=False, indent=2) + "\n"
         if output_path:
@@ -291,6 +299,7 @@ def write_output(
 
 
 def write_overrides_template(rows: list[dict[str, Any]], output_path: str) -> None:
+    """Write a starter exact-reading overrides file from diagnostic rows."""
     overrides: dict[str, str] = {}
     for row in rows:
         text = str(row.get("text", "")).strip()
@@ -304,6 +313,7 @@ def write_overrides_template(rows: list[dict[str, Any]], output_path: str) -> No
 
 
 def main() -> int:
+    """Run the ruby diagnostics CLI entry point."""
     args = parse_args()
     input_files = iter_input_files(args.inputs)
 

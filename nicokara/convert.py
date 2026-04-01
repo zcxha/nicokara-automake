@@ -28,6 +28,7 @@ LEADING_DISCOURAGED_KANA = SMALL_KANA | {"ー"}
 
 
 def build_kakasi_converter():
+    """Create a pykakasi converter or raise a dependency-focused error."""
     try:
         import pykakasi
     except ModuleNotFoundError as exc:
@@ -38,16 +39,19 @@ def build_kakasi_converter():
 
 
 def strip_punctuation(text: str) -> str:
+    """Remove Unicode punctuation characters from text."""
     return "".join(
         char for char in text if not unicodedata.category(char).startswith("P")
     )
 
 
 def has_kanji(text: str) -> bool:
+    """Return whether text contains any kanji-like character."""
     return any(_is_kanji_like(char) for char in text)
 
 
 def katakana_to_hiragana(text: str) -> str:
+    """Convert katakana in text into hiragana while preserving other characters."""
     chars = []
     for char in text:
         code = ord(char)
@@ -59,6 +63,7 @@ def katakana_to_hiragana(text: str) -> str:
 
 
 def _is_kanji_like(char: str) -> bool:
+    """Return whether a character should be treated as kanji for ruby handling."""
     return "\u4e00" <= char <= "\u9fff" or char in KANJI_LIKE_MARKS
 
 
@@ -101,6 +106,7 @@ class ReadingBackend(Protocol):
     name: str
 
     def tokenize(self, text: str) -> list[ReadingToken]:
+        """Tokenize text into surfaces with ruby and pronunciation readings."""
         ...
 
 
@@ -108,9 +114,11 @@ class KakasiBackend:
     name = "pykakasi"
 
     def __init__(self) -> None:
+        """Initialize the pykakasi-backed reading backend."""
         self._kakasi = build_kakasi_converter()
 
     def tokenize(self, text: str) -> list[ReadingToken]:
+        """Tokenize text with pykakasi and normalize the produced readings."""
         tokens = []
         for item in self._kakasi.convert(text):
             surface = str(item.get("orig", ""))
@@ -133,6 +141,7 @@ class FugashiBackend:
     name = "fugashi"
 
     def __init__(self) -> None:
+        """Initialize the fugashi tagger backend."""
         try:
             from fugashi import Tagger
         except ModuleNotFoundError as exc:
@@ -142,6 +151,7 @@ class FugashiBackend:
         self._tagger = Tagger()
 
     def tokenize(self, text: str) -> list[ReadingToken]:
+        """Tokenize text with fugashi and extract ruby and pronunciation data."""
         tokens = []
         for token in self._tagger(text):
             surface = token.surface
@@ -185,6 +195,7 @@ class SudachiBackend:
     name = "sudachipy"
 
     def __init__(self, *, split_mode: str = "C") -> None:
+        """Initialize the Sudachi tokenizer with the requested split mode."""
         try:
             from sudachipy import dictionary, tokenizer
         except ModuleNotFoundError as exc:
@@ -203,6 +214,7 @@ class SudachiBackend:
         self._tokenizer = dictionary.Dictionary().create()
 
     def tokenize(self, text: str) -> list[ReadingToken]:
+        """Tokenize text with Sudachi and normalize its reading output."""
         tokens = []
         for morpheme in self._tokenizer.tokenize(text, self._split_mode):
             surface = morpheme.surface()
@@ -239,6 +251,7 @@ class FuriganaLexicon:
         exact_map: dict[str, FuriganaEntry] | None = None,
         keyed_map: dict[tuple[str, str], FuriganaEntry] | None = None,
     ) -> None:
+        """Store exact and keyed furigana lookup maps."""
         self._exact_map = exact_map or {}
         self._keyed_map = keyed_map or {}
 
@@ -247,6 +260,7 @@ class FuriganaLexicon:
         cls,
         path: str | Path | None,
     ) -> FuriganaLexicon | None:
+        """Load a furigana lexicon from JSON, JSON.GZ, TXT, or TXT.GZ resources."""
         if path is None:
             return None
 
@@ -265,6 +279,7 @@ class FuriganaLexicon:
         return cls(exact_map=exact_map, keyed_map=keyed_map)
 
     def lookup_entry(self, text: str, reading: str | None = None) -> FuriganaEntry | None:
+        """Look up a furigana entry by exact text and optional normalized reading."""
         if text in self._exact_map:
             return self._exact_map[text]
         if reading is not None:
@@ -272,6 +287,7 @@ class FuriganaLexicon:
         return None
 
     def lookup_unique_text(self, text: str) -> FuriganaEntry | None:
+        """Return the sole entry for text when the resource has only one candidate."""
         if text in self._exact_map:
             return self._exact_map[text]
         matches = [
@@ -288,11 +304,13 @@ class BuiltinFuriganaLexicon:
     _instance: BuiltinFuriganaLexicon | None = None
 
     def __init__(self, db_path: Path) -> None:
+        """Initialize the built-in furigana lexicon wrapper for a SQLite database."""
         self._db_path = db_path
         self._conn: sqlite3.Connection | None = None
 
     @classmethod
     def ensure_default(cls) -> BuiltinFuriganaLexicon | None:
+        """Ensure the default built-in furigana database exists and return it."""
         if os.environ.get("NICOKARA_DISABLE_AUTO_FURIGANA_DOWNLOAD") == "1":
             return None
         if cls._instance is not None:
@@ -309,6 +327,7 @@ class BuiltinFuriganaLexicon:
         return cls._instance
 
     def lookup_entry(self, text: str, reading: str) -> FuriganaEntry | None:
+        """Look up an exact text and reading pair in the built-in database."""
         conn = self._ensure_connection()
         row = conn.execute(
             "SELECT reading, furigana_json FROM entries WHERE text = ? AND reading = ? LIMIT 1",
@@ -322,6 +341,7 @@ class BuiltinFuriganaLexicon:
         )
 
     def lookup_unique_text(self, text: str) -> FuriganaEntry | None:
+        """Return the only built-in entry for text when it is unambiguous."""
         conn = self._ensure_connection()
         rows = conn.execute(
             "SELECT reading, furigana_json FROM entries WHERE text = ? LIMIT 2",
@@ -335,6 +355,7 @@ class BuiltinFuriganaLexicon:
         )
 
     def _ensure_connection(self) -> sqlite3.Connection:
+        """Open the SQLite connection lazily and reuse it across lookups."""
         if self._conn is None:
             self._conn = sqlite3.connect(self._db_path)
         return self._conn
@@ -349,6 +370,7 @@ class JapaneseTextProcessor:
         resource: FuriganaLexicon | None = None,
         builtin_resource: BuiltinFuriganaLexicon | None = None,
     ) -> None:
+        """Initialize the text processor with its reading backends and lexicons."""
         self.backend = backend
         self.backend_name = backend.name
         self._overrides = overrides
@@ -367,6 +389,7 @@ class JapaneseTextProcessor:
             self.backend_label = f"{self.backend_label}+pykakasi"
 
     def tokenize(self, text: str) -> list[ReadingToken]:
+        """Tokenize text and refine each token with lexicon-backed readings."""
         tokens = []
         for token in self.backend.tokenize(text):
             token = self._refine_token_reading(token)
@@ -385,6 +408,7 @@ class JapaneseTextProcessor:
         return tokens
 
     def split_words(self, text: str) -> list[str]:
+        """Split lyric text into word-like units for alignment and rendering."""
         explicit_parts = [part for part in re.split(r"[ \u3000]+", text.strip()) if part]
         if len(explicit_parts) > 1:
             return explicit_parts
@@ -399,6 +423,7 @@ class JapaneseTextProcessor:
         return explicit_parts
 
     def to_alignment_hiragana(self, text: str) -> str:
+        """Convert text into pronunciation-oriented hiragana for alignment."""
         if not text:
             return ""
         return "".join(token.pronunciation for token in self.tokenize(text)).replace(
@@ -406,6 +431,7 @@ class JapaneseTextProcessor:
         )
 
     def to_ruby_hiragana(self, text: str) -> str:
+        """Convert text into display-oriented hiragana for ruby generation."""
         if not text:
             return ""
         return "".join(token.ruby for token in self.tokenize(text)).replace(
@@ -413,6 +439,7 @@ class JapaneseTextProcessor:
         )
 
     def resolve_word_reading(self, text: str) -> WordReading:
+        """Resolve the best ruby representation for one displayed word."""
         if not text:
             return WordReading(
                 ruby_text="",
@@ -470,6 +497,7 @@ class JapaneseTextProcessor:
         )
 
     def _lookup_entry(self, text: str, reading: str) -> tuple[FuriganaEntry | None, str]:
+        """Look up a furigana entry across overrides, resources, and built-ins."""
         if self._overrides is not None:
             entry = self._overrides.lookup_entry(text)
             if entry is not None:
@@ -494,6 +522,7 @@ class JapaneseTextProcessor:
         return None, "backend"
 
     def _refine_token_reading(self, token: ReadingToken) -> ReadingToken:
+        """Refine unresolved backend readings with a fallback kakasi pass."""
         if self._fallback_reader is None or not has_kanji(token.surface):
             return token
 
@@ -525,6 +554,7 @@ class JapaneseTextProcessor:
         )
 
     def _candidate_readings(self, text: str, primary_reading: str) -> list[str]:
+        """Build candidate readings to try when resolving a word-level lexicon entry."""
         candidates = [primary_reading]
         if self._fallback_reader is not None and has_kanji(text):
             fallback_tokens = self._fallback_reader.tokenize(text)
@@ -535,6 +565,7 @@ class JapaneseTextProcessor:
 
 
 def normalize_for_alignment(text: str, to_hiragana) -> str:
+    """Normalize text into a punctuation-free hiragana string for matching."""
     normalized = to_hiragana(text).lower().replace("\u3000", " ")
 
     chars = []
@@ -555,6 +586,7 @@ def build_text_processor(
     furigana_resource_path: str | Path | None = None,
     reading_overrides_path: str | Path | None = None,
 ) -> JapaneseTextProcessor:
+    """Build a Japanese text processor with the best available reading backend."""
     backend_name = str(backend or "auto").lower()
     candidates = ["fugashi", "sudachi", "pykakasi"] if backend_name == "auto" else [backend_name]
     errors: list[str] = []
@@ -597,6 +629,7 @@ def build_hiragana_converter(
     furigana_resource_path: str | Path | None = None,
     reading_overrides_path: str | Path | None = None,
 ):
+    """Build a callable that converts text into alignment-oriented hiragana."""
     processor = build_text_processor(
         backend=backend,
         split_mode=split_mode,
@@ -605,6 +638,7 @@ def build_hiragana_converter(
     )
 
     def to_hiragana(text: str) -> str:
+        """Convert text with the configured Japanese text processor."""
         return processor.to_alignment_hiragana(text)
 
     return to_hiragana
@@ -618,6 +652,7 @@ def convert_payload_to_hiragana(
     furigana_resource_path: str | Path | None = None,
     reading_overrides_path: str | Path | None = None,
 ) -> dict[str, Any]:
+    """Deep-copy an ASR-like payload and convert supported text fields to hiragana."""
     to_hiragana = build_hiragana_converter(
         backend=backend,
         split_mode=split_mode,
@@ -650,6 +685,7 @@ def convert_text_to_hiragana(
     furigana_resource_path: str | Path | None = None,
     reading_overrides_path: str | Path | None = None,
 ) -> str:
+    """Convert free-form text into hiragana line by line."""
     to_hiragana = build_hiragana_converter(
         backend=backend,
         split_mode=split_mode,
@@ -668,6 +704,7 @@ def convert_text_to_hiragana(
 
 
 def _read_text_resource(path: Path) -> str:
+    """Read plain-text or gzipped text resources as UTF-8."""
     if path.suffix.lower() == ".gz":
         with gzip.open(path, "rt", encoding="utf-8") as handle:
             return handle.read()
@@ -677,6 +714,7 @@ def _read_text_resource(path: Path) -> str:
 def _parse_json_lexicon(
     payload: Any,
 ) -> tuple[dict[str, FuriganaEntry], dict[tuple[str, str], FuriganaEntry]]:
+    """Parse a JSON furigana resource into exact and keyed lookup maps."""
     exact_map: dict[str, FuriganaEntry] = {}
     keyed_map: dict[tuple[str, str], FuriganaEntry] = {}
 
@@ -711,6 +749,7 @@ def _parse_json_lexicon(
 def _parse_text_lexicon(
     text: str,
 ) -> tuple[dict[str, FuriganaEntry], dict[tuple[str, str], FuriganaEntry]]:
+    """Parse the compact text furigana format into lookup maps."""
     exact_map: dict[str, FuriganaEntry] = {}
     keyed_map: dict[tuple[str, str], FuriganaEntry] = {}
 
@@ -739,6 +778,7 @@ def _parse_text_lexicon(
 
 
 def _parts_from_json_entry(raw_parts: Any) -> list[RubyPart]:
+    """Convert JSON ruby-part payloads into RubyPart objects."""
     parts: list[RubyPart] = []
     if not isinstance(raw_parts, list):
         return parts
@@ -757,6 +797,7 @@ def _parts_from_json_entry(raw_parts: Any) -> list[RubyPart]:
 
 
 def _parse_compact_furigana_parts(text: str, spec: str) -> list[RubyPart]:
+    """Parse the compact furigana annotation syntax for one surface string."""
     chars = list(text)
     annotations: list[tuple[int, int, str]] = []
     for chunk in spec.split(";"):
@@ -793,6 +834,7 @@ def _build_aligned_parts(
     reading: str,
     processor: JapaneseTextProcessor,
 ) -> list[RubyPart]:
+    """Align a reading string to surface text and split it into ruby parts."""
     if not text:
         return []
     if not has_kanji(text):
@@ -839,10 +881,12 @@ def _build_aligned_parts(
 
 
 def _normalize_reading_key(text: str) -> str:
+    """Normalize a reading string into the lookup-key form used by lexicons."""
     return katakana_to_hiragana(text).replace("\u3000", " ").strip()
 
 
 def _reading_looks_resolved(surface: str, reading: str) -> bool:
+    """Return whether a backend reading looks usable without fallback repair."""
     if not reading:
         return False
     normalized_surface = _normalize_reading_key(surface)
@@ -855,10 +899,12 @@ def _normalize_surface_reading(
     text: str,
     processor: JapaneseTextProcessor,
 ) -> str:
+    """Normalize the ruby reading produced for a plain surface segment."""
     return _normalize_reading_key(processor.to_ruby_hiragana(text))
 
 
 def _split_surface_runs(text: str) -> list[tuple[str, bool]]:
+    """Split text into consecutive kanji and non-kanji runs."""
     if not text:
         return []
 
@@ -881,6 +927,7 @@ def _next_anchor_reading(
     runs: list[tuple[str, bool]],
     processor: JapaneseTextProcessor,
 ) -> str:
+    """Find the next non-kanji reading anchor in a run sequence."""
     for segment, is_kanji_run in runs:
         if is_kanji_run:
             continue
@@ -894,6 +941,7 @@ def _minimum_reading_for_runs(
     runs: list[tuple[str, bool]],
     processor: JapaneseTextProcessor,
 ) -> int:
+    """Estimate the minimum reading length still required by the remaining runs."""
     minimum = 0
     for segment, is_kanji_run in runs:
         if is_kanji_run:
@@ -908,6 +956,7 @@ def _segment_kanji_run(
     reading: str,
     processor: JapaneseTextProcessor,
 ) -> list[RubyPart]:
+    """Split one kanji run into the most plausible ruby segments."""
     if not text:
         return []
     if len(text) == 1 or len(reading) <= 1:
@@ -915,6 +964,7 @@ def _segment_kanji_run(
 
     @lru_cache(maxsize=None)
     def segment_bonus(ruby: str, rt: str) -> float:
+        """Reward segmentations that match known dictionary entries."""
         entry, _ = processor._lookup_entry(ruby, rt)
         if entry is None:
             return 0.0
@@ -922,6 +972,7 @@ def _segment_kanji_run(
 
     @lru_cache(maxsize=None)
     def solve(text_pos: int, reading_pos: int) -> tuple[float, tuple[RubyPart, ...]] | None:
+        """Return the minimum-cost ruby segmentation from the given positions."""
         if text_pos == len(text) and reading_pos == len(reading):
             return 0.0, ()
         if text_pos >= len(text) or reading_pos >= len(reading):
@@ -963,6 +1014,7 @@ def _segment_kanji_run(
 
 
 def _segment_cost(*, ruby: str, rt: str, has_prefix: bool, has_tail: bool) -> float:
+    """Score one candidate ruby segment during kanji-run splitting."""
     group_len = len(ruby)
     reading_len = len(rt)
     average = reading_len / max(1, group_len)
@@ -981,6 +1033,7 @@ def _segment_cost(*, ruby: str, rt: str, has_prefix: bool, has_tail: bool) -> fl
 
 
 def _merge_adjacent_parts(parts: list[RubyPart]) -> list[RubyPart]:
+    """Merge neighboring ruby parts that share the same reading annotation."""
     merged: list[RubyPart] = []
     for part in parts:
         if not part.ruby:
@@ -996,6 +1049,7 @@ def _merge_adjacent_parts(parts: list[RubyPart]) -> list[RubyPart]:
 
 
 def _resolve_source(sources: list[str]) -> str:
+    """Resolve a combined ruby source label from several component sources."""
     if "override" in sources:
         return "override"
     if "resource" in sources:
@@ -1006,6 +1060,7 @@ def _resolve_source(sources: list[str]) -> str:
 
 
 def _serialize_parts(parts: list[RubyPart]) -> str:
+    """Serialize ruby parts into the JSON stored in the built-in SQLite cache."""
     return json.dumps(
         [
             {
@@ -1019,11 +1074,13 @@ def _serialize_parts(parts: list[RubyPart]) -> str:
 
 
 def _deserialize_parts(payload: str) -> list[RubyPart]:
+    """Deserialize ruby parts from the SQLite JSON payload format."""
     raw_parts = json.loads(payload)
     return _parts_from_json_entry(raw_parts)
 
 
 def _build_builtin_furigana_db(db_path: Path) -> None:
+    """Download furigana resources and build the bundled SQLite cache."""
     db_path.parent.mkdir(parents=True, exist_ok=True)
     assets = _fetch_latest_release_assets()
     temp_dir = Path(tempfile.mkdtemp(prefix="nicokara-furigana-", dir=db_path.parent))
@@ -1104,6 +1161,7 @@ def _build_builtin_furigana_db(db_path: Path) -> None:
 
 
 def _fetch_latest_release_assets() -> dict[str, str]:
+    """Fetch the latest JmdictFurigana release asset URLs from GitHub."""
     request = urllib.request.Request(
         JMDICT_RELEASE_API_URL,
         headers={"Accept": "application/vnd.github+json"},

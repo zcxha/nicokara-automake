@@ -21,6 +21,7 @@ KARAOKE_FONT_SIZE = 52
 
 
 def format_ass_timestamp(seconds: float) -> str:
+    """Format seconds as an ASS timestamp string."""
     total_centiseconds = max(0, round(seconds * 100))
     hours, remainder = divmod(total_centiseconds, 360_000)
     minutes, remainder = divmod(remainder, 6_000)
@@ -29,6 +30,7 @@ def format_ass_timestamp(seconds: float) -> str:
 
 
 def escape_ass_text(text: str) -> str:
+    """Escape plain text so it is safe to embed in ASS dialogue lines."""
     return (
         text.replace("\\", r"\\")
         .replace("{", r"\{")
@@ -38,6 +40,7 @@ def escape_ass_text(text: str) -> str:
 
 
 def _boundary_weight(unit: dict[str, Any]) -> int:
+    """Estimate how much timing span a word unit should consume."""
     value = unit.get("total_chars")
     if isinstance(value, int) and value > 0:
         return value
@@ -49,12 +52,14 @@ def _boundary_weight(unit: dict[str, Any]) -> int:
 
 
 def _average_boundary(existing: float | None, candidate: float) -> float:
+    """Blend two boundary estimates when both are available."""
     if existing is None:
         return candidate
     return (existing + candidate) / 2.0
 
 
 def _resolve_line_boundaries(line: dict[str, Any]) -> list[tuple[str, float, float]]:
+    """Infer per-word timing boundaries for a rendered lyric line."""
     units = list(line.get("words") or [])
     if not units:
         return []
@@ -140,6 +145,7 @@ def _resolve_line_boundaries(line: dict[str, Any]) -> list[tuple[str, float, flo
 
 
 def _infer_separator(text: str) -> str:
+    """Infer the separator that should be preserved between rendered words."""
     if "\u3000" in text:
         return "\u3000"
     if " " in text:
@@ -151,6 +157,7 @@ def _get_ruby_parts(
     unit: dict[str, Any],
     text_processor: JapaneseTextProcessor,
 ) -> list[dict[str, str | None]]:
+    """Resolve ruby-part annotations for a lyric word unit."""
     raw_parts = unit.get("ruby_parts")
     if isinstance(raw_parts, list):
         normalized_parts = []
@@ -179,6 +186,17 @@ def _get_ruby_parts(
     ]
 
 
+def _my_line_to_karaoke_events(
+    line: dict[str, Any],
+    *,
+    play_res_x: int,
+    play_res_y: int,
+    text_processor: JapaneseTextProcessor,
+) -> None:
+    """Keep a placeholder for experimental karaoke rendering logic."""
+    pass
+
+
 def _line_to_karaoke_events(
     line: dict[str, Any],
     *,
@@ -186,6 +204,7 @@ def _line_to_karaoke_events(
     play_res_y: int,
     text_processor: JapaneseTextProcessor,
 ) -> tuple[float, float, str, list[str]] | None:
+    """Render one aligned lyric line into karaoke and ruby ASS events."""
     segments = _resolve_line_boundaries(line)
     if not segments:
         return None
@@ -203,7 +222,7 @@ def _line_to_karaoke_events(
         duration_cs = max(1, round((end - start) * 100))
         suffix = separator if separator and index < len(segments) - 1 else ""
         display_text = text + suffix
-        karaoke_parts.append(r"{\k" + str(duration_cs) + "}" + escape_ass_text(display_text))
+        karaoke_parts.append(r"{\kf" + str(duration_cs) + "}" + escape_ass_text(display_text))
 
         display_width = _measure_text(display_text, KARAOKE_FONT_NAME, KARAOKE_FONT_SIZE)
         word_width = _measure_text(text, KARAOKE_FONT_NAME, KARAOKE_FONT_SIZE)
@@ -290,6 +309,7 @@ def payload_to_ass_text(
     furigana_resource_path: str | Path | None = None,
     reading_overrides_path: str | Path | None = None,
 ) -> str:
+    """Convert an aligned nicokara payload into a full ASS subtitle document."""
     processor = text_processor or build_text_processor(
         backend=reading_backend,
         split_mode=reading_split_mode,
@@ -339,6 +359,7 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
 
 @lru_cache(maxsize=8)
 def _resolve_font_path(font_name: str) -> str | None:
+    """Resolve a font file path through fontconfig when available."""
     try:
         probe = subprocess.run(
             ["fc-match", "-f", "%{file}\n", font_name],
@@ -359,6 +380,7 @@ def _resolve_font_path(font_name: str) -> str | None:
 
 @lru_cache(maxsize=16)
 def _load_font(font_name: str, font_size: int):
+    """Load and cache a font for width measurements."""
     if ImageFont is None:
         return None
 
@@ -375,6 +397,7 @@ def _load_font(font_name: str, font_size: int):
 
 
 def _measure_text(text: str, font_name: str, font_size: int) -> float:
+    """Measure rendered text width with Pillow or a fallback heuristic."""
     if not text:
         return 0.0
     font = _load_font(font_name, font_size)
@@ -389,6 +412,7 @@ def _measure_text(text: str, font_name: str, font_size: int) -> float:
 
 
 def _measure_text_boundaries(text: str, font_name: str, font_size: int) -> list[float]:
+    """Measure cumulative text widths at every character boundary."""
     if not text:
         return [0.0]
     return [

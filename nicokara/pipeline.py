@@ -39,6 +39,7 @@ class PipelineArtifacts:
 
 
 def _resolve_demucs_command() -> list[str]:
+    """Resolve the best available Demucs invocation command."""
     demucs = shutil.which("demucs")
     if demucs:
         return [demucs]
@@ -57,6 +58,7 @@ def _resolve_demucs_command() -> list[str]:
 
 
 def _ensure_demucs_runtime_ready(command: list[str]) -> None:
+    """Validate that the resolved Demucs runtime has the required dependencies."""
     executable = Path(command[0])
     if not executable.is_file():
         return
@@ -124,6 +126,7 @@ def separate_vocals(
     work_dir: Path,
     model: str = "htdemucs_ft",
 ) -> Path:
+    """Run Demucs vocal separation and copy the vocals stem into a stable path."""
     command = _resolve_demucs_command()
     _ensure_demucs_runtime_ready(command)
     demucs_output_dir = ensure_directory(work_dir / "demucs")
@@ -147,6 +150,7 @@ def separate_vocals(
 
 
 def _resolve_whisper_command() -> tuple[list[str], dict[str, str] | None]:
+    """Resolve the best available whisper-timestamped invocation command."""
     executable = shutil.which("whisper_timestamped")
     if executable:
         command = [executable]
@@ -164,6 +168,7 @@ def _resolve_whisper_command() -> tuple[list[str], dict[str, str] | None]:
 
 
 def _ensure_whisper_runtime_ready(command: list[str]) -> None:
+    """Validate that the resolved whisper runtime can execute successfully."""
     executable = Path(command[0])
     if not executable.is_file():
         return
@@ -242,10 +247,12 @@ def run_whisper_timestamped(
     device: str | None = None,
     vad: bool = False,
 ) -> Path:
+    """Run whisper-timestamped and return the generated word-level JSON path."""
     command, env = _resolve_whisper_command()
     ensure_directory(output_dir)
 
     def cli_bool(value: bool) -> str:
+        """Serialize booleans into the CLI format expected by whisper-timestamped."""
         return "True" if value else "False"
 
     args = command + [
@@ -279,6 +286,7 @@ def run_whisper_timestamped(
 
 
 def _default_output_dir(video_path: Path) -> Path:
+    """Build the default nicokara artifact directory for a source video."""
     return video_path.with_name(f"{video_path.stem}.nicokara")
 
 
@@ -302,6 +310,7 @@ def build_nicokara_video(
     furigana_resource_path: str | Path | None = None,
     reading_overrides_path: str | Path | None = None,
 ) -> PipelineArtifacts:
+    """Run the full nicokara pipeline and return the produced artifact paths."""
     video_source = Path(video_path)
     lyrics_source = Path(lyrics_path)
     build_dir = Path(output_dir) if output_dir else _default_output_dir(video_source)

@@ -12,6 +12,7 @@ class ExternalToolError(RuntimeError):
 
 
 def run_command(args: list[str], *, env: dict[str, str] | None = None) -> None:
+    """Run an external command and normalize common subprocess failures."""
     try:
         subprocess.run(args, check=True, env=env)
     except FileNotFoundError as exc:
@@ -22,11 +23,13 @@ def run_command(args: list[str], *, env: dict[str, str] | None = None) -> None:
 
 
 def ensure_directory(path: Path) -> Path:
+    """Create a directory tree when needed and return the same path."""
     path.mkdir(parents=True, exist_ok=True)
     return path
 
 
 def extract_audio(video_path: Path, output_audio_path: Path, *, sample_rate: int = 16000) -> Path:
+    """Extract mono PCM audio from a source video with ffmpeg."""
     ensure_directory(output_audio_path.parent)
     run_command(
         [
@@ -48,6 +51,7 @@ def extract_audio(video_path: Path, output_audio_path: Path, *, sample_rate: int
 
 
 def probe_video_resolution(video_path: Path) -> tuple[int, int]:
+    """Read the first video stream resolution with ffprobe."""
     result = subprocess.run(
         [
             "ffprobe",
@@ -68,12 +72,13 @@ def probe_video_resolution(video_path: Path) -> tuple[int, int]:
     payload = json.loads(result.stdout)
     streams = payload.get("streams") or []
     if not streams:
-        return 1280, 720
+        raise RuntimeError("ffprobe got no streams")
     stream = streams[0]
-    return int(stream.get("width", 1280)), int(stream.get("height", 720))
+    return int(stream["width"]), int(stream["height"])
 
 
 def _escape_ffmpeg_filter_path(path: Path) -> str:
+    """Escape an ASS path so it can be embedded in an ffmpeg filter graph."""
     escaped = str(path)
     escaped = escaped.replace("\\", "\\\\")
     escaped = escaped.replace(":", r"\:")
@@ -91,6 +96,7 @@ def burn_ass_subtitles(
     crf: int = 18,
     preset: str = "medium",
 ) -> Path:
+    """Burn ASS subtitles into a video with ffmpeg and return the output path."""
     ensure_directory(output_video_path.parent)
     run_command(
         [
@@ -115,6 +121,7 @@ def burn_ass_subtitles(
 
 
 def copy_if_needed(source: Path, target: Path) -> Path:
+    """Copy a file unless the source already resolves to the target path."""
     ensure_directory(target.parent)
     if source.resolve() == target.resolve():
         return target
@@ -123,6 +130,7 @@ def copy_if_needed(source: Path, target: Path) -> Path:
 
 
 def prepend_pythonpath(env: dict[str, str], extra_path: Path) -> dict[str, str]:
+    """Return a copy of env with extra_path prepended to PYTHONPATH."""
     updated = dict(env)
     current = updated.get("PYTHONPATH", "")
     updated["PYTHONPATH"] = str(extra_path) if not current else os.pathsep.join([str(extra_path), current])
