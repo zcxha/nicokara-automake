@@ -6,6 +6,8 @@ import shutil
 import subprocess
 from pathlib import Path
 
+from .fonts import DEFAULT_KARAOKE_FONT_NAME, DEFAULT_RUBY_FONT_NAME, bundled_font_environment
+
 
 class ExternalToolError(RuntimeError):
     pass
@@ -78,12 +80,20 @@ def probe_video_resolution(video_path: Path) -> tuple[int, int]:
 
 
 def _escape_ffmpeg_filter_path(path: Path) -> str:
-    """Escape an ASS path so it can be embedded in an ffmpeg filter graph."""
+    """Escape a filesystem path so it can be embedded in an ffmpeg filter graph."""
     escaped = str(path)
     escaped = escaped.replace("\\", "\\\\")
     escaped = escaped.replace(":", r"\:")
     escaped = escaped.replace("'", r"\'")
-    return f"ass='{escaped}'"
+    return escaped
+
+
+def _build_ass_filter(ass_path: Path, *, fonts_dir: Path | None = None) -> str:
+    """Build an ffmpeg ass filter string with an optional bundled fonts directory."""
+    options = [f"filename='{_escape_ffmpeg_filter_path(ass_path)}'"]
+    if fonts_dir is not None:
+        options.append(f"fontsdir='{_escape_ffmpeg_filter_path(fonts_dir)}'")
+    return "ass=" + ":".join(options)
 
 
 def burn_ass_subtitles(
@@ -98,25 +108,30 @@ def burn_ass_subtitles(
 ) -> Path:
     """Burn ASS subtitles into a video with ffmpeg and return the output path."""
     ensure_directory(output_video_path.parent)
-    run_command(
-        [
-            "ffmpeg",
-            "-y",
-            "-i",
-            str(video_path),
-            "-vf",
-            _escape_ffmpeg_filter_path(ass_path),
-            "-c:v",
-            video_codec,
-            "-preset",
-            preset,
-            "-crf",
-            str(crf),
-            "-c:a",
-            audio_codec,
-            str(output_video_path),
-        ]
-    )
+    with bundled_font_environment(
+        [DEFAULT_RUBY_FONT_NAME, DEFAULT_KARAOKE_FONT_NAME],
+        ass_path=ass_path,
+    ) as (fonts_dir, font_env):
+        run_command(
+            [
+                "ffmpeg",
+                "-y",
+                "-i",
+                str(video_path),
+                "-vf",
+                _build_ass_filter(ass_path, fonts_dir=fonts_dir),
+                "-c:v",
+                video_codec,
+                "-preset",
+                preset,
+                "-crf",
+                str(crf),
+                "-c:a",
+                audio_codec,
+                str(output_video_path),
+            ],
+            env=font_env,
+        )
     return output_video_path
 
 

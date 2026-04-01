@@ -1,11 +1,11 @@
 from __future__ import annotations
 
-import subprocess
 from functools import lru_cache
 from pathlib import Path
 from typing import Any
 
 from .convert import JapaneseTextProcessor, build_text_processor
+from .fonts import DEFAULT_KARAOKE_FONT_NAME, DEFAULT_RUBY_FONT_NAME, resolve_font_path
 
 try:
     from PIL import ImageFont
@@ -13,10 +13,10 @@ except ModuleNotFoundError:  # pragma: no cover - handled by fallback sizing
     ImageFont = None
 
 
-RUBY_FONT_NAME = "Noto Sans CJK JP"
+RUBY_FONT_NAME = DEFAULT_RUBY_FONT_NAME
 RUBY_FONT_SIZE = 24
 RUBY_MARGIN_V = 88
-KARAOKE_FONT_NAME = "Noto Sans CJK JP"
+KARAOKE_FONT_NAME = DEFAULT_KARAOKE_FONT_NAME
 KARAOKE_FONT_SIZE = 52
 
 
@@ -239,18 +239,22 @@ def _line_to_karaoke_events(
 
     ruby_events: list[str] = []
     cursor_x = play_res_x / 2.0 - total_width / 2.0
+    print(f"此行歌词长度：{total_width}")
+    print(f"此行左起点：{cursor_x}")
     ruby_y = play_res_y - RUBY_MARGIN_V
-
+    print(f"layout_segments {layout_segments}")
     for segment in layout_segments:
         unit = segment["unit"]
         text = str(segment["text"])
+        print(f"text{text}")
         word_left = cursor_x
         ruby_parts = _get_ruby_parts(unit, text_processor)
         if not ruby_parts:
             cursor_x += float(segment["display_width"])
             continue
-
+        print(f"ruby_parts: {ruby_parts}")
         boundaries = _measure_text_boundaries(text, KARAOKE_FONT_NAME, KARAOKE_FONT_SIZE)
+        print(f"boundaries: {boundaries}")
         part_cursor = 0
         rendered_any = False
         for part in ruby_parts:
@@ -264,6 +268,7 @@ def _line_to_karaoke_events(
             if part_right <= part_left:
                 part_right = part_left + _measure_text(part_text, KARAOKE_FONT_NAME, KARAOKE_FONT_SIZE)
             part_center_x = part_left + (part_right - part_left) / 2.0
+            print(f"part_center_x {part_center_x}")
             if part_rt:
                 rendered_any = True
                 ruby_events.append(
@@ -357,34 +362,13 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
     return header + body + ("\n" if body else "")
 
 
-@lru_cache(maxsize=8)
-def _resolve_font_path(font_name: str) -> str | None:
-    """Resolve a font file path through fontconfig when available."""
-    try:
-        probe = subprocess.run(
-            ["fc-match", "-f", "%{file}\n", font_name],
-            check=False,
-            capture_output=True,
-            text=True,
-        )
-    except OSError:
-        return None
-
-    if probe.returncode != 0:
-        return None
-    path = probe.stdout.strip().splitlines()
-    if not path:
-        return None
-    return path[0].strip() or None
-
-
 @lru_cache(maxsize=16)
 def _load_font(font_name: str, font_size: int):
     """Load and cache a font for width measurements."""
     if ImageFont is None:
-        return None
+        raise ValueError("load Font Error!")
 
-    font_path = _resolve_font_path(font_name)
+    font_path = resolve_font_path(font_name)
     candidates = [font_path, font_name]
     for candidate in candidates:
         if not candidate:
@@ -398,24 +382,24 @@ def _load_font(font_name: str, font_size: int):
 
 def _measure_text(text: str, font_name: str, font_size: int) -> float:
     """Measure rendered text width with Pillow or a fallback heuristic."""
+    print(f"_measure{text}")
     if not text:
         return 0.0
     font = _load_font(font_name, font_size)
     if font is None:
-        return max(1.0, float(font_size) * len(text) * 0.85)
+        raise
 
     try:
         return float(font.getlength(text))
     except AttributeError:
-        bbox = font.getbbox(text)
-        return float(max(0, bbox[2] - bbox[0]))
+        raise
 
 
 def _measure_text_boundaries(text: str, font_name: str, font_size: int) -> list[float]:
     """Measure cumulative text widths at every character boundary."""
     if not text:
-        return [0.0]
+        return []
     return [
         _measure_text(text[:index], font_name, font_size)
-        for index in range(len(text) + 1)
+        for index in range(0, len(text) + 1)
     ]
