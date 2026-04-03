@@ -34,6 +34,13 @@ Typical output files inside `input.nicokara/`:
 - `*.karaoke.ass`: karaoke subtitles with furigana and progressive highlight
 - `*.nicokara.mp4`: final burned video
 
+The default `ASS` layout now follows a more typical NicoKara presentation:
+
+- larger main lyric text
+- larger furigana
+- the active lyric area sits a bit above the absolute bottom edge
+- consecutive lines alternate between an upper-left slot and a lower-right slot so one line can sing while the next line is already visible
+
 ## The Big Picture
 
 The full pipeline is:

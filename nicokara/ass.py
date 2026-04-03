@@ -18,28 +18,32 @@ except ModuleNotFoundError:  # pragma: no cover - handled by fallback sizing
 
 
 RUBY_FONT_NAME = DEFAULT_RUBY_FONT_NAME
-RUBY_FONT_SIZE = 24
+RUBY_FONT_SIZE = 30
 RUBY_ALIGNMENT = 2
 RUBY_MARGIN_H = 56
 RUBY_MARGIN_V = 88
 RUBY_OUTLINE = 2
 KARAOKE_FONT_NAME = DEFAULT_KARAOKE_FONT_NAME
-KARAOKE_FONT_SIZE = 52
+KARAOKE_FONT_SIZE = 64
 KARAOKE_ALIGNMENT = 2
 KARAOKE_MARGIN_H = 56
 KARAOKE_MARGIN_V = 36
-KARAOKE_OUTLINE = 3
+KARAOKE_OUTLINE = 4
 MEASUREMENT_MARGIN_X = 48
 MEASUREMENT_MARGIN_Y = 48
 MEASUREMENT_MIN_WIDTH = 1024
 MEASUREMENT_MIN_HEIGHT = 256
+UPPER_SLOT_LEFT_MARGIN = 88
+LOWER_SLOT_RIGHT_MARGIN = 88
+UPPER_SLOT_TOP_RATIO = 0.66
+LOWER_SLOT_TOP_RATIO = 0.79
+RUBY_VERTICAL_GAP = 18
 
 
 @dataclass(frozen=True)
 class _MeasuredLineLayout:
-    """Store the rendered left edge and cumulative character boundaries for a line."""
+    """Store cumulative character boundaries for one rendered lyric line."""
 
-    line_left: float
     boundaries: tuple[float, ...]
 
 
@@ -209,6 +213,36 @@ def _get_ruby_parts(
     ]
 
 
+def _resolve_preview_start(lines: list[dict[str, Any]], index: int, line_start: float) -> float:
+    """Return when a lyric line should first appear as an upcoming preview."""
+    if index <= 0:
+        return line_start
+
+    previous_start = lines[index - 1].get("start")
+    if previous_start is None:
+        return line_start
+    return min(line_start, float(previous_start))
+
+
+def _resolve_line_slot(index: int) -> str:
+    """Return which alternating nicokara slot should render the line."""
+    return "upper_left" if index % 2 == 0 else "lower_right"
+
+
+def _resolve_slot_top(slot_name: str, play_res_y: int) -> float:
+    """Return the top y-coordinate for one lyric slot."""
+    ratio = UPPER_SLOT_TOP_RATIO if slot_name == "upper_left" else LOWER_SLOT_TOP_RATIO
+    return round(play_res_y * ratio, 2)
+
+
+def _resolve_slot_left(slot_name: str, *, total_width: float, play_res_x: int) -> float:
+    """Return the left x-coordinate for one lyric slot while keeping the line on screen."""
+    right_aligned_left = max(0.0, play_res_x - LOWER_SLOT_RIGHT_MARGIN - total_width)
+    if slot_name == "upper_left":
+        return min(float(UPPER_SLOT_LEFT_MARGIN), right_aligned_left)
+    return right_aligned_left
+
+
 def _my_line_to_karaoke_events(
     line: dict[str, Any],
     *,
@@ -223,6 +257,8 @@ def _my_line_to_karaoke_events(
 def _line_to_karaoke_events(
     line: dict[str, Any],
     *,
+    lines: list[dict[str, Any]],
+    line_index: int,
     play_res_x: int,
     play_res_y: int,
     text_processor: JapaneseTextProcessor,
@@ -235,12 +271,17 @@ def _line_to_karaoke_events(
 
     line_start = segments[0][1]
     line_end = max(end for _, _, end in segments)
+    display_start = _resolve_preview_start(lines, line_index, line_start)
+    slot_name = _resolve_line_slot(line_index)
     separator = _infer_separator(str(line.get("text", "")))
     units = list(line.get("words") or [])
 
     karaoke_parts = []
     layout_segments = []
     plain_line_text = ""
+    lead_in_cs = max(0, round((line_start - display_start) * 100))
+    if lead_in_cs > 0:
+        karaoke_parts.append(r"{\k" + str(lead_in_cs) + "}")
 
     for index, ((text, start, end), unit) in enumerate(zip(segments, units)):
         duration_cs = max(1, round((end - start) * 100))
@@ -263,28 +304,21 @@ def _line_to_karaoke_events(
     ruby_events: list[str] = []
     measured_layout = _measure_line_layout(
         plain_line_text,
-        play_res_x=play_res_x,
-        play_res_y=play_res_y,
         ass_path=ass_path,
     )
     line_boundaries = list(measured_layout.boundaries)
     total_width = line_boundaries[-1] if line_boundaries else 0.0
-    cursor_x = measured_layout.line_left
-    print(f"此行歌词长度：{total_width}")
-    print(f"此行左起点：{cursor_x}")
-    ruby_y = play_res_y - RUBY_MARGIN_V
-    print(f"layout_segments {layout_segments}")
+    cursor_x = _resolve_slot_left(slot_name, total_width=total_width, play_res_x=play_res_x)
+    line_top_y = _resolve_slot_top(slot_name, play_res_y)
+    ruby_y = line_top_y - RUBY_VERTICAL_GAP
     for segment in layout_segments:
         unit = segment["unit"]
         text = str(segment["text"])
-        print(f"text{text}")
         word_left = cursor_x + line_boundaries[int(segment["char_start"])]
         ruby_parts = _get_ruby_parts(unit, text_processor)
         if not ruby_parts:
             continue
-        print(f"ruby_parts: {ruby_parts}")
         boundaries = line_boundaries
-        print(f"boundaries: {boundaries}")
         part_cursor = 0
         rendered_any = False
         for part in ruby_parts:
@@ -298,12 +332,11 @@ def _line_to_karaoke_events(
             if part_right <= part_left:
                 part_right = part_left
             part_center_x = part_left + (part_right - part_left) / 2.0
-            print(f"part_center_x {part_center_x}")
             if part_rt:
                 rendered_any = True
                 ruby_events.append(
                     "Dialogue: 1,"
-                    f"{format_ass_timestamp(line_start)},"
+                    f"{format_ass_timestamp(display_start)},"
                     f"{format_ass_timestamp(line_end)},"
                     "Ruby,,0,0,0,,"
                     r"{\an2\pos("
@@ -318,7 +351,7 @@ def _line_to_karaoke_events(
             if ruby_text:
                 ruby_events.append(
                     "Dialogue: 1,"
-                    f"{format_ass_timestamp(line_start)},"
+                    f"{format_ass_timestamp(display_start)},"
                     f"{format_ass_timestamp(line_end)},"
                     "Ruby,,0,0,0,,"
                     r"{\an2\pos("
@@ -327,7 +360,13 @@ def _line_to_karaoke_events(
                     + escape_ass_text(ruby_text)
                 )
 
-    return line_start, line_end, "".join(karaoke_parts), ruby_events
+    positioned_karaoke = (
+        r"{\an7\pos("
+        f"{round(cursor_x, 2)},{round(line_top_y, 2)}"
+        r")}"
+        + "".join(karaoke_parts)
+    )
+    return display_start, line_end, positioned_karaoke, ruby_events
 
 
 def payload_to_ass_text(
@@ -350,10 +389,13 @@ def payload_to_ass_text(
         furigana_resource_path=furigana_resource_path,
         reading_overrides_path=reading_overrides_path,
     )
+    lines = list(payload.get("lines", []))
     events = []
-    for line in payload.get("lines", []):
+    for line_index, line in enumerate(lines):
         rendered = _line_to_karaoke_events(
             line,
+            lines=lines,
+            line_index=line_index,
             play_res_x=play_res_x,
             play_res_y=play_res_y,
             text_processor=processor,
@@ -545,52 +587,6 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
     )
 
 
-def _build_centered_measurement_document(
-    text: str,
-    *,
-    play_res_x: int,
-    play_res_y: int,
-    font_name: str,
-    font_size: int,
-) -> str:
-    """Build an ASS document that renders one centered karaoke line exactly like final output."""
-    karaoke_style = _build_style_line(
-        "Karaoke",
-        font_name,
-        font_size,
-        primary_colour="&H00F8FBFF",
-        secondary_colour="&H006A6A6A",
-        outline_colour="&H00111111",
-        back_colour="&H64000000",
-        bold=-1,
-        outline=KARAOKE_OUTLINE,
-        shadow=0,
-        alignment=KARAOKE_ALIGNMENT,
-        margin_l=KARAOKE_MARGIN_H,
-        margin_r=KARAOKE_MARGIN_H,
-        margin_v=KARAOKE_MARGIN_V,
-    )
-    return (
-        f"""[Script Info]
-ScriptType: v4.00+
-WrapStyle: 2
-ScaledBorderAndShadow: yes
-YCbCr Matrix: TV.709
-PlayResX: {play_res_x}
-PlayResY: {play_res_y}
-Title: Centered Measurement
-
-[V4+ Styles]
-Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
-{karaoke_style}
-
-[Events]
-Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
-Dialogue: 0,0:00:00.00,0:00:01.00,Karaoke,,0,0,0,,{escape_ass_text(text)}
-"""
-    )
-
-
 def _render_ass_image(
     ass_text: str,
     *,
@@ -702,42 +698,9 @@ def _measure_prefix_boundaries(
     return tuple(boundaries)
 
 
-def _measure_centered_line_left(
-    text: str,
-    *,
-    play_res_x: int,
-    play_res_y: int,
-    font_name: str,
-    font_size: int,
-    ass_path: Path | None = None,
-) -> float:
-    """Measure the actual left edge of a centered karaoke line in the target frame."""
-    if not text:
-        return play_res_x / 2.0
-
-    measurement_image = _render_ass_image(
-        _build_centered_measurement_document(
-            text,
-            play_res_x=play_res_x,
-            play_res_y=play_res_y,
-            font_name=font_name,
-            font_size=font_size,
-        ),
-        play_res_x=play_res_x,
-        play_res_y=play_res_y,
-        ass_path=ass_path,
-    )
-    bbox = _extract_visible_bbox(measurement_image)
-    if bbox is None:
-        return play_res_x / 2.0
-    return float(bbox[0])
-
-
 @lru_cache(maxsize=512)
 def _measure_line_layout_cached(
     text: str,
-    play_res_x: int,
-    play_res_y: int,
     font_name: str,
     font_size: int,
     ass_path_value: str,
@@ -750,30 +713,18 @@ def _measure_line_layout_cached(
         font_size=font_size,
         ass_path=ass_path,
     )
-    line_left = _measure_centered_line_left(
-        text,
-        play_res_x=play_res_x,
-        play_res_y=play_res_y,
-        font_name=font_name,
-        font_size=font_size,
-        ass_path=ass_path,
-    )
-    return _MeasuredLineLayout(line_left=line_left, boundaries=boundaries)
+    return _MeasuredLineLayout(boundaries=boundaries)
 
 
 def _measure_line_layout(
     text: str,
     *,
-    play_res_x: int,
-    play_res_y: int,
     ass_path: Path | None = None,
 ) -> _MeasuredLineLayout:
     """Measure one lyric line with the same libass renderer used during final burn-in."""
     ass_path_value = str(ass_path) if ass_path is not None else ""
     return _measure_line_layout_cached(
         text,
-        play_res_x,
-        play_res_y,
         KARAOKE_FONT_NAME,
         KARAOKE_FONT_SIZE,
         ass_path_value,
