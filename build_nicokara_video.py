@@ -54,6 +54,10 @@ def parse_args() -> argparse.Namespace:
         help="Demucs model name for vocal separation (default: htdemucs_ft)",
     )
     parser.add_argument(
+        "--demucs-device",
+        help="Optional Demucs device override, e.g. cpu or cuda",
+    )
+    parser.add_argument(
         "--asr-json",
         help="Reuse an existing whisper word-level JSON file instead of running ASR again",
     )
@@ -108,6 +112,7 @@ def main() -> int:
             whisper_device=args.whisper_device,
             whisper_vad=args.whisper_vad,
             demucs_model=args.demucs_model,
+            demucs_device=args.demucs_device,
             asr_json_path=args.asr_json,
             vocals_audio_path=args.vocals,
             force=args.force,

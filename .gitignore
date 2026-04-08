@@ -13,3 +13,7 @@ __pycache__
 *.mkv
 *.egg-info
 uv.lock
+ffmpeg.exe
+ffprobe.exe
+ffplay.exe
+data/

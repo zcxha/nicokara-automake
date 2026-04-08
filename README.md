@@ -70,19 +70,24 @@ Project dependencies:
 uv sync
 ```
 
-CLI tools:
+Activate the project virtual environment first, then install the inference tools into that same environment.
+This repository now recommends `uv pip install ... --torch-backend ...` for these packages, because backend selection for CPU / CUDA is explicit there.
 
 ```bash
-uv tool install --with packaging --with setuptools whisper-timestamped
-uv tool install --with torchcodec demucs
+uv pip install --torch-backend auto whisper-timestamped packaging setuptools demucs torchcodec
 ```
 
-If your machine does not have a working CUDA runtime, prefer CPU tool environments:
+If you want NVIDIA GPU inference, keep the `auto` backend above or replace it with an explicit backend like `cu126` / `cu124`.
+After installation, verify that PyTorch can actually see CUDA:
 
 ```bash
-uv sync
-uv tool install --force --torch-backend cpu --with packaging --with setuptools whisper-timestamped
-uv tool install --force --torch-backend cpu --with torchcodec demucs
+python -c "import torch; print(torch.__version__); print(torch.cuda.is_available())"
+```
+
+If your machine does not have a working CUDA runtime, prefer a CPU environment instead:
+
+```bash
+uv pip install --torch-backend cpu whisper-timestamped packaging setuptools demucs torchcodec
 ```
 
 Then run:
@@ -97,6 +102,15 @@ You can also use the installed script entrypoint:
 
 ```bash
 nicokara-build "input.mp4" "lyrics.txt"
+```
+
+If you installed a CUDA-enabled PyTorch build, you can ask Whisper to use the GPU explicitly:
+
+```bash
+python3 build_nicokara_video.py \
+  "input.mp4" \
+  "lyrics.txt" \
+  --whisper-device cuda
 ```
 
 ## Reusing Existing Intermediate Files
@@ -138,8 +152,11 @@ System tools:
 
 Runtime tools:
 
-- `whisper_timestamped` in `PATH`
-- `demucs` in `PATH`, or `uvx` / `uv` available so the pipeline can launch Demucs automatically
+- `whisper_timestamped` installed in the active virtual environment or otherwise available in `PATH`
+- `demucs` installed in the active virtual environment or otherwise available in `PATH`
+
+On Windows, recent `torchaudio` releases may route Demucs WAV output through `torchcodec`.
+The pipeline now runs Demucs through a local compatibility runner so normal `vocals.wav` output can still succeed even when TorchCodec saving is flaky.
 
 Python dependencies:
 

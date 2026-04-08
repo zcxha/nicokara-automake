@@ -40,6 +40,13 @@ class PipelineArtifacts:
 
 def _resolve_demucs_command() -> list[str]:
     """Resolve the best available Demucs invocation command."""
+    try:
+        import demucs  # noqa: F401
+    except ImportError:
+        pass
+    else:
+        return [sys.executable, "-m", "nicokara.demucs_runner"]
+
     demucs = shutil.which("demucs")
     if demucs:
         return [demucs]
@@ -53,7 +60,8 @@ def _resolve_demucs_command() -> list[str]:
         return [uv, "tool", "run", "--from", "demucs", "demucs"]
 
     raise ExternalToolError(
-        "Could not find Demucs. Install it with `uv tool install demucs` or make `demucs` available in PATH."
+        "Could not find Demucs. Install it into the active virtual environment with "
+        "`uv pip install demucs torchcodec` or make `demucs` available in PATH."
     )
 
 
@@ -107,7 +115,7 @@ def _ensure_demucs_runtime_ready(command: list[str]) -> None:
     if not payload.get("torchcodec", False):
         raise ExternalToolError(
             "Demucs is installed but its runtime is missing `torchcodec`. "
-            "Fix it with `uv tool install --force --with torchcodec demucs`."
+            "Fix it with `uv pip install demucs torchcodec` in the active virtual environment."
         )
 
     torch_version = str(payload.get("torch_version") or "")
@@ -115,7 +123,7 @@ def _ensure_demucs_runtime_ready(command: list[str]) -> None:
     if "+cu" in torch_version and cuda_available is False:
         raise ExternalToolError(
             "Demucs is using a CUDA PyTorch build, but CUDA is not usable on this machine. "
-            "Reinstall it with `uv tool install --force --torch-backend cpu --with torchcodec demucs`."
+            "Reinstall it with `uv pip install --reinstall --torch-backend cpu demucs torchcodec`."
         )
 
 
@@ -125,23 +133,24 @@ def separate_vocals(
     *,
     work_dir: Path,
     model: str = "htdemucs_ft",
+    device: str | None = None,
 ) -> Path:
     """Run Demucs vocal separation and copy the vocals stem into a stable path."""
     command = _resolve_demucs_command()
     _ensure_demucs_runtime_ready(command)
     demucs_output_dir = ensure_directory(work_dir / "demucs")
-    run_command(
-        command
-        + [
-            "--two-stems",
-            "vocals",
-            "-n",
-            model,
-            "-o",
-            str(demucs_output_dir),
-            str(audio_path),
-        ]
-    )
+    args = command + [
+        "--two-stems",
+        "vocals",
+        "-n",
+        model,
+        "-o",
+        str(demucs_output_dir),
+    ]
+    if device:
+        args.extend(["-d", device])
+    args.append(str(audio_path))
+    run_command(args)
 
     generated_vocals = demucs_output_dir / model / audio_path.stem / "vocals.wav"
     if not generated_vocals.exists():
@@ -163,7 +172,8 @@ def _resolve_whisper_command() -> tuple[list[str], dict[str, str] | None]:
         return [sys.executable, "-m", "whisper_timestamped.transcribe"], env
 
     raise ExternalToolError(
-        "Could not find `whisper_timestamped`. Install it with `uv tool install whisper-timestamped`."
+        "Could not find `whisper_timestamped`. Install it into the active virtual environment with "
+        "`uv pip install whisper-timestamped packaging setuptools`."
     )
 
 
@@ -220,13 +230,13 @@ def _ensure_whisper_runtime_ready(command: list[str]) -> None:
     if not payload.get("packaging", False):
         raise ExternalToolError(
             "whisper_timestamped is installed but its runtime is missing `packaging`. "
-            "Fix it with `uv tool install --force --with packaging --with setuptools whisper-timestamped`."
+            "Fix it with `uv pip install whisper-timestamped packaging setuptools` in the active virtual environment."
         )
 
     if not payload.get("whisper", False):
         raise ExternalToolError(
             "whisper_timestamped is installed but its runtime is incomplete. "
-            "Reinstall it with `uv tool install --force --with packaging --with setuptools whisper-timestamped`."
+            "Reinstall it with `uv pip install --reinstall whisper-timestamped packaging setuptools`."
         )
 
     torch_version = str(payload.get("torch_version") or "")
@@ -234,7 +244,7 @@ def _ensure_whisper_runtime_ready(command: list[str]) -> None:
     if "+cu" in torch_version and cuda_available is False:
         raise ExternalToolError(
             "whisper_timestamped is using a CUDA PyTorch build, but CUDA is not usable on this machine. "
-            "Reinstall it with `uv tool install --force --torch-backend cpu --with packaging --with setuptools whisper-timestamped`."
+            "Reinstall it with `uv pip install --reinstall --torch-backend cpu whisper-timestamped packaging setuptools`."
         )
 
 
@@ -300,6 +310,7 @@ def build_nicokara_video(
     whisper_language: str = "ja",
     whisper_device: str | None = None,
     demucs_model: str = "htdemucs_ft",
+    demucs_device: str | None = None,
     asr_json_path: str | Path | None = None,
     vocals_audio_path: str | Path | None = None,
     force: bool = False,
@@ -338,6 +349,7 @@ def build_nicokara_video(
                     stable_vocals_path,
                     work_dir=build_dir,
                     model=demucs_model,
+                    device=demucs_device,
                 )
 
     if asr_json_path is None and (force or not stable_asr_json_path.exists()):
